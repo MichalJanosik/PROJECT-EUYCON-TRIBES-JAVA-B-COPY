@@ -16,6 +16,8 @@ public class Kingdom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String name;
     @OneToOne
     private Location location;
     private String ruler;
@@ -25,10 +27,11 @@ public class Kingdom {
     @OneToMany(mappedBy = "kingdom")
     private List<Resources> resourcesList = new ArrayList<>();
 
-    public Kingdom(Long id, String ruler, Integer population, Location location) {
+    public Kingdom(Long id, String name, String ruler, Integer population, Location location) {
         this.id = id;
         this.ruler = ruler;
         this.population = population;
         this.location = location;
+        this.name = name;
     }
 }

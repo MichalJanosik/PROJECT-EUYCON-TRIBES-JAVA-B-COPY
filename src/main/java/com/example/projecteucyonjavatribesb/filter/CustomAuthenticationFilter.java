@@ -48,9 +48,10 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                 .withSubject(user.getUsername())
                 .withIssuer(request.getRequestURL().toString())
                 .withClaim(
-                        "kingdoms",
+                        "kingdom",
                         user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(algorithm);
+
         Map<String, String> access_token = new HashMap<>();
         access_token.put("status", "ok");
         access_token.put("token", token);
@@ -58,6 +59,9 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         new ObjectMapper().writeValue(response.getOutputStream(), access_token);
     }
 
+    //TODO: configure unsuccessfulAuthentication response
+    //"error": "Field username and/or field password was empty!"
+    //"error": "Username and/or password was incorrect!"
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
         super.unsuccessfulAuthentication(request, response, failed);
