@@ -26,11 +26,6 @@ public class ProjectEucyonJavaTribesBApplication implements CommandLineRunner {
 
     @Bean
     PasswordEncoder passwordEncoder() {
-//        Map<String, PasswordEncoder> encoders = new HashMap<>();
-//        encoders.put("bcrypt", new BCryptPasswordEncoder());
-//        DelegatingPasswordEncoder passwordEncoder = new DelegatingPasswordEncoder("bcrypt", encoders);
-//        passwordEncoder.setDefaultPasswordEncoderForMatches(new BCryptPasswordEncoder());
-//        return passwordEncoder;
         return new BCryptPasswordEncoder();
     }
 
