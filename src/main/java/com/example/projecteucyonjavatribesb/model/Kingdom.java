@@ -31,4 +31,9 @@ public class Kingdom {
         this.population = population;
         this.location = location;
     }
+
+    public Kingdom(String ruler) {
+        this.ruler = ruler;
+        this.population = 0;
+    }
 }
