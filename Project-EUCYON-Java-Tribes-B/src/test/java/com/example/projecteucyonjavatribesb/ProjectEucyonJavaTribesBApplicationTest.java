@@ -1,9 +1,8 @@
+
 package com.example.projecteucyonjavatribesb;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.Test;
 
-@SpringBootTest
 class ProjectEucyonJavaTribesBApplicationTests {
 
     @Test

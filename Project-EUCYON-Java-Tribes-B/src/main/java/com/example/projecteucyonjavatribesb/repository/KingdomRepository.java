@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface KingdomRepository extends JpaRepository<Kingdom,Long> {
     @Override
-    Optional<Kingdom> findById(Long id);
+    public Optional<Kingdom> findById(Long id);
 }
