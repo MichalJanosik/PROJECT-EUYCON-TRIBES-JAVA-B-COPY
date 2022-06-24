@@ -1,5 +1,7 @@
 package com.example.projecteucyonjavatribesb.service;
 
+import com.example.projecteucyonjavatribesb.model.DTO.LocationErrorDTO;
+import com.example.projecteucyonjavatribesb.model.DTO.LocationOkDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.model.Location;
 import com.example.projecteucyonjavatribesb.model.DTO.RequestDTO;
@@ -16,12 +18,12 @@ import java.util.Optional;
 public class LocationServiceImpl implements LocationService{
     private final LocationRepository locationRepository;
     private final KingdomRepository kingdomRepository;
-    public ResponseEntity<String> createLocation(RequestDTO requestDTO){
+    public ResponseEntity<Object> createLocation(RequestDTO requestDTO){
         if (locationRepository.existsByCoordinateXAndAndCoordinateY(requestDTO.getCoordinateX(), requestDTO.getCoordinateY())){
-            return ResponseEntity.status(400).body("Given coordinates are already taken!\"");
+            return ResponseEntity.status(400).body(new LocationErrorDTO("Given coordinates are already taken!\""));
         } else if (requestDTO.getCoordinateX()>99 || requestDTO.getCoordinateX()<0 ||
                 requestDTO.getCoordinateY()>99 || requestDTO.getCoordinateY()<0){
-           return ResponseEntity.status(400).body("One or both coordinates are out of valid range (0-99).");
+           return ResponseEntity.status(400).body(new LocationErrorDTO("One or both coordinates are out of valid range (0-99)."));
         } else {
             try {
                 Location location = new Location(requestDTO.getCoordinateX(),requestDTO.getCoordinateY());
@@ -29,9 +31,9 @@ public class LocationServiceImpl implements LocationService{
                 kingdom.get().setLocation(location);
                 locationRepository.save(location);
                 kingdomRepository.save(kingdom.get());
-                return ResponseEntity.ok().body("ok");
+                return ResponseEntity.ok().body(new LocationOkDTO("ok"));
             } catch (Exception e){
-                return ResponseEntity.status(400).body("This kingdom does not exist");
+                return ResponseEntity.status(400).body(new LocationErrorDTO("This kingdom does not exist"));
             }
         }
     }

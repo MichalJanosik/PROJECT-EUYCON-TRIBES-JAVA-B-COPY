@@ -13,7 +13,7 @@ public class PlayerController {
     private final LocationServiceImpl locationServiceImpl;
 
     @PutMapping("/locationRegister")
-    public ResponseEntity<String> setLocation(@RequestBody RequestDTO requestDTO){
+    public ResponseEntity<Object> setLocation(@RequestBody RequestDTO requestDTO){
       return locationServiceImpl.createLocation(requestDTO);
     }
 }
