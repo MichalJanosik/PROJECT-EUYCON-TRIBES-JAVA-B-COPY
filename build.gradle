@@ -24,8 +24,16 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    //auth:
     // https://mvnrepository.com/artifact/com.auth0/java-jwt
     implementation 'com.auth0:java-jwt:3.19.2'
+    //password validation:
+    // https://search.maven.org/artifact/org.hibernate/hibernate-validator/8.0.0.Alpha3/jar
+    implementation 'org.hibernate:hibernate-validator:8.0.0.Alpha3'
+    // https://mvnrepository.com/artifact/org.hibernate/hibernate-validator-cdi
+    implementation 'org.hibernate:hibernate-validator-cdi:7.0.4.Final'
+
+
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'mysql:mysql-connector-java'

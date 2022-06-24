@@ -36,7 +36,7 @@ public class ProjectEucyonJavaTribesBApplication implements CommandLineRunner {
     }
 
     private void populateWithPlayers() {
-        Player player = new Player("password", "MisoTheBadass", "Mordor");
+        Player player = new Player("password", "MisoDaBadass", "Mordor");
         player.setPassword(passwordEncoder().encode(player.getPassword()));
         playerRepository.save(player);
     }
