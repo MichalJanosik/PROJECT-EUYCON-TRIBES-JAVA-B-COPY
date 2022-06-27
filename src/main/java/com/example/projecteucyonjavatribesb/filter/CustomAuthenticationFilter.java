@@ -4,7 +4,9 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+
 import lombok.SneakyThrows;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,11 +29,14 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 @Slf4j
 @RequiredArgsConstructor
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
+
 
     //firstly attempt to authenticate player
     @SneakyThrows
@@ -58,22 +63,39 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
        }
 
         log.info("Username is: {}", username); log.info("Password is: {}", password);
+<<<<<<< HEAD
         // authentication will be processed internally in the Spring Security and
         // result in two possible scenarios: successfulAuthentication or unsuccessfulAuthentication
+=======
+
+    @Override
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        log.info("Username is: {}", username); log.info("Password id: {}", password);
+
+>>>>>>> 86a59a75f6e2be569a2e57e99de64aab9aaab6aa
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
         return authenticationManager.authenticate(authenticationToken);
     }
+
 
     //then handle successful (send token) or unsuccessful authentication (return with error)
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         // org.springframework.security.core.userdetails.User :
         User user = (User) authResult.getPrincipal();
+
+    @Override
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
+        User user = (User) attemptAuthentication(request, response).getPrincipal();
+
         Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
 
         String token = JWT.create()
                 .withSubject(user.getUsername())
                 .withIssuer(request.getRequestURL().toString())
+
                 //here authorities are added into the token
                 .withClaim(
                         "kingdom",
@@ -81,6 +103,11 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                                 .map(GrantedAuthority::getAuthority)
                                 .collect(Collectors.toList())
                 )
+
+                .withClaim(
+                        "kingdom",
+                        user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
+
                 .sign(algorithm);
 
         Map<String, String> access_token = new HashMap<>();
@@ -89,6 +116,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         response.setContentType(APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(), access_token);
     }
+
 
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
@@ -101,3 +129,13 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         new ObjectMapper().writeValue(response.getOutputStream(), error);
     }
 }
+
+    //TODO: configure unsuccessfulAuthentication response
+    //"error": "Field username and/or field password was empty!"
+    //"error": "Username and/or password was incorrect!"
+    @Override
+    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
+        super.unsuccessfulAuthentication(request, response, failed);
+    }
+}
+

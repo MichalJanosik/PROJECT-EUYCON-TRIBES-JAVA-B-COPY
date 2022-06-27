@@ -10,4 +10,6 @@ class ProjectEucyonJavaTribesBApplicationTests {
     void contextLoads() {
     }
 
+
 }
+

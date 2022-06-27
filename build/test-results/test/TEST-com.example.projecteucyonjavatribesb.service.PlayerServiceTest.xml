@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.projecteucyonjavatribesb.service.PlayerServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-06-23T09:48:51" hostname="Mikulovi-MBP" time="1.493">
+  <properties/>
+  <testcase name="checkIfUsernameAlreadyExist_success()" classname="com.example.projecteucyonjavatribesb.service.PlayerServiceTest" time="1.493"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
