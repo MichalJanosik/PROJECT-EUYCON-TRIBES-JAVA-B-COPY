@@ -1,5 +1,8 @@
 package com.example.projecteucyonjavatribesb.service;
 
+
+public interface PlayerService {
+
 import com.example.projecteucyonjavatribesb.model.Player;
 
 public interface PlayerService {
@@ -8,6 +11,7 @@ public interface PlayerService {
     void saveNewPlayerWithDefaultKingdomName(Player player);
 
     void saveNewPlayer(Player player);
+
 
 
 }

@@ -6,7 +6,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class ProjectEucyonJavaTribesBApplicationTests {
 
-
     @Test
     void contextLoads() {
     }
