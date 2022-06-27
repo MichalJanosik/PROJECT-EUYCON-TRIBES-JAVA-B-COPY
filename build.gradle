@@ -24,15 +24,16 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    //auth:
+
+    //authentication:
     // https://mvnrepository.com/artifact/com.auth0/java-jwt
     implementation 'com.auth0:java-jwt:3.19.2'
+
     //password validation:
     // https://search.maven.org/artifact/org.hibernate/hibernate-validator/8.0.0.Alpha3/jar
-    implementation 'org.hibernate:hibernate-validator:8.0.0.Alpha3'
+//    implementation 'org.hibernate:hibernate-validator:8.0.0.Alpha3'
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-validator-cdi
-    implementation 'org.hibernate:hibernate-validator-cdi:7.0.4.Final'
-
+//    implementation 'org.hibernate:hibernate-validator-cdi:7.0.4.Final'
 
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -40,6 +41,14 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+
+    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    // https://mvnrepository.com/artifact/org.springframework/spring-test
+    testImplementation group: 'org.springframework', name: 'spring-test', version: '5.3.21'
+
 }
 
 tasks.named('test') {

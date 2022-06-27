@@ -58,6 +58,8 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
        }
 
         log.info("Username is: {}", username); log.info("Password is: {}", password);
+        // authentication will be processed internally in the Spring Security and
+        // result in two possible scenarios: successfulAuthentication or unsuccessfulAuthentication
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
         return authenticationManager.authenticate(authenticationToken);
     }
