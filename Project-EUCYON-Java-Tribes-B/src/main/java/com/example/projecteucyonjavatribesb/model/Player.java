@@ -16,7 +16,6 @@ public class Player {
     private Long id;
     private String username;
     private String password;
-    private String kingdomName;
     @OneToOne(cascade = CascadeType.ALL)
     private Kingdom kingdom;
 
@@ -28,6 +27,5 @@ public class Player {
     public Player(String password, String username, String kingdomName) {
         this.password = password;
         this.username = username;
-        this.kingdomName = kingdomName;
     }
 }

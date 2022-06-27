@@ -28,6 +28,9 @@ public class LocationServiceImpl implements LocationService{
             try {
                 Location location = new Location(requestDTO.getCoordinateX(),requestDTO.getCoordinateY());
                 Optional<Kingdom> kingdom = kingdomRepository.findById(requestDTO.getKingdomId());
+                if (kingdom.get().getLocation()!=null){
+                    return ResponseEntity.status(400).body(new LocationErrorDTO("This kingdom already have location"));
+                }
                 kingdom.get().setLocation(location);
                 locationRepository.save(location);
                 kingdomRepository.save(kingdom.get());

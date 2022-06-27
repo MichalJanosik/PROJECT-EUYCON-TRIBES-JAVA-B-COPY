@@ -20,6 +20,7 @@ public class Kingdom {
     private Location location;
     private String ruler;
     private Integer population;
+    private String kingdomName;
     @OneToOne
     private Player player;
     @OneToMany(mappedBy = "kingdom")
