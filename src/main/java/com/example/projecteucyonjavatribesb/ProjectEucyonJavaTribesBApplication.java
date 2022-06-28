@@ -20,6 +20,7 @@ public class ProjectEucyonJavaTribesBApplication implements CommandLineRunner {
         SpringApplication.run(ProjectEucyonJavaTribesBApplication.class, args);
     }
 
+    //this bean should be used(dependency injection) wherever BCryptPasswordEncoder password encoding is needed
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -37,5 +38,3 @@ public class ProjectEucyonJavaTribesBApplication implements CommandLineRunner {
         playerRepository.save(player);
     }
 }
-
-

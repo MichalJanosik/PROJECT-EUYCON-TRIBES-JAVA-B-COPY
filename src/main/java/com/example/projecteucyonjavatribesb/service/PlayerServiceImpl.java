@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -26,9 +26,7 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
 
     private final PlayerRepository playerRepository;
     private final KingdomRepository kingdomRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-
-
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public boolean checkIfUsernameAlreadyExist(String username) {
@@ -40,7 +38,7 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
 
     @Override
     public void saveNewPlayerWithDefaultKingdomName(Player player) {
-        String encodedPassword = bCryptPasswordEncoder.encode(player.getPassword());
+        String encodedPassword = passwordEncoder.encode(player.getPassword());
         Player player1 = new Player(encodedPassword, player.getUsername(), player.getUsername().concat("'s kingdom"));
         Kingdom kingdom = new Kingdom(player.getUsername());
         player1.setKingdom(kingdom);
@@ -51,7 +49,7 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
 
     @Override
     public void saveNewPlayer(Player player) {
-        String encodedPassword = bCryptPasswordEncoder.encode(player.getPassword());
+        String encodedPassword = passwordEncoder.encode(player.getPassword());
         Player player1 = new Player(encodedPassword, player.getUsername(), player.getKingdomName());
         Kingdom kingdom = new Kingdom(player.getUsername());
         player1.setKingdom(kingdom);
@@ -59,7 +57,6 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
         playerRepository.save(player1);
         kingdomRepository.save(kingdom);
     }
-
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
