@@ -9,8 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-//import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 @RequiredArgsConstructor
@@ -34,8 +32,8 @@ public class ProjectEucyonJavaTribesBApplication implements CommandLineRunner {
     }
 
     private void populateWithPlayers() {
-        Player player = new Player("password", "MisoDaBadass", "Mordor");
-        player.setPassword(passwordEncoder().encode(player.getPassword()));
+        String password = passwordEncoder().encode("password");
+        Player player = new Player(password, "MisoDaBadass", "Mordor");
         playerRepository.save(player);
     }
 }
