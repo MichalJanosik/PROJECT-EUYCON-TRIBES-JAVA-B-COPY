@@ -8,11 +8,13 @@ group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
 }
+
 
 repositories {
     mavenCentral()
@@ -24,18 +26,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-
-    //auth:
-    // https://mvnrepository.com/artifact/com.auth0/java-jwt
-    implementation 'com.auth0:java-jwt:3.19.2'
-    //password validation:
-    // https://search.maven.org/artifact/org.hibernate/hibernate-validator/8.0.0.Alpha3/jar
-    implementation 'org.hibernate:hibernate-validator:8.0.0.Alpha3'
-    // https://mvnrepository.com/artifact/org.hibernate/hibernate-validator-cdi
-    implementation 'org.hibernate:hibernate-validator-cdi:7.0.4.Final'
-
-
-
     implementation 'org.springframework.boot:spring-boot-starter-test:2.7.0'
     implementation 'com.h2database:h2:2.1.214'
     implementation 'com.auth0:java-jwt:3.19.2'
@@ -44,11 +34,13 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+
+
+
 }
 
 tasks.named('test') {
