@@ -78,6 +78,9 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 //>>>>>>> 86a59a75f6e2be569a2e57e99de64aab9aaab6aa
 //=======
 //>>>>>>> master
+
+        // authentication will be processed internally in the Spring Security and
+        // result in two possible scenarios: successfulAuthentication or unsuccessfulAuthentication
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
         return authenticationManager.authenticate(authenticationToken);
     }
