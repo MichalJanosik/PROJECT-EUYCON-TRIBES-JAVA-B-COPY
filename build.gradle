@@ -8,11 +8,13 @@ group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
 }
+
 
 repositories {
     mavenCentral()
@@ -24,12 +26,13 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-
-<<<<<<< HEAD
+//<<<<<<< HEAD
+//
+//<<<<<<< HEAD
     //authentication:
-=======
-    //auth:
->>>>>>> 86a59a75f6e2be569a2e57e99de64aab9aaab6aa
+//=======
+//    //auth:
+//>>>>>>> 86a59a75f6e2be569a2e57e99de64aab9aaab6aa
     // https://mvnrepository.com/artifact/com.auth0/java-jwt
     implementation 'com.auth0:java-jwt:3.19.2'
 
@@ -40,6 +43,8 @@ dependencies {
 //    implementation 'org.hibernate:hibernate-validator-cdi:7.0.4.Final'
 
 
+//=======
+//>>>>>>> master
     implementation 'org.springframework.boot:spring-boot-starter-test:2.7.0'
     implementation 'com.h2database:h2:2.1.214'
     implementation 'com.auth0:java-jwt:3.19.2'
@@ -48,18 +53,21 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
 
+//<<<<<<< HEAD
     // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     // https://mvnrepository.com/artifact/org.springframework/spring-test
     testImplementation group: 'org.springframework', name: 'spring-test', version: '5.3.21'
+//=======
+//
+//>>>>>>> master
 
 }
 
