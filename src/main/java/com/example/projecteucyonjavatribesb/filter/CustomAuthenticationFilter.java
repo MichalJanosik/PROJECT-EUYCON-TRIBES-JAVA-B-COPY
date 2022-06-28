@@ -24,6 +24,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 
@@ -85,6 +86,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         User user = (User) authResult.getPrincipal();
         Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+        log.info("Successful login, username: {}, password: {}", user.getUsername(), user.getPassword());
 
         String token = JWT.create()
                 .withSubject(user.getUsername())
@@ -101,11 +103,14 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         new ObjectMapper().writeValue(response.getOutputStream(), access_token);
     }
 
-    //TODO: configure unsuccessfulAuthentication response
-    //"error": "Field username and/or field password was empty!"
-    //"error": "Username and/or password was incorrect!"
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
-        super.unsuccessfulAuthentication(request, response, failed);
+        log.info(failed.getMessage());
+        response.setHeader("error", failed.getMessage());
+        response.setStatus(UNAUTHORIZED.value());
+        Map<String, String> error = new HashMap<>();
+        error.put("error", "Username and/or password was incorrect!");
+        response.setContentType(APPLICATION_JSON_VALUE);
+        new ObjectMapper().writeValue(response.getOutputStream(), error);
     }
 }
