@@ -22,7 +22,7 @@ public class PlayerController {
 
 
     @PostMapping("/registration")
-    public ResponseEntity registration(@RequestBody Player player) {
+    public ResponseEntity<Object> registration(@RequestBody Player player) {
         if (playerService.checkIfUsernameAlreadyExist(player.getUsername())) {
             return ResponseEntity.status(400).body(new ErrorDTO("Username already exists!"));
         }
@@ -32,14 +32,13 @@ public class PlayerController {
         if (player.getPassword().length() < 8 || player.getPassword() == null) {
             return ResponseEntity.status(400).body(new ErrorDTO("Password must be at least 8 characters long"));
         }
-        if (player.getKingdomName().isEmpty() || player.getKingdomName() == null) {
-            playerService.saveNewPlayerWithDefaultKingdomName(player);
-            return ResponseEntity.status(200).body(new PlayerDTO(player.getUsername(), playerRepository.findByUsername(player.getUsername()).getKingdom().getId()));
 
-        }
-            playerService.saveNewPlayer(player);
-            return ResponseEntity.status(200).body(new PlayerDTO(player.getUsername(),playerRepository.findByUsername(player.getUsername()).getKingdom().getId()));
+        playerService.saveNewPlayer(player);
+        return ResponseEntity.status(200).body(new PlayerDTO(player.getUsername(), playerRepository.findByUsername(player.getUsername()).getKingdom().getId()));
 
     }
+
+
+
 
 }

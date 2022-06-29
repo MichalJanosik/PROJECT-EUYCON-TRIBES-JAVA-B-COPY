@@ -9,7 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
-public class ProjectEucyonJavaTribesBApplication {
+public class ProjectEucyonJavaTribesBApplication{
 
 
     public static void main(String[] args) {
