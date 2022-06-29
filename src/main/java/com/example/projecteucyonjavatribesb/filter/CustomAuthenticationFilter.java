@@ -45,6 +45,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         try {
             if (password.isBlank() || username.isBlank()  || (password.length() < 8)) {
                 throw new RuntimeException("Field username and/or field password was empty!");
+
             }
         } catch (RuntimeException exception) {
             log.info("Field username and/or field password was empty!");
@@ -56,6 +57,9 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
             new ObjectMapper().writeValue(response.getOutputStream(), error);
 
         }
+
+
+
 
         log.info("Username is: {}", username); log.info("Password is: {}", password);
 
@@ -87,9 +91,6 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         new ObjectMapper().writeValue(response.getOutputStream(), access_token);
     }
 
-    //TODO: configure unsuccessfulAuthentication response
-    //"error": "Field username and/or field password was empty!"
-    //"error": "Username and/or password was incorrect!"
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
         log.info(failed.getMessage());
