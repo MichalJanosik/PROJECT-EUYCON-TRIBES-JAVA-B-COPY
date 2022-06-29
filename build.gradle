@@ -1,0 +1,59 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    implementation 'org.springframework.boot:spring-boot-starter-test:2.7.0'
+    implementation 'com.h2database:h2:2.1.214'
+
+    //authentication:
+    implementation 'com.auth0:java-jwt:3.19.2'
+
+    implementation 'junit:junit:4.13.2'
+    implementation 'org.projectlombok:lombok:1.18.24'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    runtimeOnly 'mysql:mysql-connector-java'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+
+    //testing
+//    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine
+//    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+//    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+//    // https://mvnrepository.com/artifact/org.springframework/spring-test
+//    testImplementation group: 'org.springframework', name: 'spring-test', version: '5.3.21'
+
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
