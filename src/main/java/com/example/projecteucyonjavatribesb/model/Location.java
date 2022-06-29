@@ -24,3 +24,4 @@ public class Location {
         this.coordinateY = coordinateY;
     }
 }
+

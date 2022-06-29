@@ -1,3 +1,4 @@
+//<<<<<<< HEAD
 package com.example.projecteucyonjavatribesb.model;
 
 import lombok.Getter;
@@ -20,16 +21,19 @@ public class Kingdom {
     private Location location;
     private String ruler;
     private Integer population;
-    private String kingdomName;
     @OneToOne
     private Player player;
     @OneToMany(mappedBy = "kingdom")
     private List<Resources> resourcesList = new ArrayList<>();
 
-    public Kingdom(Long id, String ruler, Integer population, Location location) {
-        this.id = id;
+    public Kingdom(String ruler, Integer population, Location location) {
         this.ruler = ruler;
         this.population = population;
         this.location = location;
+    }
+
+    public Kingdom(String ruler) {
+        this.ruler = ruler;
+        this.population = 0;
     }
 }
