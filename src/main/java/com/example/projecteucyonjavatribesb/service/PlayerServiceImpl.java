@@ -26,7 +26,7 @@ import java.util.Collection;
 public class PlayerServiceImpl implements PlayerService, UserDetailsService {
 
 
-        private final PlayerRepository playerRepository;
+    private final PlayerRepository playerRepository;
     private final KingdomRepository kingdomRepository;
 
     private final PasswordEncoder passwordEncoder;
@@ -58,17 +58,17 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-            Player player = playerRepository.findByUsername(username);
-            if (player == null) {
-                log.error("Player not found in the database");
-                throw new UsernameNotFoundException("User not found in the database");
-            } else {
-                log.info("Player found in the database: {}", username);
-            }
-            Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-            //kingdom name could be also extracted from player.getKingdom().getName()
-            authorities.add(new SimpleGrantedAuthority(player.getKingdomName()));
-            return new User(player.getUsername(), player.getPassword(), authorities);
+        Player player = playerRepository.findByUsername(username);
+        if (player == null) {
+            log.error("Player not found in the database");
+            throw new UsernameNotFoundException("User not found in the database");
+        } else {
+            log.info("Player found in the database: {}", username);
+        }
+        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        //kingdom name could be also extracted from player.getKingdom().getName()
+        authorities.add(new SimpleGrantedAuthority(player.getKingdomName()));
+        return new User(player.getUsername(), player.getPassword(), authorities);
     }
 
 }
