@@ -37,21 +37,15 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
     }
 
     @Override
-    public void saveNewPlayerWithDefaultKingdomName(Player player) {
-        String encodedPassword = passwordEncoder.encode(player.getPassword());
-        Player player1 = new Player(encodedPassword, player.getUsername(), player.getUsername().concat("'s kingdom"));
-        Kingdom kingdom = new Kingdom(player.getUsername());
-        player1.setKingdom(kingdom);
-        kingdom.setPlayer(player1);
-        playerRepository.save(player1);
-        kingdomRepository.save(kingdom);
-    }
-
-    @Override
     public void saveNewPlayer(Player player) {
         String encodedPassword = passwordEncoder.encode(player.getPassword());
-        Player player1 = new Player(encodedPassword, player.getUsername(), player.getKingdomName());
         Kingdom kingdom = new Kingdom(player.getUsername());
+        Player player1;
+        if (player.getKingdomName().isEmpty()) {
+            player1 = new Player(encodedPassword, player.getUsername(), player.getUsername().concat("'s kingdom"));
+        } else {
+            player1 = new Player(encodedPassword, player.getUsername(), player.getKingdomName());
+        }
         player1.setKingdom(kingdom);
         kingdom.setPlayer(player1);
         playerRepository.save(player1);
