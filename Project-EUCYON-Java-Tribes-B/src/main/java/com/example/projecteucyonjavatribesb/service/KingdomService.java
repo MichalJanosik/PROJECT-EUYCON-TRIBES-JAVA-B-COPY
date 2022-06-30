@@ -1,8 +1,12 @@
 package com.example.projecteucyonjavatribesb.service;
 
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomOverviewDTO;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
 public interface KingdomService {
 
-    KingdomOverviewDTO getKingdomOverviewById(Long id);
+
 }
