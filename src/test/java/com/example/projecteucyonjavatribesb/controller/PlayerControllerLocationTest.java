@@ -1,4 +1,4 @@
-package com.example.projecteucyonjavatribesb;
+package com.example.projecteucyonjavatribesb.controller;
 
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @Transactional(propagation = Propagation.NOT_SUPPORTED)
 
-class PlayerControllerTest {
+class PlayerControllerLocationTest {
     public Kingdom kingdom = new Kingdom();
 
     @Autowired
