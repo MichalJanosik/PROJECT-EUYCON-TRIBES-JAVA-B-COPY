@@ -1,9 +1,7 @@
 package com.example.projecteucyonjavatribesb.controller;
 
 import com.example.projecteucyonjavatribesb.model.DTO.ErrorDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomOverviewDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomPreviewDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.PlayerDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.service.KingdomService;
 import com.example.projecteucyonjavatribesb.service.PlayerAuthorizationService;
@@ -32,14 +30,5 @@ public class KingdomController {
         }
 
     }
-
-    @GetMapping("/kingdoms/{id}")
-    public ResponseEntity<?> getKingdomDetails(@PathVariable(name = "id") Long id, @RequestHeader(value = "Authorization") String token){
-        if (!playerAuthorizationService.playerOwnsKingdom(id, playerAuthorizationService.getUsernameFromToken(token))){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ErrorDTO("This kingdom is not a kingdom of this player!"));
-        } else {
-            KingdomOverviewDTO kingdomOverviewDTO = kingdomService.getKingdomOverviewById(id);
-            return ResponseEntity.status(HttpStatus.OK).body(kingdomOverviewDTO);
-        }
-    }
+    
 }
