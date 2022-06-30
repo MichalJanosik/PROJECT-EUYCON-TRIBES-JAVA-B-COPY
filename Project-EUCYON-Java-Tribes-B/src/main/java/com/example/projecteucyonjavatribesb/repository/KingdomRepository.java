@@ -9,7 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface KingdomRepository extends JpaRepository<Kingdom, Long> {
-
     Optional<Kingdom> findKingdomByRulerAndId(Long kingdomId, String playerUsername);
 
     Kingdom findKingdomByRuler(String playerUsername);
