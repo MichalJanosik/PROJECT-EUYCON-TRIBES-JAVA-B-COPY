@@ -41,6 +41,39 @@
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/ProjectEucyonJavaTribesBApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/configuration/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/controller/KingdomController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/controller/PlayerController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/filter/CustomAuthenticationFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/filter/JwtRequestFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/model/DTO/ErrorDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/model/DTO/KingdomPreviewDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/model/DTO/PlayerDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/model/Kingdom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/model/Location.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/model/Player.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/model/Resources.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/repository/KingdomRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/repository/PlayerRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/service/KingdomService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/service/PlayerAuthorizationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/service/PlayerAuthorizationServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/service/PlayerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/service/PlayerServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/resources/static/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/resources/templates/greetings.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/resources/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/resources/templates/listOfAccounts.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/test/java/com/example/projecteucyonjavatribesb/ProjectEucyonJavaTribesBApplicationTests.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/ProjectEucyonJavaTribesBApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/ProjectEucyonJavaTribesBApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/configuration/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/configuration/SecurityConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/controller/PlayerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/controller/PlayerController.class" afterDir="false" />
@@ -77,7 +110,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2AsS57WhH81QKQtIgfwo4m6gD8d" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -143,5 +178,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Project_EUCYON_Java_Tribes_B$PlayerServiceTest.ic" NAME="PlayerServiceTest Coverage Results" MODIFIED="1655907994791" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Project_EUCYON_Java_Tribes_B$PlayerControllerTest.ic" NAME="PlayerControllerTest Coverage Results" MODIFIED="1655908051122" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Project_EUCYON_Java_Tribes_B$PlayerServiceTest_checkIfUsernameAlreadyExist_success.ic" NAME="PlayerServiceTest.checkIfUsernameAlreadyExist_success Coverage Results" MODIFIED="1655907914672" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
