@@ -22,11 +22,15 @@ import java.util.Collection;
 @RequiredArgsConstructor
 @Transactional
 @Slf4j
+
 public class PlayerServiceImpl implements PlayerService, UserDetailsService {
+
 
     private final PlayerRepository playerRepository;
     private final KingdomRepository kingdomRepository;
+
     private final PasswordEncoder passwordEncoder;
+
 
     @Override
     public boolean checkIfUsernameAlreadyExist(String username) {
@@ -37,21 +41,15 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
     }
 
     @Override
-    public void saveNewPlayerWithDefaultKingdomName(Player player) {
-        String encodedPassword = passwordEncoder.encode(player.getPassword());
-        Player player1 = new Player(encodedPassword, player.getUsername(), player.getUsername().concat("'s kingdom"));
-        Kingdom kingdom = new Kingdom(player.getUsername());
-        player1.setKingdom(kingdom);
-        kingdom.setPlayer(player1);
-        playerRepository.save(player1);
-        kingdomRepository.save(kingdom);
-    }
-
-    @Override
     public void saveNewPlayer(Player player) {
         String encodedPassword = passwordEncoder.encode(player.getPassword());
-        Player player1 = new Player(encodedPassword, player.getUsername(), player.getKingdomName());
         Kingdom kingdom = new Kingdom(player.getUsername());
+        Player player1;
+        if (player.getKingdomName().isEmpty()) {
+            player1 = new Player(encodedPassword, player.getUsername(), player.getUsername().concat("'s kingdom"));
+        } else {
+            player1 = new Player(encodedPassword, player.getUsername(), player.getKingdomName());
+        }
         player1.setKingdom(kingdom);
         kingdom.setPlayer(player1);
         playerRepository.save(player1);
@@ -60,16 +58,17 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-            Player player = playerRepository.findByUsername(username);
-            if (player == null) {
-                log.error("Player not found in the database");
-                throw new UsernameNotFoundException("User not found in the database");
-            } else {
-                log.info("Player found in the database: {}", username);
-            }
-            Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-            //kingdom name could be also extracted from player.getKingdom().getName()
-            authorities.add(new SimpleGrantedAuthority(player.getKingdomName()));
-            return new User(player.getUsername(), player.getPassword(), authorities);
+        Player player = playerRepository.findByUsername(username);
+        if (player == null) {
+            log.error("Player not found in the database");
+            throw new UsernameNotFoundException("User not found in the database");
+        } else {
+            log.info("Player found in the database: {}", username);
+        }
+        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        //kingdom name could be also extracted from player.getKingdom().getName()
+        authorities.add(new SimpleGrantedAuthority(player.getKingdomName()));
+        return new User(player.getUsername(), player.getPassword(), authorities);
     }
+
 }

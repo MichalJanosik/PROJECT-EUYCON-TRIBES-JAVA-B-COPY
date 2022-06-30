@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class ProjectEucyonJavaTribesBApplication implements CommandLineRunner {
 
+
     private final PlayerRepository playerRepository;
 
     public static void main(String[] args) {
@@ -29,12 +30,12 @@ public class ProjectEucyonJavaTribesBApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //developement purposes
-        populateWithPlayers();
+//        populateWithPlayers();
     }
 
-    private void populateWithPlayers() {
-        String password = passwordEncoder().encode("password");
-        Player player = new Player(password, "MisoDaBadass", "Mordor");
-        playerRepository.save(player);
-    }
+//    private void populateWithPlayers() {
+//        String password = passwordEncoder().encode("password");
+//        Player player = new Player(password, "MisoDaBadass", "Mordor");
+//        playerRepository.save(player);
+//    }
 }

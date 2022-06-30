@@ -51,7 +51,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 try {
                     String username = getUsername(authorizationHeader);
 
-                    if (username != null /*&& SecurityContextHolder.getContext().getAuthentication() == null*/){
+                    if (username != null && SecurityContextHolder.getContext().getAuthentication() == null){
 
                         UserDetails userDetails = this.playerService.loadUserByUsername(username);
                     UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
