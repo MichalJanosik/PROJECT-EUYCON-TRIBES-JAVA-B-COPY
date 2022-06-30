@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Project-EUCYON-Java-Tribes-B.main:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Project_EUCYON_Java_Tribes_B_main_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Project-EUCYON-Java-Tribes-B.main/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="javaee-facet-classes" facet="Project-EUCYON-Java-Tribes-B.main/web/Web" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

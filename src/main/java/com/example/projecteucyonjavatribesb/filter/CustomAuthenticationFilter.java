@@ -13,7 +13,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -46,17 +45,21 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         try {
             if (password.isBlank() || username.isBlank()  || (password.length() < 8)) {
                 throw new RuntimeException("Field username and/or field password was empty!");
-               }
-       } catch (RuntimeException exception) {
-               log.info("Field username and/or field password was empty!");
-               response.setHeader("error", exception.getMessage());
-               response.setStatus(BAD_REQUEST.value());
-               Map<String, String> error = new HashMap<>();
-               error.put("error", exception.getMessage());
-               response.setContentType(APPLICATION_JSON_VALUE);
-               new ObjectMapper().writeValue(response.getOutputStream(), error);
 
-       }
+            }
+        } catch (RuntimeException exception) {
+            log.info("Field username and/or field password was empty!");
+            response.setHeader("error", exception.getMessage());
+            response.setStatus(BAD_REQUEST.value());
+            Map<String, String> error = new HashMap<>();
+            error.put("error", exception.getMessage());
+            response.setContentType(APPLICATION_JSON_VALUE);
+            new ObjectMapper().writeValue(response.getOutputStream(), error);
+
+        }
+
+
+
 
         log.info("Username is: {}", username); log.info("Password is: {}", password);
 
@@ -81,7 +84,6 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                         "kingdom",
                         user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(algorithm);
-
         Map<String, String> access_token = new HashMap<>();
         access_token.put("status", "ok");
         access_token.put("token", token);
