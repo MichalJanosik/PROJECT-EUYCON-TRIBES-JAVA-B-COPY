@@ -1,14 +1,15 @@
 package com.example.projecteucyonjavatribesb.model.DTO;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Builder
 @AllArgsConstructor
-public class ErrorDTO {
-    private String message;
+public class BuildingDTO {
+    private long id;
+    private String type;
+    private int level;
+
 }

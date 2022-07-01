@@ -6,7 +6,6 @@ import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
 
 public interface PlayerAuthorizationService {
 
-    Boolean playerOwnsKingdom(Long kingdomId, String playerUsername);
-    String getUsernameFromToken(String token);
+    Boolean playerOwnsKingdom(String playerUsername, Long kingdomId);
     Kingdom getKingdomPreviewFromUsername(String username);
 }
