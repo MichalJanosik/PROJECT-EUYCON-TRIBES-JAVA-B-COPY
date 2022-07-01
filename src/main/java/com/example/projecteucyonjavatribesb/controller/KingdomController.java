@@ -28,6 +28,12 @@ public class KingdomController {
                     kingdomPreview.getId(),
                     kingdomPreview.getPlayer().getKingdomName()));
         }
+    }
 
+    @GetMapping("/kingdoms/{id}/resources")
+    public ResponseEntity<?> getKindomsResources(@PathVariable("id") Long id,
+                                                 @RequestHeader("authorisation") String token
+            ) {
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
