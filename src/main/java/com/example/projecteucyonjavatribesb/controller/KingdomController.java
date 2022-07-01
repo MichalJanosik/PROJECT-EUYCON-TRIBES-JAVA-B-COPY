@@ -43,27 +43,17 @@ public class KingdomController {
     }
 
     @GetMapping("/kingdoms/{id}/resources")
-    public ResponseEntity<?> getKindomsResources(@PathVariable("id") Long id,
-                                                 @RequestHeader("authorisation") String token
+    public ResponseEntity<?> getKingdomsResources(@PathVariable("id") Long id,
+                                                  @RequestHeader("authorization") String token
             ) {
-//        if (Objects.isNull(id)) {
-//            return ResponseEntity
-//                    .status(HttpStatus.BAD_REQUEST)
-//                    .body(new ErrorDTO("Invalid id of kingdom!"));
-//        } else if (pla) {
-//
-//        }
-//        return ResponseEntity.status(HttpStatus.OK).body();
-        if (Objects.nonNull(id)) {
-            if (playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id)
-                    && !token.isBlank()
-            ) {
+        if (Objects.nonNull(id) || token.isBlank()) {
+            if (playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id)) {
                 return ResponseEntity.ok().body(resourcesService.getKingdomResources(id));
             } else {
                 throw new RuntimeException("This kingdom does not belong to authenticated player!");
             }
         } else {
-            throw new RuntimeException("Kingdom ID must be entered!");
+            throw new RuntimeException("Player not authorized!");
         }
     }
 
