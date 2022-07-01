@@ -5,10 +5,14 @@ import com.example.projecteucyonjavatribesb.model.DTO.KingdomPreviewDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.service.KingdomService;
 import com.example.projecteucyonjavatribesb.service.PlayerAuthorizationService;
+import com.example.projecteucyonjavatribesb.service.ResourcesService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 @RestController
 @AllArgsConstructor
@@ -17,6 +21,7 @@ public class KingdomController {
 
     private final PlayerAuthorizationService playerAuthorizationService;
     private final KingdomService kingdomService;
+    private final ResourcesService resourcesService;
 
     @PostMapping("/auth")
     public ResponseEntity<?> getKingdomDetailsFromToken(@RequestHeader(value = "Authorization") String token) {
