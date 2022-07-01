@@ -5,91 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4411d692-cab5-4c89-b346-21c2d04bafbd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Project_EUCYON_Java_Tribes_B_main_Web_exploded.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/JPA_1_0_JPA_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Spring_5_2_3_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/reports/tests/test/classes/com.example.projecteucyonjavatribesb.service.PlayerServiceTest 2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/reports/tests/test/packages/com.example.projecteucyonjavatribesb.service 2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/test-results/test/binary/output 2.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/test-results/test/binary/output.bin 2.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/aopalliance-1.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/commons-logging-1.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javaee.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-aop-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-aspects-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-beans-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-context-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-context-support-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-core-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-expression-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-instrument-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-jdbc-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-jms-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-messaging-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-orm-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-oxm-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-test-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-tx-5.2.3.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/ProjectEucyonJavaTribesBApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/configuration/SecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/controller/KingdomController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/controller/PlayerController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/filter/CustomAuthenticationFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/filter/JwtRequestFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/model/DTO/ErrorDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/model/DTO/KingdomPreviewDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/model/DTO/PlayerDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/model/Kingdom.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/model/Location.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/model/Player.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/model/Resources.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/repository/KingdomRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/repository/PlayerRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/service/KingdomService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/service/PlayerAuthorizationService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/service/PlayerAuthorizationServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/service/PlayerService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/java/com/example/projecteucyonjavatribesb/service/PlayerServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/resources/static/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/resources/templates/greetings.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/resources/templates/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/main/resources/templates/listOfAccounts.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-EUCYON-Java-Tribes-B/src/test/java/com/example/projecteucyonjavatribesb/ProjectEucyonJavaTribesBApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/ProjectEucyonJavaTribesBApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/ProjectEucyonJavaTribesBApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/configuration/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/configuration/SecurityConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/controller/PlayerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/controller/PlayerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/filter/CustomAuthenticationFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/filter/CustomAuthenticationFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/service/PlayerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/service/PlayerService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/service/PlayerServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/service/PlayerServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/model/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/model/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/repository/KingdomRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/repository/KingdomRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/service/KingdomService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/service/KingdomService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/ProjectEucyonJavaTribesBApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/ProjectEucyonJavaTribesBApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/configuration/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/configuration/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/controller/PlayerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/controller/PlayerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/filter/CustomAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/filter/CustomAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/filter/JwtRequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/filter/JwtRequestFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/service/PlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/service/PlayerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/service/PlayerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/service/PlayerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/service/KingdomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/service/KingdomService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,9 +50,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/service" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;16bd31ab4d90d2313453ad0c504ef898&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Mickey\Desktop\Project-EUCYON-Java-Tribes-B - kopie\Project-EUCYON-Java-Tribes-B\src\main\java\com\example\projecteucyonjavatribesb\service" />
@@ -135,7 +73,7 @@
       <module name="Project-EUCYON-Java-Tribes-B.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.projecteucyonjavatribesb.*" />
+          <option name="PATTERN" value="com.example.projecteucyonjavatribesb.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -152,7 +90,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f1a9a126-cffe-49ec-9e4c-1d7974fda294" name="Changes" comment="" />
+      <changelist id="4411d692-cab5-4c89-b346-21c2d04bafbd" name="Changes" comment="" />
       <created>1655796614004</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -162,6 +100,8 @@
       <workItem from="1655881511010" duration="91000" />
       <workItem from="1655881833646" duration="1939000" />
       <workItem from="1655963965955" duration="464000" />
+      <workItem from="1656587840278" duration="284000" />
+      <workItem from="1656588956378" duration="669000" />
     </task>
     <servers />
   </component>
@@ -180,8 +120,8 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Project_EUCYON_Java_Tribes_B$PlayerServiceTest.ic" NAME="PlayerServiceTest Coverage Results" MODIFIED="1655907994791" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/Project_EUCYON_Java_Tribes_B$PlayerControllerTest.ic" NAME="PlayerControllerTest Coverage Results" MODIFIED="1655908051122" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Project_EUCYON_Java_Tribes_B$PlayerServiceTest_checkIfUsernameAlreadyExist_success.ic" NAME="PlayerServiceTest.checkIfUsernameAlreadyExist_success Coverage Results" MODIFIED="1655907914672" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Project_EUCYON_Java_Tribes_B$PlayerControllerTest.ic" NAME="PlayerControllerTest Coverage Results" MODIFIED="1655908051122" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Project_EUCYON_Java_Tribes_B$PlayerServiceTest.ic" NAME="PlayerServiceTest Coverage Results" MODIFIED="1655907994791" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

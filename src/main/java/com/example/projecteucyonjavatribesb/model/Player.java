@@ -15,8 +15,8 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
-    private String password;
     private String kingdomName;
+    private String password;
     @OneToOne(cascade = CascadeType.ALL)
     private Kingdom kingdom;
 
@@ -31,3 +31,4 @@ public class Player {
         this.kingdomName = kingdomName;
     }
 }
+
