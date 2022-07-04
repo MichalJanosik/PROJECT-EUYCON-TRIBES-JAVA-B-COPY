@@ -11,6 +11,8 @@ import com.example.projecteucyonjavatribesb.service.BuildingsService;
 import com.example.projecteucyonjavatribesb.service.KingdomService;
 import com.example.projecteucyonjavatribesb.service.PlayerAuthorizationService;
 import com.example.projecteucyonjavatribesb.service.ResourcesService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,12 +45,17 @@ public class KingdomController {
     }
 
     @GetMapping("/kingdoms/{id}/resources")
-    public ResponseEntity<?> getKingdomsResources(@PathVariable("id") Long id,
-                                                  @RequestHeader("authorization") String token
-            ) {
+    public ResponseEntity<Object> getKingdomsResources(@PathVariable("id") Long id,
+                                                       @RequestHeader("authorization") String token
+            ) throws JsonProcessingException {
+
         if (Objects.nonNull(id) || token.isBlank()) {
             if (playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id)) {
-                return ResponseEntity.ok().body(resourcesService.getKingdomResources(id));
+                return ResponseEntity.ok().body(
+                        new ObjectMapper()
+                                .writerWithDefaultPrettyPrinter()
+                                .writeValueAsString(resourcesService.getKingdomResources(id))
+                );
             } else {
                 throw new RuntimeException("This kingdom does not belong to authenticated player!");
             }

@@ -1,7 +1,7 @@
 package com.example.projecteucyonjavatribesb.service;
 
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomResourcesDTO;
+import java.util.Map;
 
 public interface ResourcesService {
-    KingdomResourcesDTO getKingdomResources(Long id);
+    Map<String, Object> getKingdomResources(Long id);
 }
