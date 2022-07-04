@@ -69,13 +69,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                     error.put("error_message", exception.getMessage());
                     response.setContentType(APPLICATION_JSON_VALUE);
                     new ObjectMapper().writeValue(response.getOutputStream(), error);
-
-
                 }
             } else {
                 chain.doFilter(request, response);
             }
-
         }
     }
 

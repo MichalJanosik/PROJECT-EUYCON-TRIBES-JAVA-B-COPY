@@ -18,6 +18,12 @@ import java.util.Optional;
 public class LocationServiceImpl implements LocationService{
     private final LocationRepository locationRepository;
     private final KingdomRepository kingdomRepository;
+    /**
+     * It creates a new location for a kingdom if the coordinates are not taken and are within the valid range (0-99)
+     *
+     * @param requestDTO
+     * @return ResponseEntity<Object>
+     */
     public ResponseEntity<Object> createLocation(RequestDTO requestDTO){
         if (locationRepository.existsByCoordinateXAndAndCoordinateY(requestDTO.getCoordinateX(), requestDTO.getCoordinateY())){
             return ResponseEntity.status(400).body(new LocationErrorDTO("Given coordinates are already taken!\""));

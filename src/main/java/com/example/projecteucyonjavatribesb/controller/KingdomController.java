@@ -28,6 +28,5 @@ public class KingdomController {
                     kingdomPreview.getId(),
                     kingdomPreview.getPlayer().getKingdomName()));
         }
-
     }
 }
