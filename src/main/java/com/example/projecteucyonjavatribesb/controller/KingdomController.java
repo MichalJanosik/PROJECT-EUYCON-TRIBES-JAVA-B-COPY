@@ -27,9 +27,6 @@ import java.util.List;
 public class KingdomController {
 
     private final PlayerAuthorizationService playerAuthorizationService;
-    private final KingdomService kingdomService;
-    private final KingdomRepository kingdomRepository;
-    private final BuildingsRepository buildingsRepository;
     private final BuildingsService buildingsService;
 
     @PostMapping("/auth")
@@ -49,9 +46,7 @@ public class KingdomController {
     @GetMapping("/kingdoms/{id}/buildings")
     public ResponseEntity<Object> getKingdomBuildings(@PathVariable(required = false) Long id,
                                                       @RequestHeader(value = "Authorization") String token) {
-        if (id == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("Invalid id of kingdom!"));
-        } else if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id) || token.isEmpty()) {
+        if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id) || token.isEmpty()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(new ErrorDTO("This kingdom does not belong to authenticated player!"));
         }

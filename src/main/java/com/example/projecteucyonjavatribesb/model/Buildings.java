@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.security.Timestamp;
 import java.util.Calendar;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -21,7 +22,7 @@ public class Buildings {
     private int level;
 
 //    @Temporal(TemporalType.TIMESTAMP)
-//    private Calendar startedAt;
+//    private Date startedAt;
 //
 //    @Temporal(TemporalType.TIMESTAMP)
 //    private Calendar finishedAt;
