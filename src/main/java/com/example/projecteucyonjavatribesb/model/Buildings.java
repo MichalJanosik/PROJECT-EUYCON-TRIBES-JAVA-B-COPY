@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.security.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -18,12 +19,17 @@ public class Buildings {
     private String type;
     private int level;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Timestamp startedAt;
+    private LocalDateTime startedAt;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Timestamp finishedAt;
+    private LocalDateTime finishedAt;
 
+    // in the main() method
+    LocalDateTime now = LocalDateTime.now();
+    // Adding 1 year, 1 month, 1 week and 1 day
+    LocalDateTime localDateTime1 = now.plusYears(1)
+            .plusMonths(1)
+            .plusWeeks(1)
+            .plusDays(1);
     @ManyToOne
     @JoinColumn(name = "kingdom")
     private Kingdom kingdom;
