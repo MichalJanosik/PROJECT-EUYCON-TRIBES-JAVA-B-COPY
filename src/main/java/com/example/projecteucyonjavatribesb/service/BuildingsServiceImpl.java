@@ -30,9 +30,11 @@ public class BuildingsServiceImpl implements BuildingsService{
         for (int i = 0; i < kingdom.getBuildingList().size(); i++) {
             listOfBuildings.add(new BuildingDTO(kingdom.getBuildingList().get(i).getId(),
                     kingdom.getBuildingList().get(i).getType(),
-                    kingdom.getBuildingList().get(i).getLevel()));
+                    kingdom.getBuildingList().get(i).getLevel(),
+                    kingdom.getBuildingList().get(i).getStartedAt(),
+                    kingdom.getBuildingList().get(i).getFinishedAt()
+                    ));
         }
-        KingdomBuildingsDTO kingdomBuildingsDTO = new KingdomBuildingsDTO(kingdomDTO, listOfBuildings);
-        return kingdomBuildingsDTO;
+        return new KingdomBuildingsDTO(kingdomDTO, listOfBuildings);
     }
 }
