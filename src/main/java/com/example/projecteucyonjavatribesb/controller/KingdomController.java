@@ -26,6 +26,7 @@ public class KingdomController {
 
     private final PlayerAuthorizationService playerAuthorizationService;
     private final BuildingsService buildingsService;
+    private final KingdomRepository kingdomRepository;
 
     @PostMapping("/auth")
     public ResponseEntity<?> getKingdomDetailsFromToken(@RequestHeader(value = "Authorization") String token) {
@@ -44,7 +45,11 @@ public class KingdomController {
     @GetMapping("/kingdoms/{id}/buildings")
     public ResponseEntity<Object> getKingdomBuildings(@PathVariable(required = false) Long id,
                                                       @RequestHeader(value = "Authorization") String token) {
-        if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id) || token.isEmpty()) {
+        if(kingdomRepository.findById(id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(new ErrorDTO("This kingdom does not exists!"));
+        }
+        else if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id) || token.isEmpty()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(new ErrorDTO("This kingdom does not belong to authenticated player!"));
         }
