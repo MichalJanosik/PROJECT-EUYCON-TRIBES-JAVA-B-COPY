@@ -1,8 +1,6 @@
 package com.example.projecteucyonjavatribesb.controller;
 
 import com.example.projecteucyonjavatribesb.filter.JwtRequestFilter;
-import com.example.projecteucyonjavatribesb.model.Buildings;
-import com.example.projecteucyonjavatribesb.model.DTO.BuildingDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.ErrorDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomPreviewDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomBuildingsDTO;
@@ -58,3 +56,18 @@ public class KingdomController {
 
 
 }
+//    @GetMapping("/kingdoms/{id}")
+//    public ResponseEntity<?> getKingdomOverview(@PathVariable(name = "id") Long id,
+//                                                @RequestHeader(value = "Authorization") String token) {
+//        if (kingdomService.findKingdomById(id) == null) {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+//                    .body(new ErrorDTO("This kingdom does not exist."));
+//        } else if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id) || token.isEmpty()) {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+//                    .body(new ErrorDTO("This kingdom does not belong to authenticated player!"));
+//        } else {
+//            KingdomOverviewDTO kingdomOverview = kingdomService.getKingdomOverviewDTOById(id);
+//            return ResponseEntity.status(HttpStatus.OK).body(kingdomOverview);
+//        }
+//    }
+

@@ -3,6 +3,7 @@ package com.example.projecteucyonjavatribesb.service;
 import com.example.projecteucyonjavatribesb.model.DTO.BuildingDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomBuildingsDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomDTO;
+import com.example.projecteucyonjavatribesb.model.DTO.LocationDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.repository.BuildingsRepository;
 import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
@@ -25,7 +26,7 @@ public class BuildingsServiceImpl implements BuildingsService{
                 kingdom.getPlayer().getKingdomName(),
                 kingdom.getRuler(),
                 kingdom.getPopulation(),
-                kingdom.getLocation());
+                new LocationDTO(kingdom.getLocation().getCoordinateX(), kingdom.getLocation().getCoordinateY()));
 
         for (int i = 0; i < kingdom.getBuildingList().size(); i++) {
             listOfBuildings.add(new BuildingDTO(kingdom.getBuildingList().get(i).getId(),

@@ -16,7 +16,7 @@ public class Location {
     private Long id;
     private Integer coordinateX;
     private Integer coordinateY;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private Kingdom kingdom;
 
     public Location(Integer coordinateX, Integer coordinateY) {
@@ -24,3 +24,4 @@ public class Location {
         this.coordinateY = coordinateY;
     }
 }
+

@@ -38,7 +38,7 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
 
     @Override
     public boolean checkIfUsernameAlreadyExist(String username) {
-        if (playerRepository.findAllByUsername(username).size() > 0) {
+        if (playerRepository.findPlayerByUsername(username).isPresent()) {
             return true;
         }
         return false;
