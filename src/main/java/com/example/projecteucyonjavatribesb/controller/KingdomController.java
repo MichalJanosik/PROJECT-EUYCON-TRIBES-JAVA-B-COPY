@@ -48,7 +48,7 @@ public class KingdomController {
     }
 
     @GetMapping("/kingdoms/{id}/resources")
-    public ResponseEntity<String> getKingdomsResources(@PathVariable("id") Long id,
+    public ResponseEntity<?> getKingdomsResources(@PathVariable("id") Long id,
                                                        @RequestHeader("authorization") String token
             ) throws JsonProcessingException {
 
@@ -56,9 +56,10 @@ public class KingdomController {
             if (playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id)) {
 
                 return ResponseEntity.ok().body(
-                        new ObjectMapper()
-                                .writerWithDefaultPrettyPrinter()
-                                .writeValueAsString(resourcesService.getKingdomResources(id))
+                        resourcesService.getKingdomResources(id)
+//                        new ObjectMapper()
+//                                .writerWithDefaultPrettyPrinter()
+//                                .writeValueAsString(resourcesService.getKingdomResources(id))
                 );
             } else {
                 throw new RuntimeException("This kingdom does not belong to authenticated player!");

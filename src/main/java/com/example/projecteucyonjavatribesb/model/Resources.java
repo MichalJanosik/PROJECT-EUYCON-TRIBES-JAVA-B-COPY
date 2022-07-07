@@ -19,7 +19,7 @@ public class Resources {
     private Integer generation;
     private Long updatedAt;
     @ManyToOne
-    @JoinColumn(name = "kingdom")
+    @JoinColumn(name = "kingdom_id")
     private Kingdom kingdom;
 
     public Resources(String type, Integer amount, Integer generation, Long updatedAt) {

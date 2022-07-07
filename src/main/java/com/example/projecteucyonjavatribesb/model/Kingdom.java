@@ -22,7 +22,7 @@ public class Kingdom {
     private Integer population;
     @OneToOne
     private Player player;
-    @OneToMany(mappedBy = "kingdom")
+    @OneToMany(mappedBy = "kingdom", cascade = CascadeType.ALL)
     private List<Resources> resourcesList = new ArrayList<>();
     @OneToMany(mappedBy = "kingdom")
     private List<Buildings> buildingList = new ArrayList<>();

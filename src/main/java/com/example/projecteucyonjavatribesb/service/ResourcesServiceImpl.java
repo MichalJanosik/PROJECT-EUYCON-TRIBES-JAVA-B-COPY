@@ -21,35 +21,41 @@ public class ResourcesServiceImpl implements ResourcesService {
     private final KingdomService kingdomService;
 
     @Override
-    public Map<String, Object> getKingdomResources(Long id) {
-//        Kingdom kingdom = kingdomService.findKingdomById(id);
+    public KingdomDetailsDTO getKingdomResources(Long id) {
+        Kingdom kingdom = kingdomService.findKingdomById(id);
+
+        return KingdomDetailsDTO.builder()
+                .kingdom(KingdomDTO.builder()
+                        .kingdomId(kingdom.getId())
+                        .kingdomName(kingdom.getPlayer().getKingdomName())
+                        .ruler(kingdom.getRuler())
+                        .population(kingdom.getPopulation())
+                        //should locationDTO be used over here?
+                        .location(kingdom.getLocation())
+                        .build())
+                .resources(kingdom.getResourcesList().stream()
+                                .map(ResourcesServiceImpl::convertToResourcesDTO)
+                                .toList())
+                .build();
+
+//        KingdomDTO kingdomDTO = kingdomService.getKingdomDTO(id);
+//        List<ResourcesDTO> resourcesDTOList =
+//                kingdomService.findKingdomById(id).getResourcesList().stream()
+//                        .map(ResourcesServiceImpl::convertToResourcesDTO)
+//                        .toList();
 //
-//        return KingdomDetailsDTO.builder()
-//                .kingdom(KingdomDTO.builder()
-//                        .kingdomId(kingdom.getId())
-//                        .kingdomName(kingdom.getPlayer().getKingdomName())
-//                        .ruler(kingdom.getRuler())
-//                        .population(kingdom.getPopulation())
-//                        //should locationDTO be used over here?
-//                        .location(kingdom.getLocation())
-//                        .build())
-//                .resources(kingdom.getResourcesList().stream()
-//                                .map(ResourcesServiceImpl::convertToResourcesDTO)
-//                                .toList())
-//                .build();
+//        SortedMap<String, Object> kingdomResources = new TreeMap<>();
+//
+//        kingdomResources.put("kingdom", kingdomDTO);
+//        kingdomResources.put("resources", resourcesDTOList);
+//
+//        return kingdomResources;
+    }
 
-        KingdomDTO kingdomDTO = kingdomService.getKingdomDTO(id);
-        List<ResourcesDTO> resourcesDTOList =
-                kingdomService.findKingdomById(id).getResourcesList().stream()
-                        .map(ResourcesServiceImpl::convertToResourcesDTO)
-                        .toList();
-
-        SortedMap<String, Object> kingdomResources = new TreeMap<>();
-
-        kingdomResources.put("kingdom", kingdomDTO);
-        kingdomResources.put("resources", resourcesDTOList);
-
-        return kingdomResources;
+    public List<Resources> getInitialResources() {
+        return new ArrayList<>(List.of(
+                new Resources("gold", 100, 1, 12345L))
+        );
     }
 
         private static ResourcesDTO convertToResourcesDTO (Resources resources){
