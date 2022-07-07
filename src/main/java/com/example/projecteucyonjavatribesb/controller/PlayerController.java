@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class PlayerController {
     private final LocationServiceImpl locationServiceImpl;
     private final PlayerServiceImpl playerService;
-    private final PlayerRepository playerRepository;
 
     @PutMapping("/locationRegister")
     public ResponseEntity<Object> setLocation(@RequestBody RequestDTO requestDTO){
@@ -43,7 +42,7 @@ public class PlayerController {
         }
 
         playerService.saveNewPlayer(player);
-        return ResponseEntity.status(200).body(new PlayerDTO(player.getUsername(), playerRepository.findByUsername(player.getUsername()).getKingdom().getId()));
+        return ResponseEntity.status(200).body(new PlayerDTO(player.getUsername(), playerService.findByUsername(player.getUsername()).getKingdom().getId()));
 
     }
 

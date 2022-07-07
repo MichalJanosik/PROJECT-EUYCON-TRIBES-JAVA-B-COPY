@@ -65,6 +65,12 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
     }
 
     @Override
+    public Player findByUsername(String username) {
+        return playerRepository.findByUsername(username);
+    }
+
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Player player = playerRepository.findByUsername(username);
         if (player == null) {

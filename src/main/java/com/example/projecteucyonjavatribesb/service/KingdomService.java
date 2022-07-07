@@ -1,11 +1,9 @@
 package com.example.projecteucyonjavatribesb.service;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.example.projecteucyonjavatribesb.model.Kingdom;
 
-@Service
-@RequiredArgsConstructor
+import java.util.Optional;
 
-public class KingdomService {
-
+public interface KingdomService {
+    Optional<Kingdom> findById(Long id);
 }
