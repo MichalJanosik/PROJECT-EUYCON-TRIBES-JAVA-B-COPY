@@ -7,6 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class LocationErrorDTO {
-    private String error;
+public class OkMessageDTO {
+    String message;
 }
