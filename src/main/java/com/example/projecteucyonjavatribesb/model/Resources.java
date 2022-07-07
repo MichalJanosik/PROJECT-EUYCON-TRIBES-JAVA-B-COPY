@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
 @Entity
 @Getter
@@ -23,10 +24,10 @@ public class Resources {
     @JoinColumn(name = "kingdom_id")
     private Kingdom kingdom;
 
-    public Resources(String type, Integer amount, Integer generation, Long updatedAt) {
+    public Resources(String type, Integer amount, Integer generation) {
         this.type = type;
         this.amount = amount;
         this.generation = generation;
-        this.updatedAt = updatedAt;
+        updatedAt = System.currentTimeMillis();
     }
 }
