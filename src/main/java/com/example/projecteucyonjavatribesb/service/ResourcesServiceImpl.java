@@ -7,6 +7,7 @@ import com.example.projecteucyonjavatribesb.model.DTO.KingdomDetailsDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.ResourcesDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.model.Resources;
+import com.example.projecteucyonjavatribesb.repository.ResourcesRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,7 @@ public class ResourcesServiceImpl implements ResourcesService {
                                 .toList())
                 .build();
 
+//SortedMap<> soulution to the same problem:
 //        KingdomDTO kingdomDTO = kingdomService.getKingdomDTO(id);
 //        List<ResourcesDTO> resourcesDTOList =
 //                kingdomService.findKingdomById(id).getResourcesList().stream()
@@ -56,6 +58,10 @@ public class ResourcesServiceImpl implements ResourcesService {
         return new ArrayList<>(List.of(
                 new Resources("gold", 100, 1, 12345L))
         );
+    }
+
+    public void generateResources() {
+
     }
 
         private static ResourcesDTO convertToResourcesDTO (Resources resources){
