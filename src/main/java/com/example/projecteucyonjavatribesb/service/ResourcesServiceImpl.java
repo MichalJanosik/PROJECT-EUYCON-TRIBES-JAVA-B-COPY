@@ -75,7 +75,7 @@ public class ResourcesServiceImpl implements ResourcesService {
 
     public void generateResources(Long kingdomId) {
         //TODO: these two values have to be extracted from the kingdom:
-        // "Your granary and vault is only as big as is your town hall.":
+        // "Your granary and vault is only as big as is your town-hall.":
         Integer granaryCapacity = 1000;
         Integer vaultCapacity = 1000;
 
@@ -104,11 +104,6 @@ public class ResourcesServiceImpl implements ResourcesService {
         }
         resourcesRepository.saveAll(kingdomResources);
     }
-
-    //TODO: this in final will be implemented somewhere else to update the resources generation
-    // upon buildings creation, level-up or destroy
-    // (avoid calculating this everytime resource is updated)
-    // (could be also private)
 
     //This function will return the actual resource generation per minute depending on
     //mines/farms count and their levels.
