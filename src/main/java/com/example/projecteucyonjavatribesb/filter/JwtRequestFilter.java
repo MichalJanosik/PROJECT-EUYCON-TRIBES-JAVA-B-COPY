@@ -44,7 +44,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
     public static String username;
 
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
@@ -69,8 +68,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                             username, null, authorities);
                     SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
                     chain.doFilter(request, response);
-                }
-                catch (Exception exception) {
+
+
+                } catch (Exception exception) {
                     log.error("Error logging in : {}", exception.getMessage());
                     response.setHeader("error", exception.getMessage());
                     response.setStatus(FORBIDDEN.value());
@@ -78,7 +78,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                     error.put("error_message", exception.getMessage());
                     response.setContentType(APPLICATION_JSON_VALUE);
                     new ObjectMapper().writeValue(response.getOutputStream(), error);
-
 
                 }
             } else {

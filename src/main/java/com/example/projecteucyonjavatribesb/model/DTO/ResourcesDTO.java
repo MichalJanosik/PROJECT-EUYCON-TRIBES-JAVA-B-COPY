@@ -1,13 +1,14 @@
 package com.example.projecteucyonjavatribesb.model.DTO;
 
-import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.model.Resources;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 @Builder
 public class ResourcesDTO {
     private String type;

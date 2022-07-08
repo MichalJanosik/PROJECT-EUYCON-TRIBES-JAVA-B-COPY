@@ -1,7 +1,10 @@
 package com.example.projecteucyonjavatribesb.service;
 
+import com.example.projecteucyonjavatribesb.model.Buildings;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.model.Player;
+import com.example.projecteucyonjavatribesb.model.Resources;
+import com.example.projecteucyonjavatribesb.repository.BuildingsRepository;
 import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
 import com.example.projecteucyonjavatribesb.repository.PlayerRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +20,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -28,8 +32,9 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
 
     private final PlayerRepository playerRepository;
     private final KingdomRepository kingdomRepository;
-
+    private final BuildingsRepository buildingsRepository;
     private final PasswordEncoder passwordEncoder;
+    private final ResourcesService resourcesService;
 
 
     @Override
@@ -44,6 +49,15 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
     public void saveNewPlayer(Player player) {
         String encodedPassword = passwordEncoder.encode(player.getPassword());
         Kingdom kingdom = new Kingdom(player.getUsername());
+        Buildings buildings = new Buildings("Town Hall", 1);
+
+        //set the kigdom`s initial resources:
+        List<Resources> initialResources = resourcesService.getInitialResources();
+        kingdom.setResourcesList(initialResources);
+        for (Resources resource : initialResources) {
+            resource.setKingdom(kingdom);
+        }
+
         Player player1;
         if (player.getKingdomName().isEmpty()) {
             player1 = new Player(encodedPassword, player.getUsername(), player.getUsername().concat("'s kingdom"));
@@ -54,6 +68,9 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
         kingdom.setPlayer(player1);
         playerRepository.save(player1);
         kingdomRepository.save(kingdom);
+        buildings.setKingdom(kingdom);
+        kingdom.setBuildingList(List.of(buildings));
+        buildingsRepository.save(buildings);
     }
 
     @Override

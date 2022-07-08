@@ -9,8 +9,10 @@ import java.util.List;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class KingdomDetailsDTO {
+
     private KingdomDTO kingdom;
     private List<ResourcesDTO> resources;
     private List<BuildingDTO> buildings;
-//    private List<TroopDTO> troops;
+//  private List<TroopDTO> troops;
+
 }
