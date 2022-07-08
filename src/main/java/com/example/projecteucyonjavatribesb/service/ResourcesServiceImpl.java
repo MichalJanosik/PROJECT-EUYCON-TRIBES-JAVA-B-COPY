@@ -73,7 +73,6 @@ public class ResourcesServiceImpl implements ResourcesService {
         ));
     }
 
-
     public void generateResources(Long kingdomId) {
         //TODO: these two values have to be extracted from the kingdom:
         // "Your granary and vault is only as big as is your town hall.":
@@ -101,7 +100,6 @@ public class ResourcesServiceImpl implements ResourcesService {
                                     resource.getAmount() + amountToBeAdded : granaryCapacity
                     );
                 }
-
             }
         }
         resourcesRepository.saveAll(kingdomResources);
@@ -143,10 +141,21 @@ public class ResourcesServiceImpl implements ResourcesService {
 
     private boolean canGenerateResource(Resources resource) {
         //TODO:
-        // Condition here needed to be added to evaluate if vault or granary is full depending on
-        // the resource passed to the method and if it can be generated or not.
-        // We should figure out where to implement vault and granary
-        return (System.currentTimeMillis() > (resource.getUpdatedAt() + timeToWaitForResourcesInMillis));
+        // We should figure out where to implement vault and granary (town-hall?)
+        // These two variables are here just for demo, the resourceCapacity
+        // needs to be extracted from the town-hall for example
+        Integer granaryCapacity = 1000;
+        Integer vaultCapacity = 1000;
+
+        Integer resourceCapacity = 0;
+        String resourceType = resource.getType();
+        switch (resourceType) {
+            case "gold" -> resourceCapacity = vaultCapacity;
+            case "food" -> resourceCapacity = granaryCapacity;
+        }
+
+        return (System.currentTimeMillis() > (resource.getUpdatedAt() + timeToWaitForResourcesInMillis))
+                && (resource.getAmount() < resourceCapacity);
     }
 
     // Method to be used for all cases decreasing amount of resource returns boolean whether the resource
