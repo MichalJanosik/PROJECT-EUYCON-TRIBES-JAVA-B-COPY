@@ -13,6 +13,10 @@ public interface KingdomRepository extends JpaRepository<Kingdom, Long> {
     Optional<Kingdom> findKingdomByRulerAndId(String playerUsername, Long kingdomId);
 
     Kingdom findKingdomByRuler(String playerUsername);
+
     @Override
     public Optional<Kingdom> findById(Long id);
+
+    Kingdom getKingdomById(Long id);
+
 }
