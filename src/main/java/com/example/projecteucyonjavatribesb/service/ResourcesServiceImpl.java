@@ -5,6 +5,7 @@ package com.example.projecteucyonjavatribesb.service;
 import com.example.projecteucyonjavatribesb.model.Buildings;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomDetailsDTO;
+import com.example.projecteucyonjavatribesb.model.DTO.LocationDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.ResourcesDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.model.Resources;
@@ -39,8 +40,10 @@ public class ResourcesServiceImpl implements ResourcesService {
                         .kingdomName(kingdom.getPlayer().getKingdomName())
                         .ruler(kingdom.getRuler())
                         .population(kingdom.getPopulation())
-                        //TODO: refactor with locationDTO:
-                        .location(kingdom.getLocation())
+                        .location(new LocationDTO(
+                                kingdom.getLocation().getCoordinateX(),
+                                kingdom.getLocation().getCoordinateY())
+                        )
                         .build())
                 .resources(kingdom.getResourcesList().stream()
                         .map(ResourcesServiceImpl::convertToResourcesDTO)
@@ -72,8 +75,8 @@ public class ResourcesServiceImpl implements ResourcesService {
 
 
     public void generateResources(Long kingdomId) {
-        //TODO: these two values have to be extracted from the kingdom
-        // (they should depend on TownHall level):
+        //TODO: these two values have to be extracted from the kingdom:
+        // "Your granary and vault is only as big as is your town hall.":
         Integer granaryCapacity = 1000;
         Integer vaultCapacity = 1000;
 
@@ -82,7 +85,8 @@ public class ResourcesServiceImpl implements ResourcesService {
             Integer resourceGenerationPerMinute = getResourceGenerationPerMinute(resource);
             if (canGenerateResource(resource)) {
                 Integer timePassedInMinutes = Math.toIntExact(
-                        (System.currentTimeMillis() - resource.getUpdatedAt()) / 1000 / 60
+                        System.currentTimeMillis() - (resource.getUpdatedAt() / 1000 / 60)
+                                - timeToWaitForResourcesInMillis
                 );
                 Integer amountToBeAdded = resourceGenerationPerMinute * timePassedInMinutes;
 
@@ -107,8 +111,9 @@ public class ResourcesServiceImpl implements ResourcesService {
     // upon buildings creation, level-up or destroy
     // (avoid calculating this everytime resource is updated)
     // (could be also private)
-    //this function will return the actual resource generation per minute depending on
-    //mines/farms count and their levels
+
+    //This function will return the actual resource generation per minute depending on
+    //mines/farms count and their levels.
     public Integer getResourceGenerationPerMinute(Resources resource) {
         Integer resourceGeneration = resource.getGeneration();
         List<Buildings> kingdomBuildings = resource.getKingdom().getBuildingList();
@@ -139,15 +144,15 @@ public class ResourcesServiceImpl implements ResourcesService {
     private boolean canGenerateResource(Resources resource) {
         //TODO:
         // Condition here needed to be added to evaluate if vault or granary is full depending on
-        // the resource passed to the method and thus it can be generated or not.
+        // the resource passed to the method and if it can be generated or not.
         // We should figure out where to implement vault and granary
         return (System.currentTimeMillis() > (resource.getUpdatedAt() + timeToWaitForResourcesInMillis));
     }
 
-    //method to be used for all cases decreasing amount of resource
-    //TODO: return boolean
+    // Method to be used for all cases decreasing amount of resource returns boolean whether the resource
+    // was updated or not.
     public boolean useResource(Resources resource, Integer amount) {
-        if (canBeResourceUsed(resource, amount)) {
+        if (canResourceBeUsed(resource, amount)) {
             resource.setAmount(resource.getAmount() - amount);
             resourcesRepository.save(resource);
             return true;
@@ -155,7 +160,7 @@ public class ResourcesServiceImpl implements ResourcesService {
         return false;
     }
 
-    private boolean canBeResourceUsed(Resources resource, Integer amount) {
+    private boolean canResourceBeUsed(Resources resource, Integer amount) {
         return resource.getAmount() >= amount;
     }
 

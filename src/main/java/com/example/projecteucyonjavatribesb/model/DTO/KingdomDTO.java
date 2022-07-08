@@ -18,5 +18,5 @@ public class KingdomDTO {
     private String kingdomName;
     private String ruler;
     private int population;
-    private Location location;
+    private LocationDTO location;
 }
