@@ -145,11 +145,14 @@ public class ResourcesServiceImpl implements ResourcesService {
     }
 
     //method to be used for all cases decreasing amount of resource
-    public void useResource(Resources resource, Integer amount) {
+    //TODO: return boolean
+    public boolean useResource(Resources resource, Integer amount) {
         if (canBeResourceUsed(resource, amount)) {
             resource.setAmount(resource.getAmount() - amount);
             resourcesRepository.save(resource);
+            return true;
         }
+        return false;
     }
 
     private boolean canBeResourceUsed(Resources resource, Integer amount) {
