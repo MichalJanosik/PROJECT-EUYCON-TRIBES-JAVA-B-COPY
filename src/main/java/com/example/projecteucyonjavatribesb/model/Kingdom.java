@@ -22,8 +22,6 @@ public class Kingdom {
     private Location location;
     private String ruler;
     private Integer population;
-    @Transient //This annotation means that this field will NOT be stored in DB
-    private  HashMap<String,Integer> buildingsMap=new HashMap<>();
     @OneToOne
     private Player player;
     @OneToMany(mappedBy = "kingdom")
@@ -35,10 +33,8 @@ public class Kingdom {
         this.population = population;
         this.location = location;
     }
-
     public Kingdom(String ruler) {
         this.ruler = ruler;
         this.population = 0;
     }
-
 }

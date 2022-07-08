@@ -7,6 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class LocationOkDTO {
-    String status;
+public class OkMessageDTO {
+    String message;
 }

@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4411d692-cab5-4c89-b346-21c2d04bafbd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/controller/BuildingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/model/Buildings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/repository/BuildingsRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/service/BuildingsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/service/BuildingsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/model/DTO/BuildingRequestDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -20,20 +14,25 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/ProjectEucyonJavaTribesBApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/ProjectEucyonJavaTribesBApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/configuration/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/configuration/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/filter/JwtRequestFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/filter/JwtRequestFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/controller/BuildingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/controller/BuildingController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/model/DTO/ErrorDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/model/DTO/ErrorDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/model/DTO/LocationOkDTO.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/model/Kingdom.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/model/Kingdom.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/repository/KingdomRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/repository/KingdomRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/repository/BuildingsRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/repository/BuildingsRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/service/BuildingsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/service/BuildingsServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/service/LocationServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/service/LocationServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/service/PlayerAuthorizationServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/projecteucyonjavatribesb/service/PlayerAuthorizationServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/ProjectEucyonJavaTribesBApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/ProjectEucyonJavaTribesBApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/configuration/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/configuration/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/controller/KingdomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/controller/KingdomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/filter/JwtRequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/filter/JwtRequestFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/controller/BuildingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/controller/BuildingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/model/DTO/ErrorDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/model/DTO/ErrorDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/model/DTO/LocationOkDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/model/DTO/OkMessageDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/model/Kingdom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/model/Kingdom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/repository/KingdomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/repository/KingdomRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/repository/BuildingsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/repository/BuildingsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/service/BuildingsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/service/BuildingsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/service/LocationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/service/LocationServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/service/PlayerAuthorizationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/projecteucyonjavatribesb/service/PlayerAuthorizationServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,16 +60,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/LM/Desktop/Project-EUCYON-Java-Tribes-B",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "spring.configuration.checksum": "16bd31ab4d90d2313453ad0c504ef898"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/LM/Desktop/Project-EUCYON-Java-Tribes-B&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;16bd31ab4d90d2313453ad0c504ef898&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Mickey\Desktop\Project-EUCYON-Java-Tribes-B - kopie\Project-EUCYON-Java-Tribes-B\src\main\java\com\example\projecteucyonjavatribesb\service" />
@@ -125,6 +124,11 @@
       <workItem from="1656932681033" duration="8000" />
       <workItem from="1656932812017" duration="1203000" />
       <workItem from="1656934609306" duration="5500000" />
+      <workItem from="1656941777698" duration="4440000" />
+      <workItem from="1657179349989" duration="6518000" />
+      <workItem from="1657197635347" duration="9687000" />
+      <workItem from="1657209061066" duration="3071000" />
+      <workItem from="1657267551411" duration="5073000" />
     </task>
     <servers />
   </component>

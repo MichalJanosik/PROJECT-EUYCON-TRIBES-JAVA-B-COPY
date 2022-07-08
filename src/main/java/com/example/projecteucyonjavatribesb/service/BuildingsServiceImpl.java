@@ -1,6 +1,7 @@
 package com.example.projecteucyonjavatribesb.service;
 
 import com.example.projecteucyonjavatribesb.model.Buildings;
+import com.example.projecteucyonjavatribesb.model.DTO.BuildingRequestDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.repository.BuildingsRepository;
 import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
@@ -8,7 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
+import java.util.Arrays;
+import java.util.Collections;
 
 @Service
 @RequiredArgsConstructor
@@ -16,62 +18,45 @@ public class BuildingsServiceImpl implements BuildingsService {
 
     private final BuildingsRepository buildingsRepository;
     private final KingdomRepository kingdomRepository;
-    //this method put all types of buildings into hashmap
-    /**
-     * It initializes the HashMap of buildings for a kingdom
-     *
-     * @param kingdom The kingdom object that you want to initialize the hashmap for.
-     */
-    public void hashMapInit(Kingdom kingdom){
-        kingdom.getBuildingsMap().put("townhall",0);
-        kingdom.getBuildingsMap().put("barracks",0);
-        kingdom.getBuildingsMap().put("mine",0);
-        kingdom.getBuildingsMap().put("farm",0);
-        kingdom.getBuildingsMap().put("academy",0);
-        kingdom.getBuildingsMap().put("walls",0);
+
+    public Class setBuilding(String type, Long id) {
+        Kingdom kingdom = kingdomRepository.findById(id).get();
+        Buildings buildings = new Buildings();
+        buildings.setType(type);
+        kingdom.getBuildingsList().add(buildings);
+        kingdomRepository.save(kingdom);
+        buildings.setKingdom(kingdom);
+        buildingsRepository.save(buildings);
+        return buildings.getClass();
     }
 
-    /**
-     * This function adds a building to the kingdom, but only if the kingdom has a townhall, and only if the building type
-     * is not already at its maximum limit
-     *
-     * @param kingdom the kingdom object that is being modified
-     * @param type String
-     * @return ResponseEntity<Object>
-     */
-    public ResponseEntity<Object> addBuildingMethod(Kingdom kingdom, String type){
-        hashMapInit(kingdom);
-        if (kingdom.getBuildingsList().contains(buildingsRepository.findByType("townhall"))){
-            if (kingdom.getBuildingsMap().get(type)<1){
-                Buildings buildings = new Buildings();
-                buildings.setType(type);
-                kingdom.getBuildingsList().add(buildings);
-                kingdom.getBuildingsMap().put(type, kingdom.getBuildingsMap().get(type)+1);
-                buildingsRepository.save(buildings);
-                kingdomRepository.save(kingdom);
+    public ResponseEntity<Object> addBuildingMethod(Long id, BuildingRequestDTO type) {
+        long count = kingdomRepository.findById(id).get().getBuildingsList().stream()
+                .filter(c -> type.getType().equalsIgnoreCase(c.getType()))
+                .count();
+        if (kingdomRepository.findById(id).get().getBuildingsList()
+                .stream().anyMatch(x -> x.getType().equalsIgnoreCase("townhall"))) {
+            if(type.getType().equalsIgnoreCase("farm") && count<5){
+                setBuilding(type.getType(), id);
+                //TODO: create dto for response
+                return ResponseEntity.ok().body("ok");
+            } else if(type.getType().equalsIgnoreCase("mine") && count<3){
+                setBuilding(type.getType(), id);
                 //TODO: create dto for response
                 return ResponseEntity.ok().body("there must be DTO");
-            } else if (type.equals("farm") && kingdom.getBuildingsMap().get(type)<5){
-                Buildings buildings = new Buildings();
-                buildings.setType(type);
-                kingdom.getBuildingsList().add(buildings);
-                kingdom.getBuildingsMap().put(type, kingdom.getBuildingsMap().get(type)+1);
-                buildingsRepository.save(buildings);
-                kingdomRepository.save(kingdom);
+            } else if(type.getType().equalsIgnoreCase("barracks") && count<1){
+                setBuilding(type.getType(), id);
                 //TODO: create dto for response
                 return ResponseEntity.ok().body("there must be DTO");
-            } else if (type.equals("farm") && kingdom.getBuildingsMap().get(type)<3){
-                Buildings buildings = new Buildings();
-                buildings.setType(type);
-                kingdom.getBuildingsList().add(buildings);
-                kingdom.getBuildingsMap().put(type, kingdom.getBuildingsMap().get(type)+1);
-                buildingsRepository.save(buildings);
-                kingdomRepository.save(kingdom);
+            } else if(type.getType().equalsIgnoreCase("walls") && count<1){
+                setBuilding(type.getType(), id);
                 //TODO: create dto for response
                 return ResponseEntity.ok().body("there must be DTO");
-            } else return ResponseEntity.status(400).body("Maximum limit of this type of building");
-        }else {
-            return ResponseEntity.status(400).body("Kingdom must have townhall as a first building");
-        }
+            } else if(type.getType().equalsIgnoreCase("academy") && count<1){
+                setBuilding(type.getType(), id);
+                //TODO: create dto for response
+                return ResponseEntity.ok().body("there must be DTO but now is ok");
+            } else return ResponseEntity.status(400).body("error , too much buildings");
+        } else return ResponseEntity.status(400).body("no townhall");
     }
 }
