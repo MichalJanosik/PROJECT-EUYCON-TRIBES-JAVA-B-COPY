@@ -16,22 +16,22 @@ import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
 public class PlayerAuthorizationServiceImpl implements PlayerAuthorizationService {
 
     private final KingdomRepository kingdomRepository;
-    private final JwtRequestFilter jwtRequestFilter;
 
-    @Override
-    public Boolean playerOwnsKingdom(Long kingdomId, String playerUsername) {
-        return kingdomRepository.findKingdomByRulerAndId(playerUsername, kingdomId).isPresent();
-    }
+//    @Override
+//    public Boolean playerOwnsKingdom(Long kingdomId, String playerUsername) {
+//        return kingdomRepository.findKingdomByRulerAndId(playerUsername, kingdomId).isPresent();
+//    }
+//
+//    @Override
+//    public String getUsernameFromToken(String token) {
+//        return jwtRequestFilter.getUsername(token);
+//    }
+        public Boolean playerOwnsKingdom (String playerUsername, Long kingdomId){
+            return kingdomRepository.findKingdomByRulerAndId(playerUsername, kingdomId).isPresent();
+        }
 
-    @Override
-    public String getUsernameFromToken(String token) {
-        return jwtRequestFilter.getUsername(token);
-    }
-
-    @Override
-    public Kingdom getKingdomPreviewFromUsername(String username) {
-        return kingdomRepository.findKingdomByRuler(username);
-    }
-
-
+        @Override
+        public Kingdom getKingdomPreviewFromUsername (String username){
+            return kingdomRepository.findKingdomByRuler(username);
+        }
 }
