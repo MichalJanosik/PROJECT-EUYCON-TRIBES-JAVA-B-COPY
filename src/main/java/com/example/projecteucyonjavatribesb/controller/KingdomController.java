@@ -1,10 +1,7 @@
 package com.example.projecteucyonjavatribesb.controller;
 
 import com.example.projecteucyonjavatribesb.filter.JwtRequestFilter;
-import com.example.projecteucyonjavatribesb.model.DTO.ErrorDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomBuildingsDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomDetailsDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomPreviewDTO;
+import com.example.projecteucyonjavatribesb.model.DTO.*;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.repository.BuildingsRepository;
 import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
@@ -76,6 +73,21 @@ public class KingdomController {
         KingdomBuildingsDTO kingdomBuildingsDTO = buildingsService.makeKingdomBuildingsDTO(id);
         return ResponseEntity.status(HttpStatus.OK).body(kingdomBuildingsDTO);
 
+    }
+
+    @PutMapping("/kingdoms/{id}")
+    public ResponseEntity<?> renameKingdom(@PathVariable("id") Long kingdomId,
+                                           @RequestBody KingdomNameDTO kingdomNameDTO) {
+        if (Objects.nonNull(kingdomNameDTO.getKingdomName())) {
+            if (playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, kingdomId)) {
+                kingdomService.renameKingdom(kingdomId, kingdomNameDTO);
+                return ResponseEntity.status(HttpStatus.OK).body(kingdomService.getRenamedKingdomDTO(kingdomId));
+            } else {
+                throw new RuntimeException("This kingdom does not belong to authenticated player");
+            }
+        } else {
+            throw new RuntimeException("Field kingdomName was empty!");
+        }
     }
 
 //    @GetMapping("/kingdoms/{id}")
