@@ -55,11 +55,10 @@ public class KingdomController {
     }
 
     @GetMapping("/kingdoms/{id}/buildings")
-    public ResponseEntity<Object> getKingdomBuildings(@PathVariable(required = false) Long id,
-                                                      @RequestHeader(value = "Authorization") String token) {
+    public ResponseEntity<Object> getKingdomBuildings(@PathVariable(required = false) Long id) {
         if (id == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("Invalid id of kingdom!"));
-        } else if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id) || token.isEmpty()) {
+        } else if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(new ErrorDTO("This kingdom does not belong to authenticated player!"));
         }
@@ -70,12 +69,11 @@ public class KingdomController {
     }
 
     @GetMapping("/kingdoms/{id}")
-    public ResponseEntity<?> getKingdomDetails(@PathVariable(name = "id") Long id,
-                                               @RequestHeader(value = "Authorization") String token) {
+    public ResponseEntity<?> getKingdomDetails(@PathVariable(name = "id") Long id) {
         if (kingdomService.findKingdomById(id) == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new ErrorDTO("This kingdom does not exist."));
-        } else if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id) || token.isEmpty()) {
+        } else if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(new ErrorDTO("This kingdom does not belong to authenticated player!"));
         } else {

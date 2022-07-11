@@ -17,17 +17,11 @@ public class BuildingDTO {
     private Long startedAt;
     private Long finishedAt;
 
-    public BuildingDTO(Buildings buildings  ) {
+    public BuildingDTO(Buildings buildings) {
         this.id = buildings.getId();
         this.type = buildings.getType();
         this.level = buildings.getLevel();
         this.startedAt = buildings.getStartedAt();
         this.finishedAt = buildings.getFinishedAt();
-    }
-
-    public BuildingDTO(long id, String type, int level) {
-        this.id = id;
-        this.type = type;
-        this.level = level;
     }
 }

@@ -12,12 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 public class KingdomBuildingsDTO {
 
-    private long kingdomId;
-    private String kingdomName;
-    private String ruler;
-    private int population;
-    private Location location;
+    private KingdomDTO kingdomDTO;
     private List<BuildingDTO> buildings;
-
-
 }
