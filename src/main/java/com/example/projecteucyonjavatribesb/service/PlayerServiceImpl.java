@@ -38,7 +38,7 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
 
     @Override
     public boolean checkIfUsernameAlreadyExist(String username) {
-        if (playerRepository.findAllByUsername(username).size() > 0) {
+        if (playerRepository.findPlayerByUsername(username).isPresent()) {
             return true;
         }
         return false;
@@ -63,6 +63,12 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
         kingdom.setBuildingList(List.of(buildings));
         buildingsRepository.save(buildings);
     }
+
+    @Override
+    public Player findByUsername(String username) {
+        return playerRepository.findByUsername(username);
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

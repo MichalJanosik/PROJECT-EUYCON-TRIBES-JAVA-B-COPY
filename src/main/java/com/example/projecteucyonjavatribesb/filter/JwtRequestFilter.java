@@ -41,13 +41,15 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class JwtRequestFilter extends OncePerRequestFilter {
 
     private PlayerServiceImpl playerService;
+
     public static String username;
+
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
 
-        if (request.getServletPath().equals("/api/login")){
+        if (request.getServletPath().equals("/api/login")) {
             chain.doFilter(request, response);
         } else {
             final String authorizationHeader = request.getHeader("Authorization");
@@ -61,7 +63,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
                     String[] kingdoms = decodedJWT.getClaim("kingdom").asArray(String.class);
                     Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-                    stream(kingdoms).forEach(kingdom -> {authorities.add(new SimpleGrantedAuthority(kingdom));
+                    stream(kingdoms).forEach(kingdom -> {
+                        authorities.add(new SimpleGrantedAuthority(kingdom));
                     });
                     UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                             username, null, authorities);
@@ -84,15 +87,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             }
 
         }
-    }
-
-    public String getUsername (String authorizationHeader){
-        String token = authorizationHeader.substring(7);
-        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
-        JWTVerifier verifier = JWT.require(algorithm).build();
-        DecodedJWT decodedJWT = verifier.verify(token);
-        String username = decodedJWT.getSubject();
-        return username;
     }
 }
 

@@ -1,6 +1,7 @@
 package com.example.projecteucyonjavatribesb.model.DTO;
 
 import com.example.projecteucyonjavatribesb.model.Buildings;
+import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.model.Location;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,12 +12,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 public class KingdomBuildingsDTO {
-
-    private long kingdomId;
-    private String kingdomName;
-    private String ruler;
-    private int population;
-    private Location location;
+    private KingdomDTO kingdom;
     private List<BuildingDTO> buildings;
 
 

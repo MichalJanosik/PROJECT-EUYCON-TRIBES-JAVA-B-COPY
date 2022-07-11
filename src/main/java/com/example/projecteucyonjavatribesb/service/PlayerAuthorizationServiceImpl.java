@@ -17,6 +17,7 @@ public class PlayerAuthorizationServiceImpl implements PlayerAuthorizationServic
 
     private final KingdomRepository kingdomRepository;
 
+    @Override
     public Boolean playerOwnsKingdom(String playerUsername, Long kingdomId) {
         return kingdomRepository.findKingdomByRulerAndId(playerUsername, kingdomId).isPresent();
     }

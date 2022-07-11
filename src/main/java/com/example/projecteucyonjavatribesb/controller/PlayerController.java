@@ -1,5 +1,10 @@
 package com.example.projecteucyonjavatribesb.controller;
 
+import com.example.projecteucyonjavatribesb.model.DTO.RequestDTO;
+import com.example.projecteucyonjavatribesb.service.LocationServiceImpl;
+import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import com.example.projecteucyonjavatribesb.model.DTO.ErrorDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.PlayerDTO;
 import com.example.projecteucyonjavatribesb.model.Player;
@@ -13,13 +18,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api")
+@AllArgsConstructor
 public class PlayerController {
-
+    private final LocationServiceImpl locationServiceImpl;
     private final PlayerServiceImpl playerService;
-    private final PlayerRepository playerRepository;
 
+    @PutMapping("/locationRegister")
+    public ResponseEntity<Object> setLocation(@RequestBody RequestDTO requestDTO){
+      return locationServiceImpl.createLocation(requestDTO);
+    }
 
     @PostMapping("/registration")
     public ResponseEntity<Object> registration(@RequestBody Player player) {
@@ -34,7 +42,7 @@ public class PlayerController {
         }
 
         playerService.saveNewPlayer(player);
-        return ResponseEntity.status(200).body(new PlayerDTO(player.getUsername(), playerRepository.findByUsername(player.getUsername()).getKingdom().getId()));
+        return ResponseEntity.status(200).body(new PlayerDTO(player.getUsername(), playerService.findByUsername(player.getUsername()).getKingdom().getId()));
 
     }
 

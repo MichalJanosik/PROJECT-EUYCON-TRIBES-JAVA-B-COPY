@@ -6,9 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.security.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -21,11 +19,10 @@ public class Buildings {
     private String type;
     private int level;
 
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Date startedAt;
-//
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Calendar finishedAt;
+    private LocalDateTime startedAt;
+
+    private LocalDateTime finishedAt;
+
 
     @ManyToOne
     @JoinColumn(name = "kingdom")
@@ -35,5 +32,7 @@ public class Buildings {
     public Buildings(String type, int level) {
         this.type = type;
         this.level = level;
+        this.startedAt = LocalDateTime.now();
+        this.finishedAt = startedAt.plusHours(3L * level);
     }
 }
