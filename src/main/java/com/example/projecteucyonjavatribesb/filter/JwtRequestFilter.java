@@ -83,7 +83,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 response.setHeader("error", exception.getMessage());
                 response.setStatus(UNAUTHORIZED.value());
                 Map<String, String> error = new HashMap<>();
-                error.put("error", "You are trying to enter page, that is only for token authorized players!");
+                error.put("error", "You are trying to enter page, that is only available for token authorized players!");
                 response.setContentType(APPLICATION_JSON_VALUE);
                 new ObjectMapper().writeValue(response.getOutputStream(), error);
                 chain.doFilter(request, response);
