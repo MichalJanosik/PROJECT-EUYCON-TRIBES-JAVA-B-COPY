@@ -134,7 +134,7 @@ public class ResourcesServiceImpl implements ResourcesService {
         return resourceGeneration;
     }
 
-    private boolean canGenerateResource(Resources resource) {
+    public boolean canGenerateResource(Resources resource) {
         //TODO:
         // We should figure out where to implement vault and granary (town-hall?)
         // These two variables are here just for demo, the resourceCapacity
@@ -164,7 +164,7 @@ public class ResourcesServiceImpl implements ResourcesService {
         return false;
     }
 
-    private boolean canResourceBeUsed(Resources resource, Integer amount) {
+    public boolean canResourceBeUsed(Resources resource, Integer amount) {
         return resource.getAmount() >= amount;
     }
 
@@ -172,7 +172,7 @@ public class ResourcesServiceImpl implements ResourcesService {
         return resourcesRepository.findAllByKingdom_Id(kingdomId);
     }
 
-    private static ResourcesDTO convertToResourcesDTO(Resources resources) {
+    public static ResourcesDTO convertToResourcesDTO(Resources resources) {
         return new ResourcesDTO(
                 resources.getType(),
                 resources.getAmount(),
