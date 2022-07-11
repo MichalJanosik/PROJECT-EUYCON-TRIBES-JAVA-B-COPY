@@ -50,6 +50,7 @@ public class BuildingsServiceImpl implements BuildingsService {
         Kingdom kingdom = kingdomRepository.findById(id).get();
         Buildings buildings = new Buildings();
         buildings.setType(type);
+        buildings.setLevel(1);
         kingdom.getBuildingList().add(buildings);
         kingdomRepository.save(kingdom);
         buildings.setKingdom(kingdom);
