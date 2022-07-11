@@ -152,7 +152,7 @@ public class ResourcesServiceImpl implements ResourcesService {
         }
     }
 
-    private boolean canBeResourceUsed(Resources resource, Integer amount) {
+    public boolean canBeResourceUsed(Resources resource, Integer amount) {
         return resource.getAmount() >= amount;
     }
 

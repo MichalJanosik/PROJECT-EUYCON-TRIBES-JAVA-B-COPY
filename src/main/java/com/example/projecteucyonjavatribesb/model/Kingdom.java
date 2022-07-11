@@ -30,7 +30,11 @@ public class Kingdom {
     private List<Resources> resourcesList = new ArrayList<>();
     @OneToMany(mappedBy = "kingdom")
     private List<Buildings> buildingList = new ArrayList<>();
-    public Kingdom(String ruler, Integer population, Location location)
+    public Kingdom(String ruler, Integer population, Location location){
+        this.ruler = ruler;
+        this.population = population;
+        this.location = location;
+    }
     public Kingdom(Long id, String ruler, Integer population, Location location) {
         this.id = id;
         this.ruler = ruler;

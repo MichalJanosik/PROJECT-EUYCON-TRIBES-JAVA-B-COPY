@@ -1,17 +1,11 @@
 package com.example.projecteucyonjavatribesb.controller;
 
 import com.example.projecteucyonjavatribesb.filter.JwtRequestFilter;
-import com.example.projecteucyonjavatribesb.model.DTO.ErrorDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomBuildingsDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomDetailsDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomPreviewDTO;
+import com.example.projecteucyonjavatribesb.model.DTO.*;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.repository.BuildingsRepository;
 import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
-import com.example.projecteucyonjavatribesb.service.BuildingsService;
-import com.example.projecteucyonjavatribesb.service.KingdomService;
-import com.example.projecteucyonjavatribesb.service.PlayerAuthorizationService;
-import com.example.projecteucyonjavatribesb.service.ResourcesService;
+import com.example.projecteucyonjavatribesb.service.*;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -34,6 +28,18 @@ public class KingdomController {
     private final BuildingsRepository buildingsRepository;
     private final BuildingsService buildingsService;
     private final ResourcesService resourcesService;
+
+    private final BuildingsServiceImpl buildingsServiceimp;
+    @PostMapping("/kingdoms/{id}/buildings")
+    public ResponseEntity<Object> addBuilding(@PathVariable("id") Long id, @RequestBody BuildingRequestDTO type) {
+//        if (token.isEmpty()) {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).
+//            body(new ErrorDTO("This kingdom does not belong to authenticated player"));
+//        } else { ,
+//                                              @RequestHeader(value = "Authorization") String token
+//        }
+        return buildingsServiceimp.addBuildingMethod(id, type);
+    }
 
     @PostMapping("/auth")
     public ResponseEntity<?> getKingdomDetailsFromToken(@RequestHeader(value = "Authorization") String token) {

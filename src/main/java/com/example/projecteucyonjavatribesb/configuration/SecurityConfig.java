@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/api/registration").permitAll();
 //      for testing
         http.authorizeRequests().antMatchers("/api/locationRegister").permitAll();
-        http.authorizeRequests().antMatchers("/api/kingdoms/1/buildings").permitAll();
+        http.authorizeRequests().antMatchers("/api/kingdoms/2/buildings").permitAll();
         http.authorizeRequests().antMatchers("/api/login").permitAll();
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);
