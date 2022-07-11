@@ -1,6 +1,7 @@
 package com.example.projecteucyonjavatribesb.service;
 
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomDTO;
+import com.example.projecteucyonjavatribesb.model.DTO.LocationDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,10 @@ public class KingdomServiceImpl implements KingdomService {
                 kingdom.getPlayer().getKingdomName(),
                 kingdom.getRuler(),
                 kingdom.getPopulation(),
-                kingdom.getLocation()
+                new LocationDTO(
+                        kingdom.getLocation().getCoordinateX(),
+                        kingdom.getLocation().getCoordinateY()
+                )
         );
     }
 }
