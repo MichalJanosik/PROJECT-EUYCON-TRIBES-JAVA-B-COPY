@@ -32,6 +32,7 @@ public class LocationServiceImpl implements LocationService{
                     return ResponseEntity.status(400).body(new LocationErrorDTO("This kingdom already have location"));
                 }
                 kingdom.get().setLocation(location);
+                location.setKingdom(kingdom.get());
                 locationRepository.save(location);
                 kingdomRepository.save(kingdom.get());
                 return ResponseEntity.ok().body(new LocationOkDTO("ok"));
