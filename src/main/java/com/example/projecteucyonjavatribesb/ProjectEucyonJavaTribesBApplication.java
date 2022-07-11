@@ -8,6 +8,7 @@ import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
 import com.example.projecteucyonjavatribesb.repository.PlayerRepository;
 import com.example.projecteucyonjavatribesb.service.BuildingsServiceImpl;
 import com.example.projecteucyonjavatribesb.service.PlayerService;
+import com.example.projecteucyonjavatribesb.utility.BuildingAttributeUtility;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -20,7 +21,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootApplication
 @RequiredArgsConstructor
 public class ProjectEucyonJavaTribesBApplication implements CommandLineRunner {
-    private final BuildingsServiceImpl buildingsService;
+    private final BuildingAttributeUtility buildingAttributeUtility;
+
 
     public static void main(String[] args) {
         SpringApplication.run(ProjectEucyonJavaTribesBApplication.class, args);
@@ -34,8 +36,7 @@ public class ProjectEucyonJavaTribesBApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        //This set hashmap from buildingServiceImpl and sets type of building as key and
-        //cost of this type as value of hashmap, necessary for this function
-        buildingsService.setCosts();
+//        method setup in buildingAttributeUtility go trought all methods that need to be initialized when app starts
+        buildingAttributeUtility.setUp();
     }
 }

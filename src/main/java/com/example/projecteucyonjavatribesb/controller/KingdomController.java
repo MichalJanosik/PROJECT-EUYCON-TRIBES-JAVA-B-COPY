@@ -31,14 +31,13 @@ public class KingdomController {
 
     private final BuildingsServiceImpl buildingsServiceimp;
     @PostMapping("/kingdoms/{id}/buildings")
-    public ResponseEntity<Object> addBuilding(@PathVariable("id") Long id, @RequestBody BuildingRequestDTO type) {
-//        if (token.isEmpty()) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).
-//            body(new ErrorDTO("This kingdom does not belong to authenticated player"));
-//        } else { ,
-//                                              @RequestHeader(value = "Authorization") String token
-//        }
-        return buildingsServiceimp.addBuildingMethod(id, type);
+    public ResponseEntity<Object> addBuilding(@PathVariable("id") Long id, @RequestBody BuildingRequestDTO type, @RequestHeader(value = "Authorization") String token) {
+        if (token.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).
+            body(new ErrorDTO("This kingdom does not belong to authenticated player"));
+        } else {
+            return buildingsServiceimp.addBuildingMethod(id, type);
+        }
     }
 
     @PostMapping("/auth")
