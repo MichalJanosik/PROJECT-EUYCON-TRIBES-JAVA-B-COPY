@@ -9,6 +9,7 @@ import static org.mockito.Mockito.when;
 import com.example.projecteucyonjavatribesb.model.Buildings;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomBuildingsDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomDTO;
+import com.example.projecteucyonjavatribesb.model.DTO.LocationDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.model.Location;
 import com.example.projecteucyonjavatribesb.model.Player;
@@ -151,5 +152,6 @@ class BuildingsServiceImplTest {
         assertEquals("Kingdom Name", kingdom7.getKingdomName());
         verify(kingdomRepository).getKingdomById((Long) any());
     }
+
 }
 
