@@ -20,14 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootApplication
 @RequiredArgsConstructor
 public class ProjectEucyonJavaTribesBApplication implements CommandLineRunner {
-
-
-    private final PlayerRepository playerRepository;
-    private final KingdomRepository kingdomRepository;
-    private final BuildingsRepository buildingsRepository;
     private final BuildingsServiceImpl buildingsService;
-//    private final PlayerService playerService;
-
 
     public static void main(String[] args) {
         SpringApplication.run(ProjectEucyonJavaTribesBApplication.class, args);
@@ -41,20 +34,8 @@ public class ProjectEucyonJavaTribesBApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        //This set hashmap from buildingServiceImpl and sets type of building as key and
+        //cost of this type as value of hashmap, necessary for this function
         buildingsService.setCosts();
-        Kingdom kingdom = new Kingdom("mira");
-        Buildings buildings = new Buildings();
-        Buildings building = new Buildings();
-        buildings.setType("townhall");
-        building.setType("farm");
-        kingdom.getBuildingList().add(buildings);
-//        Player player= new Player("as","ass");
-//        playerService.saveNewPlayer(player);
-
-        kingdomRepository.save(kingdom);
-        building.setKingdom(kingdom);
-        buildings.setKingdom(kingdom);
-        buildingsRepository.save(buildings);
-        buildingsRepository.save(building);
     }
 }

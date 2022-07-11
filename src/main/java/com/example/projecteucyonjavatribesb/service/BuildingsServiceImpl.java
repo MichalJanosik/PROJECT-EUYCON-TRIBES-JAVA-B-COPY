@@ -27,7 +27,11 @@ public class BuildingsServiceImpl implements BuildingsService {
     private HashMap<String, Integer> costs = new HashMap<>();
     //TODO: buildingDTO dont have correct fields, missing id and times
 
+    /**
+     * This function sets the costs of each building to a specific value
+     */
     public void setCosts(){
+        // Setting the costs of the buildings.
         costs.put("farm",30);
         costs.put("mine",30);
         costs.put("academy",50);
@@ -35,14 +39,13 @@ public class BuildingsServiceImpl implements BuildingsService {
         costs.put("walls",60);
     }
 
-//    public void checkOrUseResources(Long id, BuildingRequestDTO type){
-//        if (resourcesService.canBeResourceUsed(resourcesService.getResourcesByKingdomId(id).get(0),costs.get(type.getType()))) {
-//            resourcesService.useResource(resourcesService.getResourcesByKingdomId(id).get(0), costs.get(type.getType()));
-//        } else {
-//            return ResponseEntity.status(400).body(new ErrorDTO("You don't have enough gold to build that!"));
-//        }
-//    }
-
+    /**
+     * The function takes in a type of building and a kingdom id, and returns a buildingDTO object
+     *
+     * @param type the type of building you want to build
+     * @param id The id of the kingdom you want to add the building to.
+     * @return BuildingDTO
+     */
     public BuildingDTO setBuilding(String type, Long id) {
         Kingdom kingdom = kingdomRepository.findById(id).get();
         Buildings buildings = new Buildings();
@@ -55,6 +58,18 @@ public class BuildingsServiceImpl implements BuildingsService {
         return buildingDTO;
     }
 
+    /**
+     * It checks if the building type is empty, if it is, it returns an error. If it isn't, it checks if the building type
+     * is already in the kingdom, if it is, it returns an error. If it isn't, it checks if the kingdom has a townhall, if
+     * it doesn't, it returns an error. If it does, it checks if the building type is farm, mine, barracks, walls or
+     * academy, if it isn't, it returns an error. If it is, it checks if the building type is already in the kingdom, if it
+     * is, it returns an error. If it isn't, it checks if the kingdom has enough gold to build the building, if it doesn't,
+     * it returns an error. If it does, it uses the gold to build the building
+     *
+     * @param id the id of the kingdom
+     * @param type the type of the building you want to build
+     * @return ResponseEntity<Object>
+     */
     public ResponseEntity<Object> addBuildingMethod(Long id, BuildingRequestDTO type) {
         if(type.getType().isEmpty()){
             return ResponseEntity.status(400).body(new ErrorDTO("type required"));
