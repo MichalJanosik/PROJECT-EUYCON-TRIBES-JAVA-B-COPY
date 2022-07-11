@@ -4,6 +4,11 @@ import com.example.projecteucyonjavatribesb.model.Kingdom;
 
 import java.util.Optional;
 
+
+import com.example.projecteucyonjavatribesb.model.DTO.KingdomDTO;
+
 public interface KingdomService {
-    Optional<Kingdom> findById(Long id);
-}
+        Kingdom findKingdomById(Long id);
+        KingdomDTO getKingdomDTO(Long id);
+        Optional<Kingdom> findById(Long id);
+    }

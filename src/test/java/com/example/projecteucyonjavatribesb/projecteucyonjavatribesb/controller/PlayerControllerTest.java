@@ -1,4 +1,4 @@
-package com.example.projecteucyonjavatribesb.controller;
+package com.example.projecteucyonjavatribesb.projecteucyonjavatribesb.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

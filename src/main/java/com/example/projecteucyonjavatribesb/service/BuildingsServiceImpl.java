@@ -5,7 +5,6 @@ import com.example.projecteucyonjavatribesb.model.DTO.KingdomBuildingsDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.LocationDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
-import com.example.projecteucyonjavatribesb.repository.BuildingsRepository;
 import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

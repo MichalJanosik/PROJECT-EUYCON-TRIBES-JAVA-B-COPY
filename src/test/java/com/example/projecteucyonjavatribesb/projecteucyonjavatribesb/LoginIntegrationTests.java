@@ -1,4 +1,4 @@
-package com.example.projecteucyonjavatribesb;
+package com.example.projecteucyonjavatribesb.projecteucyonjavatribesb;
 
 import org.junit.jupiter.api.Test;
 //import org.junit.Test;

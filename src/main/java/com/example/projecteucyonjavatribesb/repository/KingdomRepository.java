@@ -1,7 +1,6 @@
 package com.example.projecteucyonjavatribesb.repository;
 
 import com.example.projecteucyonjavatribesb.model.Kingdom;
-import com.example.projecteucyonjavatribesb.model.Player;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,4 +16,6 @@ public interface KingdomRepository extends JpaRepository<Kingdom, Long> {
 
     boolean findKingdomById(Long id);
     Optional<Kingdom> findById(Long id);
+
+
 }

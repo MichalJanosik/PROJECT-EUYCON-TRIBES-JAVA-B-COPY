@@ -2,17 +2,19 @@ package com.example.projecteucyonjavatribesb.controller;
 
 import com.example.projecteucyonjavatribesb.filter.JwtRequestFilter;
 import com.example.projecteucyonjavatribesb.model.DTO.ErrorDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomPreviewDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomBuildingsDTO;
+import com.example.projecteucyonjavatribesb.model.DTO.KingdomPreviewDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
-import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
 import com.example.projecteucyonjavatribesb.service.BuildingsService;
 import com.example.projecteucyonjavatribesb.service.KingdomService;
 import com.example.projecteucyonjavatribesb.service.PlayerAuthorizationService;
+import com.example.projecteucyonjavatribesb.service.ResourcesService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Objects;
 
 @RestController
 @AllArgsConstructor
@@ -22,6 +24,7 @@ public class KingdomController {
     private final PlayerAuthorizationService playerAuthorizationService;
     private final BuildingsService buildingsService;
     private final KingdomService kingdomService;
+    private final ResourcesService resourcesService;
 
     @PostMapping("/auth")
     public ResponseEntity<?> getKingdomDetailsFromToken(@RequestHeader(value = "Authorization") String token) {
@@ -33,9 +36,23 @@ public class KingdomController {
                     kingdomPreview.getId(),
                     kingdomPreview.getPlayer().getKingdomName()));
         }
-
     }
 
+    @GetMapping("/kingdoms/{id}/resources")
+    public ResponseEntity<?> getKingdomsResources(@PathVariable("id") Long kingdomId,
+                                                  @RequestHeader("authorization") String token) {
+
+        if (Objects.nonNull(kingdomId) && Objects.nonNull(token) && !token.isBlank()) {
+            if (playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, kingdomId)) {
+                resourcesService.generateResources(kingdomId);
+                return ResponseEntity.ok().body(resourcesService.getKingdomResources(kingdomId));
+            } else {
+                throw new RuntimeException("This kingdom does not belong to authenticated player!");
+            }
+        } else {
+            throw new RuntimeException("Player not authorized!");
+        }
+    }
 
     @GetMapping("/kingdoms/{id}/buildings")
     public ResponseEntity<Object> getKingdomBuildings(@PathVariable(required = false) Long id,
@@ -55,6 +72,7 @@ public class KingdomController {
 
 
 }
+
 //    @GetMapping("/kingdoms/{id}")
 //    public ResponseEntity<?> getKingdomOverview(@PathVariable(name = "id") Long id,
 //                                                @RequestHeader(value = "Authorization") String token) {
