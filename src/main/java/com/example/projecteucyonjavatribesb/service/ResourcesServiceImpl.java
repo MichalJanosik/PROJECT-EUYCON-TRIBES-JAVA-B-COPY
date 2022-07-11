@@ -23,7 +23,8 @@ public class ResourcesServiceImpl implements ResourcesService {
 
     private final ResourcesRepository resourcesRepository;
 
-    //here the waiting time after generating resources is set in milliseconds:
+    /** Here the waiting time after generating resources is set in milliseconds:
+     */
     protected final Long timeToWaitForResourcesInMillis = 30 * 60 * 1000L;
 
     @Override
@@ -46,7 +47,7 @@ public class ResourcesServiceImpl implements ResourcesService {
                         )
                         .build())
                 .resources(kingdom.getResourcesList().stream()
-                        .map(ResourcesServiceImpl::convertToResourcesDTO)
+                        .map(this::convertToResourcesDTO)
                         .toList())
                 .build();
 
@@ -105,11 +106,14 @@ public class ResourcesServiceImpl implements ResourcesService {
         resourcesRepository.saveAll(kingdomResources);
     }
 
-    //This function will return the actual resource generation per minute depending on
-    //mines/farms count and their levels.
+    /** This function will return the actual resource generation per minute depending on
+     *   mines/farms count and their levels.
+     */
     public Integer getResourceGenerationPerMinute(Resources resource) {
         Integer resourceGeneration = resource.getGeneration();
         List<Buildings> kingdomBuildings = resource.getKingdom().getBuildingList();
+
+        // remember, unless a mine and/or farm is added, the generation per minute will be zero!
         int mineCount = 0;
         int farmCount = 0;
 
@@ -172,12 +176,16 @@ public class ResourcesServiceImpl implements ResourcesService {
         return resourcesRepository.findAllByKingdom_Id(kingdomId);
     }
 
-    public static ResourcesDTO convertToResourcesDTO(Resources resources) {
+    /**
+     * Here the actual resource generation per minute is calculated
+     * depending on building count and level:
+     */
+    public ResourcesDTO convertToResourcesDTO(Resources resource) {
         return new ResourcesDTO(
-                resources.getType(),
-                resources.getAmount(),
-                resources.getGeneration(),
-                resources.getUpdatedAt()
+                resource.getType(),
+                resource.getAmount(),
+                getResourceGenerationPerMinute(resource),
+                resource.getUpdatedAt()
         );
     }
 }
