@@ -42,4 +42,18 @@ public class KingdomServiceImpl implements KingdomService{
                         .collect(Collectors.toList()))
                 .build();
     }
+
+    public KingdomDTO getKingdomDTO(Long id) {
+        return convertToKingdomDTO(kingdomRepository.findById(id).get());
+    }
+
+    private static KingdomDTO convertToKingdomDTO(Kingdom kingdom) {
+        return new KingdomDTO(
+                kingdom.getId(),
+                kingdom.getPlayer().getKingdomName(),
+                kingdom.getRuler(),
+                kingdom.getPopulation(),
+                new LocationDTO(kingdom.getLocation())
+        );
+    }
 }
