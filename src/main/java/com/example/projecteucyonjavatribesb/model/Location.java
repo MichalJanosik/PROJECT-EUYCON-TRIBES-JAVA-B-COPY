@@ -1,5 +1,6 @@
 package com.example.projecteucyonjavatribesb.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +17,9 @@ public class Location {
     private Long id;
     private Integer coordinateX;
     private Integer coordinateY;
+
     @OneToOne(cascade = {CascadeType.ALL})
+    @JsonBackReference
     private Kingdom kingdom;
 
     public Location(Integer coordinateX, Integer coordinateY) {

@@ -1,12 +1,12 @@
 package com.example.projecteucyonjavatribesb.model.DTO;
 
-import com.example.projecteucyonjavatribesb.model.Location;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import lombok.Builder;
 
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
