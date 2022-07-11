@@ -12,5 +12,7 @@ public interface KingdomService {
     public KingdomDetailsDTO getKingdomDetailsDTOById(Long id);
 
     Kingdom findKingdomById(Long id);
+    
+    KingdomDTO getKingdomDTO(Long id);
 
 }
