@@ -27,7 +27,7 @@ public class PlayerController {
 
     @PutMapping("/locationRegister")
     public ResponseEntity<Object> setLocation(@RequestBody RequestDTO requestDTO){
-      return locationServiceImpl.createLocation(requestDTO);
+        return locationServiceImpl.createLocation(requestDTO);
     }
 
     @PostMapping("/registration")
