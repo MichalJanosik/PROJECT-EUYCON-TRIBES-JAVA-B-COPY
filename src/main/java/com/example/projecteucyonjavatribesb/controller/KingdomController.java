@@ -83,7 +83,7 @@ public class KingdomController {
                 kingdomService.renameKingdom(kingdomId, kingdomNameDTO);
                 return ResponseEntity.status(HttpStatus.OK).body(kingdomService.getRenamedKingdomDTO(kingdomId));
             } else {
-                throw new RuntimeException("This kingdom does not belong to authenticated player");
+                throw new RuntimeException("This kingdom does not belong to authenticated player!");
             }
         } else {
             throw new RuntimeException("Field kingdomName was empty!");
