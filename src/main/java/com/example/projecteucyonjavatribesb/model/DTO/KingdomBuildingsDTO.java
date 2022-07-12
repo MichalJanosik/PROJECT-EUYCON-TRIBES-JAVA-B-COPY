@@ -10,7 +10,6 @@ import java.util.List;
 @AllArgsConstructor
 public class KingdomBuildingsDTO {
     private KingdomDTO kingdom;
+
     private List<BuildingDTO> buildings;
-
-
 }

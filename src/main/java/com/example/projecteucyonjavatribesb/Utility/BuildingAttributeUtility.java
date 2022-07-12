@@ -12,7 +12,7 @@ public class BuildingAttributeUtility {
 
     public BuildingAttributeUtility() {
         costs.put("farm",30);
-        costs.put("Town Hall",9);
+        costs.put("Town Hall",90);
         costs.put("mine",30);
         costs.put("academy",50);
         costs.put("barracks",60);

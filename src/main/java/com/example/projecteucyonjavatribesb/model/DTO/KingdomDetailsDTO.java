@@ -1,8 +1,7 @@
 package com.example.projecteucyonjavatribesb.model.DTO;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 import java.util.List;
 

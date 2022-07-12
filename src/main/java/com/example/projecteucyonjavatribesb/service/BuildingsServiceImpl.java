@@ -110,6 +110,7 @@ public class BuildingsServiceImpl implements BuildingsService {
                 buildingsRepository.findBuildingById(buildingId).getStartedAt(),
                 buildingsRepository.findBuildingById(buildingId).getFinishedAt()
         );
+
     }
 
 

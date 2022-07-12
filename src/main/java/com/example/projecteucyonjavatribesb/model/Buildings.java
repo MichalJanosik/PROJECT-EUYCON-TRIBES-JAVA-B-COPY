@@ -15,15 +15,14 @@ import java.time.LocalDateTime;
 public class Buildings {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String type;
     private int level;
     private Long startedAt;
     private Long finishedAt;
 
-
     @ManyToOne
-    @JoinColumn(name = "kingdom")
+    @JoinColumn(name = "kingdom_id")
     private Kingdom kingdom;
 
     public Buildings(String type, int level) {
@@ -32,5 +31,12 @@ public class Buildings {
         this.startedAt = System.currentTimeMillis();
         this.finishedAt = startedAt + 3600000; // = 1h
 //        this.finishedAt = startedAt + 30000; // = 15s
+    }
+
+    public Buildings(String type, int level, Long startedAt, Long finishedAt) {
+        this.type = type;
+        this.level = level;
+        this.startedAt = startedAt;
+        this.finishedAt = finishedAt;
     }
 }

@@ -1,14 +1,21 @@
 package com.example.projecteucyonjavatribesb.service;
 
+import com.example.projecteucyonjavatribesb.model.DTO.KingdomDTO;
+import com.example.projecteucyonjavatribesb.model.DTO.KingdomDetailsDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
+import org.springframework.stereotype.Service;
 
+import java.util.Map;
 import java.util.Optional;
 
-
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomDTO;
-
+@Service
 public interface KingdomService {
-        Kingdom findKingdomById(Long id);
-        KingdomDTO getKingdomDTO(Long id);
-        Optional<Kingdom> findById(Long id);
-    }
+
+    KingdomDetailsDTO getKingdomDetailsDTOById(Long id);
+
+    Kingdom findKingdomById(Long id);
+
+    KingdomDTO getKingdomDTO(Long id);
+    Optional<Kingdom> findById(Long id);
+
+}

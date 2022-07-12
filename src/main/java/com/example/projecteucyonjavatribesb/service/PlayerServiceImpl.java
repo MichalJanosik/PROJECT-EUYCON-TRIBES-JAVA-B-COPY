@@ -52,7 +52,7 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
         buildings.setFinishedAt(System.currentTimeMillis());
         buildingsRepository.save(buildings);
 
-        //set the kigdom`s initial resources:
+        //set the kingdom`s initial resources:
         List<Resources> initialResources = resourcesService.getInitialResources();
         kingdom.setResourcesList(initialResources);
         for (Resources resource : initialResources) {

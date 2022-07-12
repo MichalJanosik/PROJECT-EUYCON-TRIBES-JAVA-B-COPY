@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.jdbc.core.BatchUpdateUtils;
 import org.springframework.stereotype.Repository;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,4 +17,6 @@ public interface BuildingsRepository extends JpaRepository<Buildings, Long> {
     Buildings findBuildingById(Long Id);
     Optional<Buildings> findBuildingsByIdAndKingdom(long id, Kingdom kingdom);
     Buildings findBuildingsByKingdomAndId(Kingdom kingdom, Long id);
+
+    List<Buildings> findAllByKingdom_Id(Long id);
 }

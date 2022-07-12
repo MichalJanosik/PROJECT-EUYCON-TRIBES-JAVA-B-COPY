@@ -18,5 +18,4 @@ public interface KingdomRepository extends JpaRepository<Kingdom, Long> {
     Optional<Kingdom> findById(Long id);
 
 
-
 }

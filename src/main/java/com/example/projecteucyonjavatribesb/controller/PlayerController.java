@@ -23,7 +23,7 @@ public class PlayerController {
 
     @PutMapping("/locationRegister")
     public ResponseEntity<Object> setLocation(@RequestBody RequestDTO requestDTO){
-      return locationServiceImpl.createLocation(requestDTO);
+        return locationServiceImpl.createLocation(requestDTO);
     }
 
     @PostMapping("/registration")
@@ -39,7 +39,8 @@ public class PlayerController {
         }
 
         playerService.saveNewPlayer(player);
-        return ResponseEntity.status(200).body(new PlayerDTO(player.getUsername(), playerService.findByUsername(player.getUsername()).getKingdom().getId()));
+        return ResponseEntity.status(200).body(new PlayerDTO(player.getUsername(),
+                playerService.findByUsername(player.getUsername()).getKingdom().getId()));
 
     }
 

@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface ResourcesRepository extends JpaRepository<Resources, Long> {
+
     List<Resources> findAllByKingdom_Id(Long id);
     Resources findByKingdomAndType(Kingdom kingdom, String type);
 }
