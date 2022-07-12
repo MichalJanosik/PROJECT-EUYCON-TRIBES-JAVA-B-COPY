@@ -1,6 +1,7 @@
 package com.example.projecteucyonjavatribesb.controller;
 
 import com.example.projecteucyonjavatribesb.filter.JwtRequestFilter;
+import com.example.projecteucyonjavatribesb.model.DTO.BuildingDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.ErrorDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomBuildingsDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomPreviewDTO;
@@ -70,9 +71,38 @@ public class KingdomController {
 
     }
 
+    @PutMapping("/kingdoms/{kingdomId}/buildings/{buildingId}")
+    public ResponseEntity<Object> upgradeBuildings(@PathVariable(required = false) Long kingdomId,
+                                                   @PathVariable(required = false) Long buildingId,
+                                                   @RequestHeader(value = "Authorization") String token) {
+        if (kingdomService.findById(kingdomId).isEmpty()) {
+            return ResponseEntity.status(400)
+                    .body(new ErrorDTO("This kingdom does not exists!"));
+        } else if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, kingdomId) || token.isEmpty()) {
+            return ResponseEntity.status(401)
+                    .body(new ErrorDTO("This kingdom does not belong to authenticated player!"));
+
+        } else if (buildingsService.findBuildingsByIdAndKingdom(buildingId, kingdomService.findKingdomById(kingdomId)).isEmpty()) {
+            return ResponseEntity.status(400)
+                    .body(new ErrorDTO("This building does not exists!"));
+
+        } else if (!buildingsService.isReadyForUpgrade(kingdomId, buildingId)) {
+            return ResponseEntity.status(400)
+                    .body(new ErrorDTO("Building is not ready for reconstruction!"));
+
+        } else if (!buildingsService.enoughResources(kingdomId, buildingId)) {
+            return ResponseEntity.status(400)
+                    .body(new ErrorDTO("You don't have enough gold to upgrade that!"));
+        }
+        buildingsService.upgradeBuilding(kingdomId, buildingId);
+        BuildingDTO buildingDTO = buildingsService.makeBuildingsDTO(buildingId);
+        return ResponseEntity.status(200)
+                .body(buildingDTO);
+
+
+    }
 
 }
-
 //    @GetMapping("/kingdoms/{id}")
 //    public ResponseEntity<?> getKingdomOverview(@PathVariable(name = "id") Long id,
 //                                                @RequestHeader(value = "Authorization") String token) {

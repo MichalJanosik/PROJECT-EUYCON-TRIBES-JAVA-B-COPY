@@ -40,7 +40,6 @@ public class ResourcesServiceImpl implements ResourcesService {
                         .kingdomName(kingdom.getPlayer().getKingdomName())
                         .ruler(kingdom.getRuler())
                         .population(kingdom.getPopulation())
-                        //TODO: refactor with locationDTO:
                         .location(new LocationDTO(kingdom.getLocation().getCoordinateX(), kingdom.getLocation().getCoordinateY()))
                         .build())
                 .resources(kingdom.getResourcesList().stream()
@@ -153,7 +152,7 @@ public class ResourcesServiceImpl implements ResourcesService {
         }
     }
 
-    private boolean canBeResourceUsed(Resources resource, Integer amount) {
+    public boolean canBeResourceUsed(Resources resource, Integer amount) {
         return resource.getAmount() >= amount;
     }
 

@@ -18,21 +18,19 @@ public class Buildings {
     private long id;
     private String type;
     private int level;
-
-    private LocalDateTime startedAt;
-
-    private LocalDateTime finishedAt;
+    private Long startedAt;
+    private Long finishedAt;
 
 
     @ManyToOne
     @JoinColumn(name = "kingdom")
     private Kingdom kingdom;
 
-
     public Buildings(String type, int level) {
         this.type = type;
         this.level = level;
-        this.startedAt = LocalDateTime.now();
-        this.finishedAt = startedAt.plusHours(3L * level);
+        this.startedAt = System.currentTimeMillis();
+        this.finishedAt = startedAt + 3600000; // = 1h
+//        this.finishedAt = startedAt + 30000; // = 15s
     }
 }

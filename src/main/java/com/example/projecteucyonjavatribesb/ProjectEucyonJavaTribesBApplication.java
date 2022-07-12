@@ -32,6 +32,9 @@ public class ProjectEucyonJavaTribesBApplication implements CommandLineRunner {
 
     Buildings building = new Buildings();
 
+
+
+
         //developement purposes
 //        populateWithPlayers();
     }

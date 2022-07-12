@@ -1,0 +1,29 @@
+package com.example.projecteucyonjavatribesb.Utility;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.HashMap;
+@Getter
+@Setter
+public class BuildingAttributeUtility {
+    HashMap<String, Integer> costs = new HashMap<>();
+    HashMap<String, Long> time = new HashMap<>();
+
+    public BuildingAttributeUtility() {
+        costs.put("farm",30);
+        costs.put("Town Hall",9);
+        costs.put("mine",30);
+        costs.put("academy",50);
+        costs.put("barracks",60);
+        costs.put("walls",60);
+
+        time.put("farm",1800000L); // 30 min
+        time.put("Town Hall",3600000L); // 1 h
+        time.put("mine",1800000L); // 30 min
+        time.put("academy",2700000L); // 45 min
+        time.put("barracks",2700000L); // 45 min
+        time.put("walls",1200000L); // 20 min
+    }
+
+}

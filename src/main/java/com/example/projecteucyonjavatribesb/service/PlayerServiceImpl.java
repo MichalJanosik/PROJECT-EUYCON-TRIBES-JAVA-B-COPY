@@ -39,10 +39,7 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
 
     @Override
     public boolean checkIfUsernameAlreadyExist(String username) {
-        if (playerRepository.findPlayerByUsername(username).isPresent()) {
-            return true;
-        }
-        return false;
+        return playerRepository.findPlayerByUsername(username).isPresent();
     }
 
     @Override
@@ -50,6 +47,10 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
         String encodedPassword = passwordEncoder.encode(player.getPassword());
         Kingdom kingdom = new Kingdom(player.getUsername());
         Buildings buildings = new Buildings("Town Hall", 1);
+        // TODO change with time of building building
+        buildings.setStartedAt(System.currentTimeMillis());
+        buildings.setFinishedAt(System.currentTimeMillis());
+        buildingsRepository.save(buildings);
 
         //set the kigdom`s initial resources:
         List<Resources> initialResources = resourcesService.getInitialResources();

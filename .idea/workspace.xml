@@ -132,7 +132,12 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Project-EUCYON-Java-Tribes-B" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -144,6 +149,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -162,17 +168,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/mikulovi/Desktop/Project-EUCYON-Java-Tribes-B&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.43908045&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;16bd31ab4d90d2313453ad0c504ef898&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "last_opened_file_path": "/Users/mikulovi/Desktop/Project-EUCYON-Java-Tribes-B",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Global Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.43908045",
+    "spring.configuration.checksum": "16bd31ab4d90d2313453ad0c504ef898"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Mickey\Desktop\Project-EUCYON-Java-Tribes-B - kopie\Project-EUCYON-Java-Tribes-B\src\main\java\com\example\projecteucyonjavatribesb\service" />
@@ -181,16 +193,22 @@
       <recent name="C:\Users\Mickey\Desktop\Project-EUCYON-Java-Tribes-B - kopie\Project-EUCYON-Java-Tribes-B\src\main\java\com\example\projecteucyonjavatribesb\controller" />
       <recent name="C:\Users\Mickey\Desktop\Project-EUCYON-Java-Tribes-B\Project-EUCYON-Java-Tribes-B\src" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.example.projecteucyonjavatribesb.controller" />
+    </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.ProjectEucyonJavaTribesBApplication">
-    <configuration name="ProjectEucyonJavaTribesBApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Gradle.KingdomControllerTest.getKingdomBuildings_success (1)">
+    <configuration name="com.example.projecteucyonjavatribesb.ProjectEucyonJavaTribesBApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-17" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.example.projecteucyonjavatribesb.ProjectEucyonJavaTribesBApplication" />
       <module name="Project-EUCYON-Java-Tribes-B" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.projecteucyonjavatribesb.controller.*" />
+          <option name="PATTERN" value="com.example.projecteucyonjavatribesb.projecteucyonjavatribesb.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -198,7 +216,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BuildingsServiceImplTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="KingdomControllerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -211,7 +229,53 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.example.projecteucyonjavatribesb.service.BuildingsServiceImplTest&quot;" />
+            <option value="&quot;com.example.projecteucyonjavatribesb.projecteucyonjavatribesb.controller.KingdomControllerTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="KingdomControllerTest.getKingdomBuildings_success (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.example.projecteucyonjavatribesb.projecteucyonjavatribesb.controller.KingdomControllerTest.getKingdomBuildings_success&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="PlayerControllerLocationTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.example.projecteucyonjavatribesb.projecteucyonjavatribesb.controller.PlayerControllerLocationTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -228,30 +292,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Write tests for class BuildingsServiceImpl" type="com.diffblue.cover.write-tests-run-configuration" factoryName="com.diffblue.cover.write-tests-run-configuration" activateToolWindowBeforeRun="false" temporary="true">
+    <configuration name="Write tests for method KingdomController.getKingdomBuildings" type="com.diffblue.cover.write-tests-run-configuration" factoryName="com.diffblue.cover.write-tests-run-configuration" activateToolWindowBeforeRun="false" temporary="true">
       <module name="Project-EUCYON-Java-Tribes-B.main" />
-      <settings run-config-name="Write tests for class BuildingsServiceImpl" include-system-env-vars="true">
+      <settings run-config-name="Write tests for method KingdomController.getKingdomBuildings" include-system-env-vars="true">
         <jvm-args />
-        <selection-scope>class</selection-scope>
-        <selected-element key="com.example.projecteucyonjavatribesb.service.BuildingsServiceImpl" />
-      </settings>
-      <method v="2" />
-    </configuration>
-    <configuration name="Write tests for package service" type="com.diffblue.cover.write-tests-run-configuration" factoryName="com.diffblue.cover.write-tests-run-configuration" activateToolWindowBeforeRun="false" temporary="true">
-      <module name="Project-EUCYON-Java-Tribes-B.main" />
-      <settings run-config-name="Write tests for package service" include-system-env-vars="true">
-        <jvm-args />
-        <selection-scope>package</selection-scope>
-        <selected-element key="com.example.projecteucyonjavatribesb.service" />
+        <selection-scope>method</selection-scope>
+        <selected-element key="com.example.projecteucyonjavatribesb.controller.KingdomController.getKingdomBuildings:(Ljava/lang/Long;Ljava/lang/String;)Lorg/springframework/http/ResponseEntity;" />
       </settings>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ProjectEucyonJavaTribesBApplication" />
-        <item itemvalue="Gradle.BuildingsServiceImplTest" />
-        <item itemvalue="Diffblue Cover.Write tests for class BuildingsServiceImpl" />
-        <item itemvalue="Diffblue Cover.Write tests for package service" />
+        <item itemvalue="Gradle.KingdomControllerTest.getKingdomBuildings_success (1)" />
+        <item itemvalue="Gradle.KingdomControllerTest" />
+        <item itemvalue="Diffblue Cover.Write tests for method KingdomController.getKingdomBuildings" />
+        <item itemvalue="Gradle.PlayerControllerLocationTest" />
+        <item itemvalue="Application.com.example.projecteucyonjavatribesb.ProjectEucyonJavaTribesBApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -278,7 +334,7 @@
       <workItem from="1656587840278" duration="284000" />
       <workItem from="1656588956378" duration="669000" />
       <workItem from="1657533380961" duration="449000" />
-      <workItem from="1657543902901" duration="723000" />
+      <workItem from="1657543902901" duration="17658000" />
     </task>
     <servers />
   </component>

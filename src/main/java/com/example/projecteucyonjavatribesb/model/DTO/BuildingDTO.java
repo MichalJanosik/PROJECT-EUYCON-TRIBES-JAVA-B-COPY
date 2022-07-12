@@ -13,7 +13,7 @@ public class BuildingDTO {
     private long id;
     private String type;
     private int level;
-    private LocalDateTime startedAt;
-    private LocalDateTime finishedAt;
+    private Long startedAt;
+    private Long finishedAt;
 
 }

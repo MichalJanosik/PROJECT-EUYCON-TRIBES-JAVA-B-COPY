@@ -12,4 +12,6 @@ public interface ResourcesService {
     void generateResources(Long kingdomId);
     Integer getResourceGenerationPerMinute(Resources resource);
     void useResource(Resources resource, Integer amount);
+
+    public boolean canBeResourceUsed(Resources resource, Integer amount);
 }
