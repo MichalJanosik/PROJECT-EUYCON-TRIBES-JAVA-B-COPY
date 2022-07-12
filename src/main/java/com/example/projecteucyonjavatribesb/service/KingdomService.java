@@ -10,7 +10,7 @@ import java.util.Map;
 @Service
 public interface KingdomService {
 
-    public KingdomDetailsDTO getKingdomDetailsDTOById(Long id);
+    KingdomDetailsDTO getKingdomDetailsDTOById(Long id);
 
     Kingdom findKingdomById(Long id);
 
