@@ -36,7 +36,5 @@ public class ProjectEucyonJavaTribesBApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        method setup in buildingAttributeUtility go trought all methods that need to be initialized when app starts
-        buildingAttributeUtility.setUp();
     }
 }

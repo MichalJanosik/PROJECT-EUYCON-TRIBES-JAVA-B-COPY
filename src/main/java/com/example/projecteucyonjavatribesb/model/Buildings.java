@@ -19,18 +19,8 @@ public class Buildings {
     private long id;
     private String type;
     private int level;
-//
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Timestamp startedAt;
-//
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Timestamp finishedAt;
-
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Calendar startedAt;
-//
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Calendar finishedAt;
+    private Long startedAt;
+    private Long finishedAt;
 
     @ManyToOne
     @JoinColumn(name = "kingdom")
