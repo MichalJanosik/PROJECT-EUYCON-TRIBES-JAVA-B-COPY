@@ -1,17 +1,23 @@
 package com.example.projecteucyonjavatribesb.model.DTO;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.example.projecteucyonjavatribesb.model.Kingdom;
 
-@Data
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @AllArgsConstructor
-@NoArgsConstructor
-@Builder
 public class KingdomPreviewDTO {
 
     private String ruler;
     private Long id;
     private String kingdomName;
+
+    public KingdomPreviewDTO(Kingdom kingdom) {
+        this.ruler = kingdom.getRuler();
+        this.id = kingdom.getId();
+        this.kingdomName = kingdom.getPlayer().getKingdomName();
+    }
 }

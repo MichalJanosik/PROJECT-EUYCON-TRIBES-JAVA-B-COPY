@@ -5,6 +5,7 @@ package com.example.projecteucyonjavatribesb.service;
 import com.example.projecteucyonjavatribesb.model.Buildings;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomDetailsDTO;
+import com.example.projecteucyonjavatribesb.model.DTO.LocationDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.ResourcesDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.model.Resources;
@@ -40,7 +41,7 @@ public class ResourcesServiceImpl implements ResourcesService {
                         .ruler(kingdom.getRuler())
                         .population(kingdom.getPopulation())
                         //TODO: refactor with locationDTO:
-                        .location(kingdom.getLocation())
+                        .location(new LocationDTO(kingdom.getLocation()))
                         .build())
                 .resources(kingdom.getResourcesList().stream()
                         .map(ResourcesServiceImpl::convertToResourcesDTO)
