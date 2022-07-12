@@ -12,5 +12,5 @@ public interface ResourcesService {
     List<Resources> getResourcesByKingdomId(Long kingdom_id);
     void generateResources(Long kingdomId);
     Integer getResourceGenerationPerMinute(Resources resource);
-    void useResource(Resources resource, Integer amount);
+    boolean useResource(Resources resource, Integer amount);
 }
