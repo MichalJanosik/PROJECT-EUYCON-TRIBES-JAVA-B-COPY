@@ -12,6 +12,6 @@ public class RestExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<ErrorDTO> handleRuntimeException(RuntimeException exception) {
        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .body(ErrorDTO.builder().message(exception.getMessage()).build());
+                .body(ErrorDTO.builder().error(exception.getMessage()).build());
     }
 }
