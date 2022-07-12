@@ -20,7 +20,6 @@ public class KingdomDTO {
     private int population;
     private LocationDTO location;
 
-
     public KingdomDTO(Kingdom kingdom) {
         this.kingdomId = kingdom.getId();
         this.kingdomName = kingdom.getPlayer().getKingdomName();
