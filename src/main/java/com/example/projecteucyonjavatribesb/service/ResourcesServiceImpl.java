@@ -41,10 +41,7 @@ public class ResourcesServiceImpl implements ResourcesService {
                         .kingdomName(kingdom.getPlayer().getKingdomName())
                         .ruler(kingdom.getRuler())
                         .population(kingdom.getPopulation())
-                        .location(new LocationDTO(
-                                kingdom.getLocation().getCoordinateX(),
-                                kingdom.getLocation().getCoordinateY())
-                        )
+                        .location(new LocationDTO(kingdom.getLocation()))
                         .build())
                 .resources(kingdom.getResourcesList().stream()
                         .map(this::convertToResourcesDTO)

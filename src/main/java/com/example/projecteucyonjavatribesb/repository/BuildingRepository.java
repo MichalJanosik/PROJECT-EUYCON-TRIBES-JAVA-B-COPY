@@ -1,13 +1,12 @@
 package com.example.projecteucyonjavatribesb.repository;
 
-import com.example.projecteucyonjavatribesb.model.Resources;
+import com.example.projecteucyonjavatribesb.model.Buildings;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface ResourcesRepository extends JpaRepository<Resources, Long> {
-
-    List<Resources> findAllByKingdom_Id(Long id);
+public interface BuildingRepository extends JpaRepository<Buildings, Long> {
+    List<Buildings> findAllByKingdomId(Long id);
 }

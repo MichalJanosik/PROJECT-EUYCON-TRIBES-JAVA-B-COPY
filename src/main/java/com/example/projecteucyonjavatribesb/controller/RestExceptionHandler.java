@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class RestExceptionHandler {
 
     @ExceptionHandler(RuntimeException.class)
+
     public ResponseEntity<?> handleRuntimeException(RuntimeException exception) {
 
         ErrorDTO errorDTO = ErrorDTO.builder().error(exception.getMessage()).build();
@@ -21,5 +22,6 @@ public class RestExceptionHandler {
                     ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDTO);
             default -> null;
         };
+
     }
 }

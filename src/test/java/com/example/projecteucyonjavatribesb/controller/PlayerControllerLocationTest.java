@@ -52,15 +52,15 @@ class PlayerControllerLocationTest {
         kingdom1.setId(1L);
         Optional<Kingdom> optionalKingdom = Optional.of(new Kingdom());
         Mockito.when(mockedKingdomRepo.findById(anyLong())).thenReturn(optionalKingdom);
-            mockMvc.perform(put("/api/locationRegister")
-                            .content("""
+        mockMvc.perform(put("/api/locationRegister")
+                        .content("""
                                     {
                                         "coordinateY": "4",
                                         "coordinateX": "4",
                                         "kingdomId": "1"
                                     }""")
-                            .contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(status().is4xxClientError());
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is4xxClientError());
     }
 
     @Test
@@ -91,6 +91,5 @@ class PlayerControllerLocationTest {
                 .andExpect(status().is(400));
     }
 }
-
 
 
