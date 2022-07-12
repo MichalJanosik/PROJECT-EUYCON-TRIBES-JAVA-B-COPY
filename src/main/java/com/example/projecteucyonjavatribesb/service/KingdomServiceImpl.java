@@ -1,9 +1,6 @@
 package com.example.projecteucyonjavatribesb.service;
 
-
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomNameDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.LocationDTO;
+import com.example.projecteucyonjavatribesb.model.DTO.*;
 
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.repository.BuildingsRepository;
@@ -11,12 +8,9 @@ import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
 import com.example.projecteucyonjavatribesb.repository.ResourcesRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-<<<<<<< HEAD
 import java.util.List;
-=======
 import java.util.stream.Collectors;
->>>>>>> b4f47ed03aaaf6328bdc8cc9b3575b23bb4a2da9
+
 
 @Service
 @AllArgsConstructor

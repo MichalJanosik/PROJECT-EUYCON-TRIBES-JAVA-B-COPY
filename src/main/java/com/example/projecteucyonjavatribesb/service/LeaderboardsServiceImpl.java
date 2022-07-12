@@ -26,12 +26,14 @@ public class LeaderboardsServiceImpl implements LeaderboardsService{
     }
 
     private List<LeaderboardsDTO> getLeaderboardByKingdoms() {
+        return null;
     }
 
     private List<LeaderboardsDTO> getLeaderboardByTroops() {
+        return null;
     }
 
     private List<LeaderboardsDTO> getLeaderBoardByBuildings() {
-        List<Kingdom> = kingdomService.
+        return null;
     }
 }

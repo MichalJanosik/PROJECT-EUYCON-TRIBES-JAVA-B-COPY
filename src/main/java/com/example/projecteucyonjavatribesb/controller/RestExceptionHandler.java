@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class RestExceptionHandler {
 
     @ExceptionHandler(RuntimeException.class)
-
     public ResponseEntity<?> handleRuntimeException(RuntimeException exception) {
 
         ErrorDTO errorDTO = ErrorDTO.builder().error(exception.getMessage()).build();
@@ -20,8 +19,8 @@ public class RestExceptionHandler {
                     ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorDTO);
             case "Field kingdomName was empty!", "No id was entered!" ->
                     ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDTO);
-            default -> null;
+            default -> ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(ErrorDTO.builder().error("Something went wrong!").build());
         };
-
     }
 }

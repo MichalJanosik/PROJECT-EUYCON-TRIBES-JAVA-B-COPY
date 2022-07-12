@@ -65,37 +65,25 @@ public class KingdomController {
 
     }
 
-<<<<<<< HEAD
     @PutMapping("/kingdoms/{id}")
     public ResponseEntity<?> renameKingdom(@PathVariable("id") Long kingdomId,
                                            @RequestBody KingdomNameDTO kingdomNameDTO) {
-        if (Objects.nonNull(kingdomNameDTO.getKingdomName())) {
+
+        if (Objects.nonNull(kingdomNameDTO.getKingdomName())
+                && !kingdomNameDTO.getKingdomName().isBlank()
+        ) {
             if (playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, kingdomId)) {
                 kingdomService.renameKingdom(kingdomId, kingdomNameDTO);
-                return ResponseEntity.status(HttpStatus.OK).body(kingdomService.getRenamedKingdomDTO(kingdomId));
+                return ResponseEntity.status(HttpStatus.OK)
+                        .body(kingdomService.getRenamedKingdomDTO(kingdomId));
             } else {
-                throw new RuntimeException("This kingdom does not belong to authenticated player");
+                throw new RuntimeException("This kingdom does not belong to authenticated player!");
             }
         } else {
             throw new RuntimeException("Field kingdomName was empty!");
         }
     }
 
-//    @GetMapping("/kingdoms/{id}")
-//    public ResponseEntity<?> getKingdomOverview(@PathVariable(name = "id") Long id,
-//                                                @RequestHeader(value = "Authorization") String token) {
-//        if (kingdomService.findKingdomById(id) == null) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-//                    .body(new ErrorDTO("This kingdom does not exist."));
-//        } else if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id) || token.isEmpty()) {
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-//                    .body(new ErrorDTO("This kingdom does not belong to authenticated player!"));
-//        } else {
-//            KingdomOverviewDTO kingdomOverview = kingdomService.getKingdomOverviewDTOById(id);
-//            return ResponseEntity.status(HttpStatus.OK).body(kingdomOverview);
-//        }
-//    }
-=======
     @GetMapping("/kingdoms/{id}")
     public ResponseEntity<?> getKingdomDetails(@PathVariable(name = "id") Long id) {
         if (kingdomService.findKingdomById(id) == null) {
@@ -109,6 +97,4 @@ public class KingdomController {
             return ResponseEntity.status(HttpStatus.OK).body(kingdomDetails);
         }
     }
->>>>>>> b4f47ed03aaaf6328bdc8cc9b3575b23bb4a2da9
 }
-
