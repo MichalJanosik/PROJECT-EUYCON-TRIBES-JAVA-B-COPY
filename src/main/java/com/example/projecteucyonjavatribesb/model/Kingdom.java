@@ -29,6 +29,8 @@ public class Kingdom {
     private List<Resources> resourcesList = new ArrayList<>();
     @OneToMany(mappedBy = "kingdom")
     private List<Buildings> buildingList = new ArrayList<>();
+    @OneToMany(mappedBy = "kingdom")
+    private List<Troops> troopsList = new ArrayList<>();
 
     public Kingdom(Long id, String ruler, Integer population, Location location) {
         this.id = id;

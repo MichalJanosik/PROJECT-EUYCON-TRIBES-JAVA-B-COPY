@@ -16,4 +16,5 @@ public interface KingdomService {
 
     KingdomDTO getKingdomDTO(Long id);
 
+    KingdomDetailsDTO getKingdomTroopsDetailsDTOById(Long id);
 }

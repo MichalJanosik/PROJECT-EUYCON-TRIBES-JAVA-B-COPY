@@ -1,13 +1,11 @@
 package com.example.projecteucyonjavatribesb.service;
 
-
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.LocationDTO;
-
+import com.example.projecteucyonjavatribesb.model.DTO.*;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.repository.BuildingsRepository;
 import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
 import com.example.projecteucyonjavatribesb.repository.ResourcesRepository;
+import com.example.projecteucyonjavatribesb.repository.TroopsRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +18,7 @@ public class KingdomServiceImpl implements KingdomService{
     private final KingdomRepository kingdomRepository;
     private final BuildingsRepository buildingsRepository;
     private final ResourcesRepository resourcesRepository;
+    private final TroopsRepository troopsRepository;
 
     @Override
     public KingdomDetailsDTO getKingdomDetailsDTOById(Long id) {
@@ -42,6 +41,25 @@ public class KingdomServiceImpl implements KingdomService{
                         .collect(Collectors.toList()))
                 .buildings(buildingsRepository.findAllByKingdom_Id(kingdom.getId())
                         .stream().map(BuildingDTO::new)
+                        .collect(Collectors.toList()))
+                .troops(troopsRepository.findAllByKingdom_Id(kingdom.getId())
+                        .stream().map(TroopDTO::new)
+                        .collect(Collectors.toList()))
+                .build();
+    }
+
+    @Override
+    public KingdomDetailsDTO getKingdomTroopsDetailsDTOById(Long id) {
+        Kingdom kingdom = kingdomRepository.getKingdomById(id);
+        return extractKingdomTroopsDetailsFromKingdom(kingdom);
+    }
+
+    private KingdomDetailsDTO extractKingdomTroopsDetailsFromKingdom(Kingdom kingdom) {
+        return KingdomDetailsDTO
+                .builder()
+                .kingdom(new KingdomDTO(kingdom))
+                .troops(troopsRepository.findAllByKingdom_Id(kingdom.getId())
+                        .stream().map(TroopDTO::new)
                         .collect(Collectors.toList()))
                 .build();
     }

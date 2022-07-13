@@ -46,9 +46,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
 
-        if (request.getServletPath().equals("/api/login")
-                || request.getServletPath().equals("/api/registration")
-                || request.getServletPath().equals("/api/locationRegister")){
+        if (request.getRequestURI().equals("/login")
+                || request.getRequestURI().equals("/api/registration")
+                || request.getRequestURI().equals("/api/locationRegister")){
             chain.doFilter(request, response);
         } else {
             final String authorizationHeader = request.getHeader("Authorization");

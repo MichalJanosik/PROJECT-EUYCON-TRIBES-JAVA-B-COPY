@@ -81,5 +81,23 @@ public class KingdomController {
             return ResponseEntity.status(HttpStatus.OK).body(kingdomDetails);
         }
     }
+
+    @GetMapping("/kingdoms/{id}/troops")
+    public ResponseEntity<?> getTroopList(@PathVariable(name = "id", required = false) Long id) {
+
+        if (id == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ErrorDTO("You have not provided an id, please do so! Example: /kingdoms/1/troops"));
+        } else if (kingdomService.findKingdomById(id) == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new ErrorDTO("Entered Kingdom id not exists!"));
+        } else if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(new ErrorDTO("This kingdom does not belong to authenticated player"));
+        } else {
+            KingdomDetailsDTO kingdomDetails = kingdomService.getKingdomTroopsDetailsDTOById(id);
+            return ResponseEntity.status(HttpStatus.OK).body(kingdomDetails);
+        }
+    }
 }
 
