@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
-=======
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Project-EUCYON-Java-Tribes-B.iml" filepath="$PROJECT_DIR$/.idea/modules/Project-EUCYON-Java-Tribes-B.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Project-EUCYON-Java-Tribes-B.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Project-EUCYON-Java-Tribes-B.main.iml" />
->>>>>>> master
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Project-EUCYON-Java-Tribes-B.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Project-EUCYON-Java-Tribes-B.test.iml" />
     </modules>
   </component>
