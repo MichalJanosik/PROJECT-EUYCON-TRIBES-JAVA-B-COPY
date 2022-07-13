@@ -1,21 +1,19 @@
 package com.example.projecteucyonjavatribesb.utility;
 
-import com.example.projecteucyonjavatribesb.service.BuildingsServiceImpl;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 
-@RequiredArgsConstructor
 @Getter
 @Setter
+@Service
 public class BuildingAttributeUtility {
     public HashMap<String, Integer> costs = new HashMap<>();
     public HashMap<String, Long> time = new HashMap<>();
 
 
-    public void BuildingAttributeUtility(){
+    public BuildingAttributeUtility(){
         costs.put("farm",30);
         costs.put("mine",30);
         costs.put("academy",50);

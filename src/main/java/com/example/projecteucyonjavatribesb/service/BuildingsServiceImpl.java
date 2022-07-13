@@ -6,17 +6,15 @@ import com.example.projecteucyonjavatribesb.model.DTO.BuildingDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.ErrorDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomBuildingsDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
-import com.example.projecteucyonjavatribesb.model.Resources;
 import com.example.projecteucyonjavatribesb.repository.BuildingsRepository;
 import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
 import com.example.projecteucyonjavatribesb.utility.BuildingAttributeUtility;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,8 +23,8 @@ public class BuildingsServiceImpl implements BuildingsService {
     private final BuildingsRepository buildingsRepository;
     private final KingdomRepository kingdomRepository;
     private final ResourcesServiceImpl resourcesService;
-    private final BuildingAttributeUtility buildingAttributeUtility;
-   //TODO: buildingDTO dont have correct fields, missing id and times
+
+    //TODO: buildingDTO dont have correct fields, missing id and times
 
     /**
      * The function takes in a type of building and a kingdom id, and returns a buildingDTO object
@@ -64,6 +62,7 @@ public class BuildingsServiceImpl implements BuildingsService {
      * @return ResponseEntity<Object>
      */
     public ResponseEntity<Object> addBuildingMethod(Long id, BuildingRequestDTO type) {
+        BuildingAttributeUtility buildingAttributeUtility1 = new BuildingAttributeUtility();
         if(type.getType().isEmpty()){
             return ResponseEntity.status(400).body(new ErrorDTO("type required"));
         }
@@ -71,39 +70,39 @@ public class BuildingsServiceImpl implements BuildingsService {
                 .filter(c -> type.getType().equalsIgnoreCase(c.getType()))
                 .count();
         if (kingdomRepository.findById(id).get().getBuildingList()
-                .stream().anyMatch(x -> x.getType().equalsIgnoreCase("townhall")) || kingdomRepository.findById(id).get().getBuildingList()
+                .stream().anyMatch(x -> x.getType().equalsIgnoreCase("Townhall")) || kingdomRepository.findById(id).get().getBuildingList()
                 .stream().anyMatch(x -> x.getType().equalsIgnoreCase("town hall"))) {
             if (type.getType().equalsIgnoreCase("farm") && count < 5) {
-                if (resourcesService.canBeResourceUsed(resourcesService.getResourcesByKingdomId(id).get(0),buildingAttributeUtility.costs.get(type.getType()))) {
-                    resourcesService.useResource(resourcesService.getResourcesByKingdomId(id).get(0), buildingAttributeUtility.costs.get(type.getType()));
+                if (resourcesService.canBeResourceUsed(resourcesService.getResourcesByKingdomId(id).get(0),buildingAttributeUtility1.getCosts().get(type.getType()))) {
+                    resourcesService.useResource(resourcesService.getResourcesByKingdomId(id).get(0), buildingAttributeUtility1.costs.get(type.getType()));
                 } else {
                     return ResponseEntity.status(400).body(new ErrorDTO("You don't have enough gold to build that!"));
                 }
                 return ResponseEntity.ok().body(setBuilding(type.getType(), id));
             } else if (type.getType().equalsIgnoreCase("mine") && count < 3) {
-                if (resourcesService.canBeResourceUsed(resourcesService.getResourcesByKingdomId(id).get(0),buildingAttributeUtility.costs.get(type.getType()))) {
-                    resourcesService.useResource(resourcesService.getResourcesByKingdomId(id).get(0), buildingAttributeUtility.costs.get(type.getType()));
+                if (resourcesService.canBeResourceUsed(resourcesService.getResourcesByKingdomId(id).get(0),buildingAttributeUtility1.getCosts().get(type.getType()))) {
+                    resourcesService.useResource(resourcesService.getResourcesByKingdomId(id).get(0), buildingAttributeUtility1.getCosts().get(type.getType()));
                 } else {
                     return ResponseEntity.status(400).body(new ErrorDTO("You don't have enough gold to build that!"));
                 }
                 return ResponseEntity.ok().body(setBuilding(type.getType(), id));
             } else if (type.getType().equalsIgnoreCase("barracks") && count < 1) {
-                if (resourcesService.canBeResourceUsed(resourcesService.getResourcesByKingdomId(id).get(0),buildingAttributeUtility.costs.get(type.getType()))) {
-                    resourcesService.useResource(resourcesService.getResourcesByKingdomId(id).get(0), buildingAttributeUtility.costs.get(type.getType()));
+                if (resourcesService.canBeResourceUsed(resourcesService.getResourcesByKingdomId(id).get(0),buildingAttributeUtility1.getCosts().get(type.getType()))) {
+                    resourcesService.useResource(resourcesService.getResourcesByKingdomId(id).get(0), buildingAttributeUtility1.getCosts().get(type.getType()));
                 } else {
                     return ResponseEntity.status(400).body(new ErrorDTO("You don't have enough gold to build that!"));
                 }
                 return ResponseEntity.ok().body(setBuilding(type.getType(), id));
             } else if (type.getType().equalsIgnoreCase("walls") && count < 1) {
-                if (resourcesService.canBeResourceUsed(resourcesService.getResourcesByKingdomId(id).get(0),buildingAttributeUtility.costs.get(type.getType()))) {
-                    resourcesService.useResource(resourcesService.getResourcesByKingdomId(id).get(0), buildingAttributeUtility.costs.get(type.getType()));
+                if (resourcesService.canBeResourceUsed(resourcesService.getResourcesByKingdomId(id).get(0),buildingAttributeUtility1.getCosts().get(type.getType()))) {
+                    resourcesService.useResource(resourcesService.getResourcesByKingdomId(id).get(0), buildingAttributeUtility1.getCosts().get(type.getType()));
                 } else {
                     return ResponseEntity.status(400).body(new ErrorDTO("You don't have enough gold to build that!"));
                 }
                 return ResponseEntity.ok().body(setBuilding(type.getType(), id));
             } else if (type.getType().equalsIgnoreCase("academy") && count < 1) {
-                if (resourcesService.canBeResourceUsed(resourcesService.getResourcesByKingdomId(id).get(0),buildingAttributeUtility.costs.get(type.getType()))) {
-                    resourcesService.useResource(resourcesService.getResourcesByKingdomId(id).get(0), buildingAttributeUtility.costs.get(type.getType()));
+                if (resourcesService.canBeResourceUsed(resourcesService.getResourcesByKingdomId(id).get(0),buildingAttributeUtility1.getCosts().get(type.getType()))) {
+                    resourcesService.useResource(resourcesService.getResourcesByKingdomId(id).get(0), buildingAttributeUtility1.getCosts().get(type.getType()));
                 } else {
                     return ResponseEntity.status(400).body(new ErrorDTO("You don't have enough gold to build that!"));
                 }

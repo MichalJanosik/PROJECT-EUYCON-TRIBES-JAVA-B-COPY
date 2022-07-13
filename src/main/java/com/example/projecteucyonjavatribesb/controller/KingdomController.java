@@ -31,8 +31,10 @@ public class KingdomController {
 
     private final BuildingsServiceImpl buildingsServiceimp;
     @PostMapping("/kingdoms/{id}/buildings")
-    public ResponseEntity<Object> addBuilding(@PathVariable("id") Long id, @RequestBody BuildingRequestDTO type, @RequestHeader(value = "Authorization") String token) {
-        if (token.isEmpty()) {
+    public ResponseEntity<Object> addBuilding(@PathVariable("id") Long id,
+                                              @RequestBody BuildingRequestDTO type,
+                                              @RequestHeader(value = "Authorization") String token) {
+        if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id) || token.isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).
             body(new ErrorDTO("This kingdom does not belong to authenticated player"));
         } else {
@@ -54,7 +56,7 @@ public class KingdomController {
 
     @GetMapping("/kingdoms/{id}/resources")
     public ResponseEntity<?> getKingdomsResources(@PathVariable("id") Long kingdomId,
-                                                  @RequestHeader("authorization") String token) {
+                                                  @RequestHeader("Authorization") String token) {
 
         if (Objects.nonNull(kingdomId) && Objects.nonNull(token) && !token.isBlank()) {
             if (playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, kingdomId)) {
