@@ -1,7 +1,5 @@
 package com.example.projecteucyonjavatribesb.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,7 +17,6 @@ public class Kingdom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne(mappedBy = "kingdom", cascade = CascadeType.ALL)
-//    @JsonManagedReference
     private Location location;
     private String ruler;
     private Integer population;
