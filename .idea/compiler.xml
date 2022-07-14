@@ -10,6 +10,6 @@
         <module name="Project-EUCYON-Java-Tribes-B.main" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="15" />
+    <bytecodeTargetLevel target="16" />
   </component>
 </project>

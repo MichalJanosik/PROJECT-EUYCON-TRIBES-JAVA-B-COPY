@@ -1,7 +1,6 @@
 package com.example.projecteucyonjavatribesb.service;
 
 import com.example.projecteucyonjavatribesb.model.DTO.ErrorDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.LocationErrorDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.OkMessageDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.model.Location;

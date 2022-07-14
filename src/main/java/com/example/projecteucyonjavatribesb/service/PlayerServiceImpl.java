@@ -51,7 +51,7 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
         Kingdom kingdom = new Kingdom(player.getUsername());
         Buildings buildings = new Buildings("Town Hall", 1);
 
-        //set the kigdom`s initial resources:
+        //set the kingdom`s initial resources:
         List<Resources> initialResources = resourcesService.getInitialResources();
         kingdom.setResourcesList(initialResources);
         for (Resources resource : initialResources) {
