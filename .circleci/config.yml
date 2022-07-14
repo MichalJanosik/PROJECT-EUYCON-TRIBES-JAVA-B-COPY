@@ -10,7 +10,7 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
       # specify the version you desire here
-      - image: alpine:3.15
+      - image: circleci/openjdk:11.0.3-jdk-stretch
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -44,3 +44,12 @@ jobs:
 
       # run tests!
       - run: gradle test
+
+      workflows:
+        version: 2
+        workflow:
+          jobs:
+            - build
+            - test:
+                requires:
+                  - build
