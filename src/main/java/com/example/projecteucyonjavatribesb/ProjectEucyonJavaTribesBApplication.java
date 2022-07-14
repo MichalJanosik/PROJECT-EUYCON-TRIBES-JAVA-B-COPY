@@ -1,6 +1,6 @@
 package com.example.projecteucyonjavatribesb;
 
-import com.example.projecteucyonjavatribesb.model.Player;
+import com.example.projecteucyonjavatribesb.model.Buildings;
 import com.example.projecteucyonjavatribesb.repository.PlayerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -29,6 +29,12 @@ public class ProjectEucyonJavaTribesBApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+    Buildings building = new Buildings();
+
+
+
+
         //developement purposes
 //        populateWithPlayers();
     }

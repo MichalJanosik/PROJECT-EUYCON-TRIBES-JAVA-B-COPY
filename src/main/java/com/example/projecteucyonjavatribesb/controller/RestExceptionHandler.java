@@ -10,18 +10,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class RestExceptionHandler {
 
     @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<?> handleRuntimeException(RuntimeException exception){
 
-    public ResponseEntity<?> handleRuntimeException(RuntimeException exception) {
+            ErrorDTO errorDTO = ErrorDTO.builder().error(exception.getMessage()).build();
 
-        ErrorDTO errorDTO = ErrorDTO.builder().error(exception.getMessage()).build();
+            return switch (exception.getMessage()) {
+                case "This kingdom does not belong to authenticated player!" -> ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorDTO);
+                case "Field kingdomName was empty!", "No id was entered!" -> ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDTO);
+                default -> null;
+            };
 
-        return switch (exception.getMessage()) {
-            case "This kingdom does not belong to authenticated player!" ->
-                    ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorDTO);
-            case "Field kingdomName was empty!", "No id was entered!" ->
-                    ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDTO);
-            default -> null;
-        };
-
-    }
+        }
 }

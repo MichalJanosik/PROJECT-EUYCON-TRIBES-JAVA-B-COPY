@@ -2,11 +2,10 @@ package com.example.projecteucyonjavatribesb.model.DTO;
 
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
+import lombok.Builder;
 
 @Builder
 @Getter

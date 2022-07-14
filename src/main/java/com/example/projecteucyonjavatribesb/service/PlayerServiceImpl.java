@@ -39,10 +39,7 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
 
     @Override
     public boolean checkIfUsernameAlreadyExist(String username) {
-        if (playerRepository.findAllByUsername(username).size() > 0) {
-            return true;
-        }
-        return false;
+        return playerRepository.findPlayerByUsername(username).isPresent();
     }
 
     @Override
@@ -50,6 +47,10 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
         String encodedPassword = passwordEncoder.encode(player.getPassword());
         Kingdom kingdom = new Kingdom(player.getUsername());
         Buildings buildings = new Buildings("Town Hall", 1);
+        // TODO change with time of building building
+        buildings.setStartedAt(System.currentTimeMillis());
+        buildings.setFinishedAt(System.currentTimeMillis());
+        buildingsRepository.save(buildings);
 
         //set the kingdom`s initial resources:
         List<Resources> initialResources = resourcesService.getInitialResources();
@@ -72,6 +73,12 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
         kingdom.setBuildingList(List.of(buildings));
         buildingsRepository.save(buildings);
     }
+
+    @Override
+    public Player findByUsername(String username) {
+        return playerRepository.findByUsername(username);
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

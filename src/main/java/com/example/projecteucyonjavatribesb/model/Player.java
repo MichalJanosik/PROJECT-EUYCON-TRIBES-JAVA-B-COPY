@@ -17,7 +17,7 @@ public class Player {
     private String username;
     private String kingdomName;
     private String password;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "player", cascade = CascadeType.ALL)
     private Kingdom kingdom;
 
     public Player(String password, String username) {

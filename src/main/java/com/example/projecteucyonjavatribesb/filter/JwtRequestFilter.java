@@ -46,7 +46,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
 
-        if (request.getServletPath().equals("/api/login")
+        if (request.getRequestURI().equals("/api/login")
                 || request.getServletPath().equals("/api/registration")
                 || request.getServletPath().equals("/api/locationRegister")){
             chain.doFilter(request, response);
@@ -61,7 +61,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                     username = decodedJWT.getSubject();
                     String[] kingdoms = decodedJWT.getClaim("kingdom").asArray(String.class);
                     Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-                    stream(kingdoms).forEach(kingdom -> {authorities.add(new SimpleGrantedAuthority(kingdom));
+                    stream(kingdoms).forEach(kingdom -> {
+                        authorities.add(new SimpleGrantedAuthority(kingdom));
                     });
                     UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                             username, null, authorities);
