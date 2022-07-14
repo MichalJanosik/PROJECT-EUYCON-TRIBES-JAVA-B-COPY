@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class PlayerController {
     private final LocationServiceImpl locationServiceImpl;
     private final PlayerServiceImpl playerService;
