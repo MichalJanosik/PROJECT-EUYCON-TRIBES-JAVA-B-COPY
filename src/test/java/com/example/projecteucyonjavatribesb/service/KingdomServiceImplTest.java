@@ -98,7 +98,28 @@ class KingdomServiceImplTest {
         Optional<Kingdom> ofResult = Optional.of(kingdom);
         when(kingdomRepository.findById((Long) any())).thenReturn(ofResult);
 
-        KingdomDTO actualKingdomDTO = kingdomServiceImpl.getKingdomDTO(123L);
+        KingdomDTO actualKingdomDTO = kingdomServiceImpl.getKingdomDTO(1L);
+
+        assertEquals(1L, actualKingdomDTO.getKingdomId().longValue());
+        assertEquals("Michael", actualKingdomDTO.getRuler());
+        assertEquals(1, actualKingdomDTO.getPopulation());
+        assertEquals("Moria", actualKingdomDTO.getKingdomName());
+
+        LocationDTO location3 = actualKingdomDTO.getLocation();
+
+        assertEquals(1, location3.getCoordinateY().intValue());
+        assertEquals(1, location3.getCoordinateX().intValue());
+
+        //what this is for exactly?
+        verify(kingdomRepository).findById((Long) any());
+    }
+
+    @Test
+    void test_GetKingdomDTO_NULL() {
+        Optional<Kingdom> ofResult = Optional.of(kingdom);
+        when(kingdomRepository.findById((Long) any())).thenReturn(ofResult);
+
+        KingdomDTO actualKingdomDTO = kingdomServiceImpl.getKingdomDTO(null);
 
         assertEquals(1L, actualKingdomDTO.getKingdomId().longValue());
         assertEquals("Michael", actualKingdomDTO.getRuler());

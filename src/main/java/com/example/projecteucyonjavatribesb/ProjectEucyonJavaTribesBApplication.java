@@ -30,12 +30,12 @@ public class ProjectEucyonJavaTribesBApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //developement purposes
-//        populateWithPlayers();
+        populateWithPlayers();
     }
 
-//    private void populateWithPlayers() {
-//        String password = passwordEncoder().encode("password");
-//        Player player = new Player(password, "MisoDaBadass", "Mordor");
-//        playerRepository.save(player);
-//    }
+    private void populateWithPlayers() {
+        String password = passwordEncoder().encode("password");
+        Player player = new Player(password, "MisoDaBadass", "Mordor");
+        playerRepository.save(player);
+    }
 }
