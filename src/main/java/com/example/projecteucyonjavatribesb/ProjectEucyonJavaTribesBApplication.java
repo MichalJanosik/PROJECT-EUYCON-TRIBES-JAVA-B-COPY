@@ -30,7 +30,7 @@ public class ProjectEucyonJavaTribesBApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //developement purposes
-        populateWithPlayers();
+//        populateWithPlayers();
     }
 
     private void populateWithPlayers() {
