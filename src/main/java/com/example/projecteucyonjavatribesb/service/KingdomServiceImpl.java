@@ -1,8 +1,7 @@
 package com.example.projecteucyonjavatribesb.service;
 
 
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.LocationDTO;
+import com.example.projecteucyonjavatribesb.model.DTO.*;
 
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.repository.BuildingsRepository;
