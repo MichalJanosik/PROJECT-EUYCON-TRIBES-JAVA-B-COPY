@@ -1,15 +1,9 @@
 package com.example.projecteucyonjavatribesb.projecteucyonjavatribesb.controller;
 
-import org.junit.Before;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.test.jdbc.JdbcTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
@@ -18,14 +12,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @AutoConfigureMockMvc
 @SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class KingdomControllerTest {
-    @Autowired
-    JdbcTemplate jdbcTemplate;
+
     @Autowired
     MockMvc mockMvc;
 
-
-    @BeforeEach
+    @BeforeAll
     void setUp() throws Exception {
         mockMvc.perform(post("/api/registration")
                         .content("""
@@ -36,6 +29,7 @@ class KingdomControllerTest {
                                 }""")
                         .contentType("application/json"))
                 .andExpect(status().is(200));
+
 
         mockMvc.perform(post("/api/registration")
                         .content("""
@@ -67,11 +61,6 @@ class KingdomControllerTest {
                 .andExpect(status().is(200));
     }
 
-//    @AfterEach
-//    void afterEach() {
-//        JdbcTestUtils.deleteFromTables(jdbcTemplate, "tribes.player", "tribes.kingdom",
-//                "tribes.buildings", "tribes.location");
-//    }
 
     // We know from postman, that this is the token for registered player: adam002
     String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtMDAyIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdC9hcGkvbG9naW4iLCJraW5nZG9tIjpbIkRpc2NvdmVyeSBDaGFubmVscyJdfQ.coJf0LTlpMQQCRTz9q3nzYcbP3iOZU1TBOPYOI5FvWU";
@@ -86,8 +75,7 @@ class KingdomControllerTest {
                 .andExpect(status().is(200))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.kingdom.ruler").value("adam002"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.kingdom.kingdomName").value("Discovery Channels"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.buildings.size()").value(1))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.buildings[0].level").value(1));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.buildings.size()").value(1));
 
     }
 
@@ -131,25 +119,20 @@ class KingdomControllerTest {
     //___________________________________________________________________________________________________________________
     // UpgradeBuilding ENDPOINT testing
     @Test
-    void upgradeBuildings_successful() throws Exception {
+    void upgradeBuildings_successfulAndUnsuccessful() throws Exception {
         mockMvc.perform(put("/api/kingdoms/1/buildings/1")
                         .header("Authorization", token))
                 .andExpect(status().is(200))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.type").value("Town Hall"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.level").value(2));
-    }
 
-    @Test
-    void upgradeBuildings_previousUpgradeIsNotFinished() throws Exception {
-        mockMvc.perform(put("/api/kingdoms/1/buildings/1")
-                        .header("Authorization", token))
-                .andExpect(status().is(200));
         mockMvc.perform(put("/api/kingdoms/1/buildings/1")
                         .header("Authorization", token))
                 .andExpect(status().is(400))
                 .andExpect(MockMvcResultMatchers.content()
                         .string("{\"error\":\"Building is not ready for reconstruction!\"}"));
     }
+
 
     @Test
     void upgradeBuildings_kingdomOfAnotherPlayer() throws Exception {

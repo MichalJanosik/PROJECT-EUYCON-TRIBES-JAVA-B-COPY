@@ -18,8 +18,8 @@ public class Kingdom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
-    @JsonManagedReference
+    @OneToOne(mappedBy = "kingdom", cascade = CascadeType.ALL)
+//    @JsonManagedReference
     private Location location;
     private String ruler;
     private Integer population;
