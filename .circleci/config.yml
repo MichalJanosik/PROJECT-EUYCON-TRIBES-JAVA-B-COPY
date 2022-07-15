@@ -18,9 +18,9 @@ jobs:
 
       - run:
           name: Gradlew build
-            command
-              sudo chmod +x gradlew
-                ./gradlew build
+          command: |
+            sudo chmod +x gradlew
+            ./gradlew build
 
       - save_cache:
           paths:
