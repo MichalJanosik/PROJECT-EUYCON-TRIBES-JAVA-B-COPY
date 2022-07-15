@@ -17,8 +17,10 @@ jobs:
             - v1-dependencies-{{ checksum "build.gradle" }}
 
       - run:
-           name: Gradlew build
-
+          name: Gradlew build
+            command: |
+              sudo chmod +x gradlew
+                ./gradlew build
 
       - save_cache:
           paths:
