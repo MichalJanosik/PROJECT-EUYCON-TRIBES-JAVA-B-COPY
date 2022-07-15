@@ -29,5 +29,7 @@ jobs:
 
       # run tests!
       - run: gradle test
+      - store_artifacts:
+               path: build/reports/jacoco/test
 
 
