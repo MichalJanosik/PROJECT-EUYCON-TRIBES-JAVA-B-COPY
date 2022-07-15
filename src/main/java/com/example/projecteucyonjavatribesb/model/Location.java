@@ -18,8 +18,8 @@ public class Location {
     private Integer coordinateX;
     private Integer coordinateY;
 
-    @OneToOne(cascade = {CascadeType.ALL})
-    @JsonBackReference
+    @OneToOne
+//    @JsonBackReference
     private Kingdom kingdom;
 
     public Location(Integer coordinateX, Integer coordinateY) {

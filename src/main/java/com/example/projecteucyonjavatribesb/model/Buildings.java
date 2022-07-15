@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.security.Timestamp;
-import java.util.Calendar;
 
 @Entity
 @Getter
@@ -26,10 +24,12 @@ public class Buildings {
     @JoinColumn(name = "kingdom_id")
     private Kingdom kingdom;
 
-
     public Buildings(String type, int level) {
         this.type = type;
         this.level = level;
+        this.startedAt = System.currentTimeMillis();
+        this.finishedAt = startedAt + 3600000; // = 1h
+//        this.finishedAt = startedAt + 30000; // = 15s
     }
 
     public Buildings(String type, int level, Long startedAt, Long finishedAt) {

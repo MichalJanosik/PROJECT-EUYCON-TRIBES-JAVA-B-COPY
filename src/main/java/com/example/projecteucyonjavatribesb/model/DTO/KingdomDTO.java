@@ -1,12 +1,26 @@
 package com.example.projecteucyonjavatribesb.model.DTO;
 
+<<<<<<< HEAD
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.fasterxml.jackson.annotation.JsonInclude;
+=======
+
+import com.example.projecteucyonjavatribesb.model.Location;
+import com.example.projecteucyonjavatribesb.model.Resources;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import com.example.projecteucyonjavatribesb.model.Kingdom;
+
+>>>>>>> EJTB-63-rename-kingdom
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+<<<<<<< HEAD
+=======
+import lombok.Builder;
+
+>>>>>>> EJTB-63-rename-kingdom
 @Builder
 @Getter
 @Setter
