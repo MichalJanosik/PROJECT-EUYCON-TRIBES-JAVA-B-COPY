@@ -1,7 +1,9 @@
 package com.example.projecteucyonjavatribesb.projecteucyonjavatribesb;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 //import org.junit.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,21 +19,25 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 //@WebAppConfiguration
 @AutoConfigureMockMvc
 @SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class LoginIntegrationTests {
 
-//    @Autowired
-//    private WebApplicationContext context;
 
     @Autowired
     MockMvc mockMvc;
 
-//    @Before
-//    public void setup() {
-//        mockMvc = MockMvcBuilders
-//                .webAppContextSetup(context)
-//                .apply(springSecurity())
-//                .build();
-//    }
+    @BeforeAll
+    void setUp() throws Exception {
+        mockMvc.perform(post("/api/registration")
+                        .content("""
+                                {
+                                    "username": "MisoDaBadass",
+                                    "password": "password123",
+                                    "kingdomName": "Discovery Channels"
+                                }""")
+                        .contentType("application/json"))
+                .andExpect(status().is(200));
+    }
 
     @Test
     public void login_OK() throws Exception {
@@ -48,7 +54,7 @@ public class LoginIntegrationTests {
                         .content("""
                                 {
                                 "username": "MisoDaBadass",
-                                "password": "password"
+                                "password": "password123"
                                 }"""))
                 .andExpect(status().isOk());
     }
