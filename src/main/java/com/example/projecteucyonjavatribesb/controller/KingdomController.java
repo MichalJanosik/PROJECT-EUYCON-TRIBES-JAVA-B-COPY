@@ -129,7 +129,7 @@ public class KingdomController {
     public ResponseEntity<?> renameKingdom(@PathVariable("id") Long kingdomId,
                                            @RequestBody KingdomNameDTO kingdomNameDTO) {
 
-        if (Objects.nonNull(kingdomNameDTO.getKingdomName())) {
+        if (Objects.nonNull(kingdomNameDTO.getKingdomName()) && !kingdomNameDTO.getKingdomName().isBlank()) {
             if (playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, kingdomId)) {
                 kingdomService.renameKingdom(kingdomId, kingdomNameDTO);
                 return ResponseEntity.status(HttpStatus.OK).body(kingdomService.getRenamedKingdomDTO(kingdomId));
