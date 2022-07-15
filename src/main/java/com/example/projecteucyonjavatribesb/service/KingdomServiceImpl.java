@@ -79,7 +79,6 @@ public class KingdomServiceImpl implements KingdomService{
                 kingdom.getPlayer().getKingdomName(),
                 kingdom.getRuler(),
                 kingdom.getPopulation(),
-//                new LocationDTO(kingdom.getLocation().getCoordinateX(), kingdom.getLocation().getCoordinateY())
                 new LocationDTO(kingdom)
         );
     }
