@@ -15,8 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -36,8 +35,9 @@ public class KingdomControllerIntegrationTests {
 
     static String TOKEN;
     static String INCORRECT_TOKEN;
+    static Long id;
 
-    @BeforeEach
+    @BeforeAll
     void initialSetup() throws Exception {
         String username = "MisoDaJedi";
         String password = "password";
@@ -46,7 +46,10 @@ public class KingdomControllerIntegrationTests {
         playerService.saveNewPlayer(new Player(password, username, kingdomName));
 
         TOKEN = extractToken();
-        INCORRECT_TOKEN = "";
+        INCORRECT_TOKEN =
+                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9" +
+                        ".eyJzdWIiOiJqYW5rb0hyYXNrbzIiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXBpL2xvZ2luIiwia2luZ2RvbSI6WyJqYW5rb0hyYXNrbzIncyBraW5nZG9tIl19" +
+                        ".V5AXsxmXSvigzHTbM4X2gxNnJSr3pnjugh0rMLR7TIw";
     }
 
     private String extractToken() throws Exception {
@@ -58,7 +61,19 @@ public class KingdomControllerIntegrationTests {
                         "password": "password"
                         }
                         """)
-        );
+        ).andExpect(status().isOk());
+
+        id = playerRepository.findByUsername("MisoDaJedi").getId();
+
+        mockMvc.perform(put("/api/locationRegister")
+                        .content("""
+                                {
+                                    "coordinateX": "1",
+                                    "coordinateY": "1",
+                                    "kingdomId": "%s"
+                                }""".formatted(id))
+                        .contentType("application/json"))
+                .andExpect(status().isOk());
 
         String resultString = result.andReturn().getResponse().getContentAsString();
         JacksonJsonParser jsonParser = new JacksonJsonParser();
@@ -67,13 +82,38 @@ public class KingdomControllerIntegrationTests {
 
     @Test
     void testGetKingdomResources_OK_200() throws Exception {
-        String kingdomName = playerRepository.findByUsername("MisoDaJedi").getKingdomName();
+        String ExpectKingdomName = playerRepository.findByUsername("MisoDaJedi").getKingdomName();
+        id = playerRepository.findByUsername("MisoDaJedi").getId();
 
         mockMvc
-                .perform(get("/api/kingdoms/1/resources")
+                .perform(get(String.format("/api/kingdoms/%d/resources", id))
                         .header("Authorization", TOKEN))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.kingdom.kingdomName").value(kingdomName))
+                .andExpect(jsonPath("$.kingdom.kingdomName").value(ExpectKingdomName))
+        ;
+    }
+
+    @Test
+    void testGetKingdomResourcesWrongToken_UNAUTHORIZED_401() throws Exception {
+        String error = "This kingdom does not belong to authenticated player!";
+
+        mockMvc
+                .perform(get(String.format("/api/kingdoms/%d/resources", id))
+                        .header("Authorization", INCORRECT_TOKEN))
+                .andExpect(status().isUnauthorized())
+                .andExpect(jsonPath("$.error").value(error))
+        ;
+    }
+
+    @Test
+    void testGetKingdomResourcesWrongId_UNAUTHORIZED_401() throws Exception {
+        String error = "This kingdom does not belong to authenticated player!";
+
+        mockMvc
+                .perform(get(String.format("/api/kingdoms/%d/resources", ++id))
+                        .header("Authorization", INCORRECT_TOKEN))
+                .andExpect(status().isUnauthorized())
+                .andExpect(jsonPath("$.error").value(error))
         ;
     }
 

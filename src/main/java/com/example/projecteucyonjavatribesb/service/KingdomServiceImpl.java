@@ -1,14 +1,8 @@
 package com.example.projecteucyonjavatribesb.service;
-<<<<<<< HEAD
-
 
 import com.example.projecteucyonjavatribesb.model.DTO.*;
-
-=======
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.LocationDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.*;
->>>>>>> 2108cc578b40c189c042f47851d3e44d76849c10
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.repository.BuildingsRepository;
 import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
