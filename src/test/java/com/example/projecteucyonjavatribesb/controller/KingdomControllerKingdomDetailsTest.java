@@ -6,11 +6,14 @@ import static org.mockito.Mockito.when;
 
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomDetailsDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
+import com.example.projecteucyonjavatribesb.model.Location;
 import com.example.projecteucyonjavatribesb.model.Player;
 import com.example.projecteucyonjavatribesb.service.BuildingsService;
 import com.example.projecteucyonjavatribesb.service.KingdomService;
 import com.example.projecteucyonjavatribesb.service.PlayerAuthorizationService;
 import com.example.projecteucyonjavatribesb.service.ResourcesService;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,14 +27,14 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-@ContextConfiguration(classes = {KingdomControllerIntegrationTests.class})
+@ContextConfiguration(classes = {KingdomController.class})
 @ExtendWith(SpringExtension.class)
 class KingdomControllerKingdomDetailsTest {
     @MockBean
     private BuildingsService buildingsService;
 
     @Autowired
-    private KingdomControllerIntegrationTests kingdomController;
+    private KingdomController kingdomController;
 
     @MockBean
     private KingdomService kingdomService;
