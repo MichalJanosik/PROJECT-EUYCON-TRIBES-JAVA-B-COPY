@@ -55,7 +55,9 @@ public class KingdomController {
                                                       @RequestHeader(value = "Authorization") String token) {
         if (kingdomService.findById(id).isEmpty()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-<<<<<<< HEAD
+                    .body(new ErrorDTO("This kingdom does not exists!"));
+        } else if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id) || token.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(new ErrorDTO("This kingdom does not belong to authenticated player!"));
         }
 
@@ -64,62 +66,34 @@ public class KingdomController {
 
     }
 
-    @PutMapping("/kingdoms/{id}")
-    public ResponseEntity<?> renameKingdom(@PathVariable("id") Long kingdomId,
-                                           @RequestBody KingdomNameDTO kingdomNameDTO) {
-
-        if (Objects.nonNull(kingdomNameDTO.getKingdomName())
-                && !kingdomNameDTO.getKingdomName().isBlank()
-        ) {
-            if (playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, kingdomId)) {
-                kingdomService.renameKingdom(kingdomId, kingdomNameDTO);
-                return ResponseEntity.status(HttpStatus.OK)
-                        .body(kingdomService.getRenamedKingdomDTO(kingdomId));
-            } else {
-                throw new RuntimeException("This kingdom does not belong to authenticated player!");
-=======
+    @PutMapping("/kingdoms/{kingdomId}/buildings/{buildingId}")
+    public ResponseEntity<Object> upgradeBuildings (@PathVariable(required = false) Long kingdomId,
+                                                    @PathVariable(required = false) Long buildingId,
+                                                    @RequestHeader(value = "Authorization") String token){
+        if (kingdomService.findById(kingdomId).isEmpty()) {
+            return ResponseEntity.status(400)
                     .body(new ErrorDTO("This kingdom does not exists!"));
-        } else if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id) || token.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                        .body(new ErrorDTO("This kingdom does not belong to authenticated player!"));
->>>>>>> EJTB-63-rename-kingdom
-            }
+        } else if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, kingdomId) || token.isEmpty()) {
+            return ResponseEntity.status(401)
+                    .body(new ErrorDTO("This kingdom does not belong to authenticated player!"));
 
-            KingdomBuildingsDTO kingdomBuildingsDTO = buildingsService.makeKingdomBuildingsDTO(id);
-            return ResponseEntity.status(HttpStatus.OK).body(kingdomBuildingsDTO);
+        } else if (buildingsService.findBuildingsByIdAndKingdom(buildingId, kingdomService.findKingdomById(kingdomId)).isEmpty()) {
+            return ResponseEntity.status(400)
+                    .body(new ErrorDTO("This building does not exists!"));
+        } else if (!buildingsService.isReadyForUpgrade(kingdomId, buildingId)) {
+            return ResponseEntity.status(400)
+                    .body(new ErrorDTO("Building is not ready for reconstruction!"));
 
+        } else if (!buildingsService.enoughResources(kingdomId, buildingId)) {
+            return ResponseEntity.status(400)
+                    .body(new ErrorDTO("You don't have enough gold to upgrade that!"));
         }
-
-        @PutMapping("/kingdoms/{kingdomId}/buildings/{buildingId}")
-        public ResponseEntity<Object> upgradeBuildings (@PathVariable(required = false) Long kingdomId,
-                @PathVariable(required = false) Long buildingId,
-                @RequestHeader(value = "Authorization") String token){
-            if (kingdomService.findById(kingdomId).isEmpty()) {
-                return ResponseEntity.status(400)
-                        .body(new ErrorDTO("This kingdom does not exists!"));
-            } else if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, kingdomId) || token.isEmpty()) {
-                return ResponseEntity.status(401)
-                        .body(new ErrorDTO("This kingdom does not belong to authenticated player!"));
-
-            } else if (buildingsService.findBuildingsByIdAndKingdom(buildingId, kingdomService.findKingdomById(kingdomId)).isEmpty()) {
-                return ResponseEntity.status(400)
-                        .body(new ErrorDTO("This building does not exists!"));
-            } else if (!buildingsService.isReadyForUpgrade(kingdomId, buildingId)) {
-                return ResponseEntity.status(400)
-                        .body(new ErrorDTO("Building is not ready for reconstruction!"));
-
-            } else if (!buildingsService.enoughResources(kingdomId, buildingId)) {
-                return ResponseEntity.status(400)
-                        .body(new ErrorDTO("You don't have enough gold to upgrade that!"));
-            }
-            buildingsService.upgradeBuilding(kingdomId, buildingId);
-            BuildingDTO buildingDTO = buildingsService.makeBuildingsDTO(buildingId);
-            return ResponseEntity.status(200)
-                    .body(buildingDTO);
+        buildingsService.upgradeBuilding(kingdomId, buildingId);
+        BuildingDTO buildingDTO = buildingsService.makeBuildingsDTO(buildingId);
+        return ResponseEntity.status(200)
+                .body(buildingDTO);
     }
 
-<<<<<<< HEAD
-=======
 
 
     //    @GetMapping("/kingdoms/{id}")
@@ -137,7 +111,6 @@ public class KingdomController {
 //        }
 //    }
 
->>>>>>> EJTB-63-rename-kingdom
     @GetMapping("/kingdoms/{id}")
     public ResponseEntity<?> getKingdomDetails(@PathVariable(name = "id") Long id) {
         if (kingdomService.findKingdomById(id) == null) {
@@ -151,8 +124,6 @@ public class KingdomController {
             return ResponseEntity.status(HttpStatus.OK).body(kingdomDetails);
         }
     }
-<<<<<<< HEAD
-=======
 
     @PutMapping("/kingdoms/{id}")
     public ResponseEntity<?> renameKingdom(@PathVariable("id") Long kingdomId,
@@ -169,5 +140,4 @@ public class KingdomController {
             throw new RuntimeException("Field kingdomName was empty!");
         }
     }
->>>>>>> EJTB-63-rename-kingdom
 }

@@ -1,13 +1,6 @@
 package com.example.projecteucyonjavatribesb.service;
 
 import com.example.projecteucyonjavatribesb.model.DTO.*;
-<<<<<<< HEAD
-
-=======
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomNameDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.LocationDTO;
->>>>>>> EJTB-63-rename-kingdom
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.repository.BuildingsRepository;
 import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
@@ -15,12 +8,9 @@ import com.example.projecteucyonjavatribesb.repository.ResourcesRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-<<<<<<< HEAD
 import java.util.List;
 import java.util.stream.Collectors;
 
-
-=======
 import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -28,7 +18,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Transactional
 @Slf4j
->>>>>>> EJTB-63-rename-kingdom
 @Service
 public class KingdomServiceImpl implements KingdomService{
 
