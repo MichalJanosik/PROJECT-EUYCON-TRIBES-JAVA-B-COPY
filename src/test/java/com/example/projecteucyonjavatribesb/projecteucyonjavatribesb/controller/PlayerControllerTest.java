@@ -17,6 +17,8 @@ class PlayerControllerTest {
     MockMvc mockMvc;
 
 
+
+
     @Test
     void successfulRegistration() throws Exception {
         mockMvc.perform(post("/api/registration")// perform action inside POST,GET,DELETE + url. Parameters or path variable can be specified inside. It is string so ""+variable+"" can be used.
