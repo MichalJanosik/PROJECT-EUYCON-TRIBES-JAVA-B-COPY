@@ -43,23 +43,8 @@ public class KingdomServiceImpl implements KingdomService{
                         .stream().map(BuildingDTO::new)
                         .collect(Collectors.toList()))
                 .troops(troopsRepository.findAllByKingdom_Id(kingdom.getId())
-                        .stream().map(TroopDTO::new)
-                        .collect(Collectors.toList()))
-                .build();
-    }
-
-    @Override
-    public KingdomDetailsDTO getKingdomTroopsDetailsDTOById(Long id) {
-        Kingdom kingdom = kingdomRepository.getKingdomById(id);
-        return extractKingdomTroopsDetailsFromKingdom(kingdom);
-    }
-
-    private KingdomDetailsDTO extractKingdomTroopsDetailsFromKingdom(Kingdom kingdom) {
-        return KingdomDetailsDTO
-                .builder()
-                .kingdom(new KingdomDTO(kingdom))
-                .troops(troopsRepository.findAllByKingdom_Id(kingdom.getId())
-                        .stream().map(TroopDTO::new)
+                        .stream()
+                        .map(TroopDTO::new)
                         .collect(Collectors.toList()))
                 .build();
     }

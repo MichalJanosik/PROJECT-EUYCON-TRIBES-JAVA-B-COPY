@@ -7,10 +7,7 @@ import com.example.projecteucyonjavatribesb.model.DTO.KingdomDetailsDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomPreviewDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 
-import com.example.projecteucyonjavatribesb.service.BuildingsService;
-import com.example.projecteucyonjavatribesb.service.KingdomService;
-import com.example.projecteucyonjavatribesb.service.PlayerAuthorizationService;
-import com.example.projecteucyonjavatribesb.service.ResourcesService;
+import com.example.projecteucyonjavatribesb.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +24,7 @@ public class KingdomController {
     private final KingdomService kingdomService;
     private final BuildingsService buildingsService;
     private final ResourcesService resourcesService;
+    private final TroopsService troopsService;
 
     @PostMapping("/auth")
     public ResponseEntity<?> getKingdomDetailsFromToken(@RequestHeader(value = "Authorization") String token) {
@@ -95,8 +93,8 @@ public class KingdomController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(new ErrorDTO("This kingdom does not belong to authenticated player"));
         } else {
-            KingdomDetailsDTO kingdomDetails = kingdomService.getKingdomTroopsDetailsDTOById(id);
-            return ResponseEntity.status(HttpStatus.OK).body(kingdomDetails);
+            KingdomDetailsDTO troopsDetails = troopsService.getKingdomTroopsDetailsDTOById(id);
+            return ResponseEntity.status(HttpStatus.OK).body(troopsDetails);
         }
     }
 }
