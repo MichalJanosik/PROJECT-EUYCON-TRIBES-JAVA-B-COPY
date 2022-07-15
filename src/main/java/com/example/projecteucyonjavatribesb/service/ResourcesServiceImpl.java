@@ -106,7 +106,8 @@ public class ResourcesServiceImpl implements ResourcesService {
 
     /**
      * This function will return the actual resource generation per minute depending on
-     * mines/farms count and their levels.
+     * mines/farms count and their levels. Generation is always 0 when no building of
+     * type farm or mine is available.
      */
     public Integer getResourceGenerationPerMinute(Resources resource) {
         Integer resourceGeneration = resource.getGeneration();
@@ -116,7 +117,8 @@ public class ResourcesServiceImpl implements ResourcesService {
         int mineCount = 0;
         int farmCount = 0;
 
-        for (Buildings building : kingdomBuildings) {
+        for (int i = 0; i < kingdomBuildings.size(); i++) {
+            Buildings building = kingdomBuildings.get(i);
             if (building.getType().equals("mine") && resource.getType().equals("gold")) {
                 mineCount++;
                 resourceGeneration = resourceGeneration * building.getLevel();
