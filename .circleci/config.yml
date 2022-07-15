@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:17.0.1
+      - image: cimg/openjdk:17.0.1
         environment:
           DB_ROOT_USER: user
           DB_URL: jdbc:mysql://localhost/tribes?serverTimezone=UTC
