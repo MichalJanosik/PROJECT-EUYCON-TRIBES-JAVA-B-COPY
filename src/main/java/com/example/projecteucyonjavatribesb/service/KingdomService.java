@@ -7,15 +7,17 @@ import com.example.projecteucyonjavatribesb.model.Kingdom;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public interface KingdomService {
 
-    public KingdomDetailsDTO getKingdomDetailsDTOById(Long id);
+    KingdomDetailsDTO getKingdomDetailsDTOById(Long id);
 
     Kingdom findKingdomById(Long id);
 
     KingdomDTO getKingdomDTO(Long id);
+    Optional<Kingdom> findById(Long id);
 
     void renameKingdom(Long kingdomId, KingdomNameDTO kingdomNameDTO);
     KingdomDTO getRenamedKingdomDTO(Long kingdomId);

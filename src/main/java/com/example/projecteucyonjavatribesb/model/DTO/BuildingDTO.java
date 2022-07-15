@@ -1,14 +1,13 @@
 package com.example.projecteucyonjavatribesb.model.DTO;
 
 import com.example.projecteucyonjavatribesb.model.Buildings;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
 @Builder
 public class BuildingDTO {
     private Long id;

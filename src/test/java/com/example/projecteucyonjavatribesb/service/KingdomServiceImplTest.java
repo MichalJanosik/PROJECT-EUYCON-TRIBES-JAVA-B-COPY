@@ -23,7 +23,9 @@ import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
 import com.example.projecteucyonjavatribesb.repository.ResourcesRepository;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -254,13 +256,13 @@ class KingdomServiceImplTest {
     @MockBean
     private ResourcesRepository resourcesRepository;
 
-    @Test
-    void testGetKingdomDetailsDTOById() {
+    Player player = new Player();
+    Kingdom kingdom = new Kingdom();
+    Location location = new Location();
+    ArrayList<Buildings> buildingsList = new ArrayList<>();
 
-        Player player = new Player();
-        Location location = new Location();
-        Kingdom kingdom = new Kingdom();
-
+    @BeforeEach
+    void SetInitialValues() {
         player.setId(1L);
         player.setKingdom(kingdom);
         player.setKingdomName("Moria");
@@ -272,7 +274,6 @@ class KingdomServiceImplTest {
         location.setId(1L);
         location.setKingdom(kingdom);
 
-        ArrayList<Buildings> buildingsList = new ArrayList<>();
         kingdom.setBuildingList(buildingsList);
         kingdom.setId(1L);
 
@@ -337,7 +338,10 @@ class KingdomServiceImplTest {
         verify(kingdomRepository).findById((Long) any());
 
         kingdom.setRuler("Michael");
+    }
 
+    @Test
+    void testGetKingdomDetailsDTOById() {
         when(kingdomRepository.getKingdomById((Long) any())).thenReturn(kingdom);
         when(buildingsRepository.findAllByKingdom_Id((Long) any())).thenReturn(new ArrayList<>());
         when(resourcesRepository.findAllByKingdom_Id((Long) any())).thenReturn(new ArrayList<>());
@@ -356,6 +360,51 @@ class KingdomServiceImplTest {
         verify(buildingsRepository).findAllByKingdom_Id((Long) any());
         verify(resourcesRepository).findAllByKingdom_Id((Long) any());
 
+    }
+
+    /**
+     * Method under test: {@link KingdomServiceImpl#getKingdomDTO(Long)}
+     */
+    @Test
+    void test_GetKingdomDTO_OK() {
+        Optional<Kingdom> ofResult = Optional.of(kingdom);
+        when(kingdomRepository.findById((Long) any())).thenReturn(ofResult);
+
+        KingdomDTO actualKingdomDTO = kingdomServiceImpl.getKingdomDTO(1L);
+
+        assertEquals(1L, actualKingdomDTO.getKingdomId().longValue());
+        assertEquals("Michael", actualKingdomDTO.getRuler());
+        assertEquals(1, actualKingdomDTO.getPopulation());
+        assertEquals("Moria", actualKingdomDTO.getKingdomName());
+
+        LocationDTO location3 = actualKingdomDTO.getLocation();
+
+        assertEquals(1, location3.getCoordinateY().intValue());
+        assertEquals(1, location3.getCoordinateX().intValue());
+
+        //what this is for exactly?
+        verify(kingdomRepository).findById((Long) any());
+    }
+
+    @Test
+    void test_GetKingdomDTO_NULL() {
+        Optional<Kingdom> ofResult = Optional.of(kingdom);
+        when(kingdomRepository.findById((Long) any())).thenReturn(ofResult);
+
+        KingdomDTO actualKingdomDTO = kingdomServiceImpl.getKingdomDTO(null);
+
+        assertEquals(1L, actualKingdomDTO.getKingdomId().longValue());
+        assertEquals("Michael", actualKingdomDTO.getRuler());
+        assertEquals(1, actualKingdomDTO.getPopulation());
+        assertEquals("Moria", actualKingdomDTO.getKingdomName());
+
+        LocationDTO location3 = actualKingdomDTO.getLocation();
+
+        assertEquals(1, location3.getCoordinateY().intValue());
+        assertEquals(1, location3.getCoordinateX().intValue());
+
+        //what this is for exactly?
+        verify(kingdomRepository).findById((Long) any());
     }
 }
 

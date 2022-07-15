@@ -1,4 +1,4 @@
-package com.example.projecteucyonjavatribesb.controller;
+package com.example.projecteucyonjavatribesb.projecteucyonjavatribesb.controller;
 
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.repository.KingdomRepository;

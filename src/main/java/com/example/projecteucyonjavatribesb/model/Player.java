@@ -1,14 +1,14 @@
 package com.example.projecteucyonjavatribesb.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class Player {
     @Id
@@ -17,7 +17,7 @@ public class Player {
     private String username;
     private String kingdomName;
     private String password;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "player", cascade = CascadeType.ALL)
     private Kingdom kingdom;
 
     public Player(String password, String username) {

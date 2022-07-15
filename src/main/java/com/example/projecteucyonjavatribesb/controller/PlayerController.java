@@ -8,10 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.projecteucyonjavatribesb.model.DTO.ErrorDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.PlayerDTO;
 import com.example.projecteucyonjavatribesb.model.Player;
-import com.example.projecteucyonjavatribesb.repository.PlayerRepository;
 import com.example.projecteucyonjavatribesb.service.PlayerServiceImpl;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class PlayerController {
     private final LocationServiceImpl locationServiceImpl;
     private final PlayerServiceImpl playerService;
-    private final PlayerRepository playerRepository;
 
     @PutMapping("/locationRegister")
     public ResponseEntity<Object> setLocation(@RequestBody RequestDTO requestDTO){
@@ -43,7 +39,8 @@ public class PlayerController {
         }
 
         playerService.saveNewPlayer(player);
-        return ResponseEntity.status(200).body(new PlayerDTO(player.getUsername(), playerRepository.findByUsername(player.getUsername()).getKingdom().getId()));
+        return ResponseEntity.status(200).body(new PlayerDTO(player.getUsername(),
+                playerService.findByUsername(player.getUsername()).getKingdom().getId()));
 
     }
 

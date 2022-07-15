@@ -1,7 +1,7 @@
 package com.example.projecteucyonjavatribesb.service;
 
 import com.example.projecteucyonjavatribesb.model.DTO.ErrorDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.LocationOkDTO;
+import com.example.projecteucyonjavatribesb.model.DTO.OkMessageDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.model.Location;
 import com.example.projecteucyonjavatribesb.model.DTO.RequestDTO;
@@ -35,7 +35,7 @@ public class LocationServiceImpl implements LocationService{
                 location.setKingdom(kingdom.get());
                 locationRepository.save(location);
                 kingdomRepository.save(kingdom.get());
-                return ResponseEntity.ok().body(new LocationOkDTO("ok"));
+                return ResponseEntity.ok().body(new OkMessageDTO("ok"));
             } catch (Exception e){
                 return ResponseEntity.status(400).body(new ErrorDTO("This kingdom does not exist"));
             }
