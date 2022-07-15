@@ -54,8 +54,7 @@ public class LoginIntegrationTests {
                 )
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers
-                        .jsonPath("$.status").value("ok"))
-                        ;
+                        .jsonPath("$.status").value("ok"));
     }
 
     @Test

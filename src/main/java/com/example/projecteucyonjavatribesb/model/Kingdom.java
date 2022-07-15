@@ -2,9 +2,7 @@ package com.example.projecteucyonjavatribesb.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,12 +11,14 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class Kingdom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
+    @OneToOne(mappedBy = "kingdom", cascade = CascadeType.ALL)
     @JsonManagedReference
     private Location location;
     private String ruler;
@@ -27,7 +27,7 @@ public class Kingdom {
     private Player player;
     @OneToMany(mappedBy = "kingdom", cascade = CascadeType.ALL)
     private List<Resources> resourcesList = new ArrayList<>();
-    @OneToMany(mappedBy = "kingdom")
+    @OneToMany(mappedBy = "kingdom", cascade = CascadeType.ALL)
     private List<Buildings> buildingList = new ArrayList<>();
 
     public Kingdom(Long id, String ruler, Integer population, Location location) {
