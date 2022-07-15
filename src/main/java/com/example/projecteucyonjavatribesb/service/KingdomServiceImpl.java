@@ -1,19 +1,29 @@
 package com.example.projecteucyonjavatribesb.service;
+<<<<<<< HEAD
 
 
 import com.example.projecteucyonjavatribesb.model.DTO.*;
 
+=======
+import com.example.projecteucyonjavatribesb.model.DTO.KingdomDTO;
+import com.example.projecteucyonjavatribesb.model.DTO.LocationDTO;
+import com.example.projecteucyonjavatribesb.model.DTO.*;
+>>>>>>> 2108cc578b40c189c042f47851d3e44d76849c10
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.repository.BuildingsRepository;
 import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
 import com.example.projecteucyonjavatribesb.repository.ResourcesRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
+import javax.transaction.Transactional;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
+@Transactional
+@Slf4j
 @Service
-@AllArgsConstructor
 public class KingdomServiceImpl implements KingdomService{
 
     private final KingdomRepository kingdomRepository;
@@ -27,6 +37,9 @@ public class KingdomServiceImpl implements KingdomService{
     }
 
     @Override
+    public Optional<Kingdom> findById(Long id) {
+        return kingdomRepository.findById(id);
+    }
     public Kingdom findKingdomById(Long id) {
         return kingdomRepository.getKingdomById(id);
     }
@@ -55,7 +68,8 @@ public class KingdomServiceImpl implements KingdomService{
                 kingdom.getPlayer().getKingdomName(),
                 kingdom.getRuler(),
                 kingdom.getPopulation(),
-                new LocationDTO(kingdom.getLocation())
+//                new LocationDTO(kingdom.getLocation().getCoordinateX(), kingdom.getLocation().getCoordinateY())
+                new LocationDTO(kingdom)
         );
     }
 }

@@ -47,8 +47,13 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         if (request.getRequestURI().equals("/api/login")
+<<<<<<< HEAD
                 || request.getRequestURI().equals("/api/registration")
                 || request.getRequestURI().equals("/api/locationRegister")){
+=======
+                || request.getServletPath().equals("/api/registration")
+                || request.getServletPath().equals("/api/locationRegister")){
+>>>>>>> 2108cc578b40c189c042f47851d3e44d76849c10
             chain.doFilter(request, response);
         } else {
             final String authorizationHeader = request.getHeader("Authorization");
@@ -61,7 +66,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                     username = decodedJWT.getSubject();
                     String[] kingdoms = decodedJWT.getClaim("kingdom").asArray(String.class);
                     Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-                    stream(kingdoms).forEach(kingdom -> {authorities.add(new SimpleGrantedAuthority(kingdom));
+                    stream(kingdoms).forEach(kingdom -> {
+                        authorities.add(new SimpleGrantedAuthority(kingdom));
                     });
                     UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                             username, null, authorities);
