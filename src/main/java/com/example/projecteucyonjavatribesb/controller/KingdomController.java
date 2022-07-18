@@ -80,7 +80,6 @@ public class KingdomController {
             } else if (buildingsService.findBuildingsByIdAndKingdom(buildingId, kingdomService.findKingdomById(kingdomId)).isEmpty()) {
                 return ResponseEntity.status(400)
                         .body(new ErrorDTO("This building does not exists!"));
-
             } else if (!buildingsService.isReadyForUpgrade(kingdomId, buildingId)) {
                 return ResponseEntity.status(400)
                         .body(new ErrorDTO("Building is not ready for reconstruction!"));
@@ -93,9 +92,7 @@ public class KingdomController {
             BuildingDTO buildingDTO = buildingsService.makeBuildingsDTO(buildingId);
             return ResponseEntity.status(200)
                     .body(buildingDTO);
-
-
-        }
+    }
 
 
 
@@ -113,6 +110,7 @@ public class KingdomController {
 //            return ResponseEntity.status(HttpStatus.OK).body(kingdomOverview);
 //        }
 //    }
+
     @GetMapping("/kingdoms/{id}")
     public ResponseEntity<?> getKingdomDetails(@PathVariable(name = "id") Long id) {
         if (kingdomService.findKingdomById(id) == null) {
@@ -126,6 +124,20 @@ public class KingdomController {
             return ResponseEntity.status(HttpStatus.OK).body(kingdomDetails);
         }
     }
+
+    @PutMapping("/kingdoms/{id}")
+    public ResponseEntity<?> renameKingdom(@PathVariable("id") Long kingdomId,
+                                           @RequestBody KingdomNameDTO kingdomNameDTO) {
+
+        if (Objects.nonNull(kingdomNameDTO.getKingdomName()) && !kingdomNameDTO.getKingdomName().isBlank()) {
+            if (playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, kingdomId)) {
+                kingdomService.renameKingdom(kingdomId, kingdomNameDTO);
+                return ResponseEntity.status(HttpStatus.OK).body(kingdomService.getRenamedKingdomDTO(kingdomId));
+            } else {
+                throw new RuntimeException("This kingdom does not belong to authenticated player!");
+            }
+        } else {
+            throw new RuntimeException("Field kingdomName was empty!");
+        }
+    }
 }
-
-

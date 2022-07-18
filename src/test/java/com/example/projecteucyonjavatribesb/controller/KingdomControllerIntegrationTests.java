@@ -4,7 +4,6 @@ import com.example.projecteucyonjavatribesb.model.Player;
 import com.example.projecteucyonjavatribesb.repository.PlayerRepository;
 import com.example.projecteucyonjavatribesb.service.PlayerService;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,15 +34,18 @@ public class KingdomControllerIntegrationTests {
 
     static String TOKEN;
     static String INCORRECT_TOKEN;
-    static Long id;
+    static Long ID;
+    static String USERNAME;
+    static String PASSWORD;
+    static String KINGDOM_NAME;
 
     @BeforeAll
     void initialSetup() throws Exception {
-        String username = "MisoDaJedi";
-        String password = "password";
-        String kingdomName = "Galaxy far far away";
+        USERNAME = "MisoDaJedi";
+        PASSWORD = "password";
+        KINGDOM_NAME = "Galaxy far far away";
 
-        playerService.saveNewPlayer(new Player(password, username, kingdomName));
+        playerService.saveNewPlayer(new Player(PASSWORD, USERNAME, KINGDOM_NAME));
 
         TOKEN = extractToken();
         INCORRECT_TOKEN =
@@ -63,7 +65,7 @@ public class KingdomControllerIntegrationTests {
                         """)
         ).andExpect(status().isOk());
 
-        id = playerRepository.findByUsername("MisoDaJedi").getId();
+        ID = playerRepository.findByUsername(USERNAME).getId();
 
         mockMvc.perform(put("/api/locationRegister")
                         .content("""
@@ -71,7 +73,7 @@ public class KingdomControllerIntegrationTests {
                                     "coordinateX": "1",
                                     "coordinateY": "1",
                                     "kingdomId": "%s"
-                                }""".formatted(id))
+                                }""".formatted(ID))
                         .contentType("application/json"))
                 .andExpect(status().isOk());
 
@@ -80,41 +82,112 @@ public class KingdomControllerIntegrationTests {
         return "Bearer " + jsonParser.parseMap(resultString).get("token").toString();
     }
 
+    //>>>>>>>>>>>>GET /api/kingdoms/{id}/resources >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
     @Test
     void testGetKingdomResources_OK_200() throws Exception {
-        String ExpectKingdomName = playerRepository.findByUsername("MisoDaJedi").getKingdomName();
-        id = playerRepository.findByUsername("MisoDaJedi").getId();
+        String expectKingdomName = playerRepository.findByUsername(USERNAME).getKingdomName();
+        ID = playerRepository.findByUsername(USERNAME).getId();
 
         mockMvc
-                .perform(get(String.format("/api/kingdoms/%d/resources", id))
+                .perform(get(String.format("/api/kingdoms/%d/resources", ID))
                         .header("Authorization", TOKEN))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.kingdom.kingdomName").value(ExpectKingdomName))
-        ;
+                .andExpect(jsonPath("$.kingdom.kingdomName").value(expectKingdomName));
     }
 
     @Test
-    void testGetKingdomResourcesWrongToken_UNAUTHORIZED_401() throws Exception {
-        String error = "This kingdom does not belong to authenticated player!";
+    void testGetKingdomResourcesIncorrectToken_UNAUTHORIZED_401() throws Exception {
+        String expectError = "This kingdom does not belong to authenticated player!";
 
         mockMvc
-                .perform(get(String.format("/api/kingdoms/%d/resources", id))
+                .perform(get(String.format("/api/kingdoms/%d/resources", ID))
                         .header("Authorization", INCORRECT_TOKEN))
                 .andExpect(status().isUnauthorized())
-                .andExpect(jsonPath("$.error").value(error))
-        ;
+                .andExpect(jsonPath("$.error").value(expectError));
     }
 
     @Test
     void testGetKingdomResourcesWrongId_UNAUTHORIZED_401() throws Exception {
-        String error = "This kingdom does not belong to authenticated player!";
+        String expectError = "This kingdom does not belong to authenticated player!";
 
         mockMvc
-                .perform(get(String.format("/api/kingdoms/%d/resources", ++id))
+                .perform(get(String.format("/api/kingdoms/%d/resources", ++ID))
                         .header("Authorization", INCORRECT_TOKEN))
                 .andExpect(status().isUnauthorized())
-                .andExpect(jsonPath("$.error").value(error))
-        ;
+                .andExpect(jsonPath("$.error").value(expectError));
     }
 
+    //>>>>>>>>>>>>PUT /api/{id} >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    @Test
+    void testRenameKingdom_OK_200() throws Exception {
+        String expectKingdomName = "Galaxy even more far away";
+        ID = playerRepository.findByUsername(USERNAME).getId();
+
+        mockMvc
+                .perform(put(String.format("/api/kingdoms/%d", ID))
+                        .header("Authorization", TOKEN)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                    "kingdomName": "%s"
+                                }""".formatted(expectKingdomName)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.kingdomName").value(expectKingdomName))
+                .andExpect(jsonPath("$.kingdomId").value(ID));
+    }
+
+    @Test
+    void testRenameKingdomIncorrectToken_UNAUTHORIZED_401() throws Exception {
+        String expectKingdomName = "Galaxy even more far away";
+        String expectError = "This kingdom does not belong to authenticated player!";
+        ID = playerRepository.findByUsername(USERNAME).getId();
+
+        mockMvc
+                .perform(put(String.format("/api/kingdoms/%d", ID))
+                        .header("Authorization", INCORRECT_TOKEN)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                    "kingdomName": "%s"
+                                }""".formatted(expectKingdomName)))
+                .andExpect(status().isUnauthorized())
+                .andExpect(jsonPath("$.error").value(expectError));
+    }
+
+    @Test
+    void testRenameKingdomWrondId_UNAUTHORIZED_401() throws Exception {
+        String expectKingdomName = "Galaxy even more far away";
+        String expectError = "This kingdom does not belong to authenticated player!";
+        ID = playerRepository.findByUsername(USERNAME).getId();
+
+        mockMvc
+                .perform(put(String.format("/api/kingdoms/%d", ++ID))
+                        .header("Authorization", TOKEN)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                    "kingdomName": "%s"
+                                }""".formatted(expectKingdomName)))
+                .andExpect(status().isUnauthorized())
+                .andExpect(jsonPath("$.error").value(expectError));
+    }
+
+    @Test
+    void testRenameKingdomEmptyKingdomName_BAD_REQUEST_400() throws Exception {
+        String expectError = "Field kingdomName was empty!";
+        ID = playerRepository.findByUsername(USERNAME).getId();
+
+        mockMvc
+                .perform(put(String.format("/api/kingdoms/%d", ID))
+                        .header("Authorization", TOKEN)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                    "kingdomName": ""
+                                }"""))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error").value(expectError));
+    }
 }
