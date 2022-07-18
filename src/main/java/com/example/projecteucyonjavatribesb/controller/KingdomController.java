@@ -57,62 +57,46 @@ public class KingdomController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(new ErrorDTO("This kingdom does not exists!"));
         } else if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id) || token.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                        .body(new ErrorDTO("This kingdom does not belong to authenticated player!"));
-            }
-
-            KingdomBuildingsDTO kingdomBuildingsDTO = buildingsService.makeKingdomBuildingsDTO(id);
-            return ResponseEntity.status(HttpStatus.OK).body(kingdomBuildingsDTO);
-
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(new ErrorDTO("This kingdom does not belong to authenticated player!"));
         }
 
-        @PutMapping("/kingdoms/{kingdomId}/buildings/{buildingId}")
-        public ResponseEntity<Object> upgradeBuildings (@PathVariable(required = false) Long kingdomId,
-                @PathVariable(required = false) Long buildingId,
-                @RequestHeader(value = "Authorization") String token){
-            if (kingdomService.findById(kingdomId).isEmpty()) {
-                return ResponseEntity.status(400)
-                        .body(new ErrorDTO("This kingdom does not exists!"));
-            } else if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, kingdomId) || token.isEmpty()) {
-                return ResponseEntity.status(401)
-                        .body(new ErrorDTO("This kingdom does not belong to authenticated player!"));
+        KingdomBuildingsDTO kingdomBuildingsDTO = buildingsService.makeKingdomBuildingsDTO(id);
+        return ResponseEntity.status(HttpStatus.OK).body(kingdomBuildingsDTO);
 
-            } else if (buildingsService.findBuildingsByIdAndKingdom(buildingId, kingdomService.findKingdomById(kingdomId)).isEmpty()) {
-                return ResponseEntity.status(400)
-                        .body(new ErrorDTO("This building does not exists!"));
+    }
 
-            } else if (!buildingsService.isReadyForUpgrade(kingdomId, buildingId)) {
-                return ResponseEntity.status(400)
-                        .body(new ErrorDTO("Building is not ready for reconstruction!"));
+    @PutMapping("/kingdoms/{kingdomId}/buildings/{buildingId}")
+    public ResponseEntity<Object> upgradeBuildings(@PathVariable(required = false) Long kingdomId,
+                                                   @PathVariable(required = false) Long buildingId,
+                                                   @RequestHeader(value = "Authorization") String token) {
+        if (kingdomService.findById(kingdomId).isEmpty()) {
+            return ResponseEntity.status(400)
+                    .body(new ErrorDTO("This kingdom does not exists!"));
+        } else if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, kingdomId) || token.isEmpty()) {
+            return ResponseEntity.status(401)
+                    .body(new ErrorDTO("This kingdom does not belong to authenticated player!"));
 
-            } else if (!buildingsService.enoughResources(kingdomId, buildingId)) {
-                return ResponseEntity.status(400)
-                        .body(new ErrorDTO("You don't have enough gold to upgrade that!"));
-            }
-            buildingsService.upgradeBuilding(kingdomId, buildingId);
-            BuildingDTO buildingDTO = buildingsService.makeBuildingsDTO(buildingId);
-            return ResponseEntity.status(200)
-                    .body(buildingDTO);
+        } else if (buildingsService.findBuildingsByIdAndKingdom(buildingId, kingdomService.findKingdomById(kingdomId)).isEmpty()) {
+            return ResponseEntity.status(400)
+                    .body(new ErrorDTO("This building does not exists!"));
 
+        } else if (!buildingsService.isReadyForUpgrade(kingdomId, buildingId)) {
+            return ResponseEntity.status(400)
+                    .body(new ErrorDTO("Building is not ready for reconstruction!"));
 
+        } else if (!buildingsService.enoughResources(kingdomId, buildingId)) {
+            return ResponseEntity.status(400)
+                    .body(new ErrorDTO("You don't have enough gold to upgrade that!"));
         }
+        buildingsService.upgradeBuilding(kingdomId, buildingId);
+        BuildingDTO buildingDTO = buildingsService.makeBuildingsDTO(buildingId);
+        return ResponseEntity.status(200)
+                .body(buildingDTO);
 
 
+    }
 
-    //    @GetMapping("/kingdoms/{id}")
-//    public ResponseEntity<?> getKingdomOverview(@PathVariable(name = "id") Long id,
-//                                                @RequestHeader(value = "Authorization") String token) {
-//        if (kingdomService.findKingdomById(id) == null) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-//                    .body(new ErrorDTO("This kingdom does not exist."));
-//        } else if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id) || token.isEmpty()) {
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-//                    .body(new ErrorDTO("This kingdom does not belong to authenticated player!"));
-//        } else {
-//            KingdomOverviewDTO kingdomOverview = kingdomService.getKingdomOverviewDTOById(id);
-//            return ResponseEntity.status(HttpStatus.OK).body(kingdomOverview);
-//        }
-//    }
     @GetMapping("/kingdoms/{id}")
     public ResponseEntity<?> getKingdomDetails(@PathVariable(name = "id") Long id) {
         if (kingdomService.findKingdomById(id) == null) {
@@ -125,6 +109,14 @@ public class KingdomController {
             KingdomDetailsDTO kingdomDetails = kingdomService.getKingdomDetailsDTOById(id);
             return ResponseEntity.status(HttpStatus.OK).body(kingdomDetails);
         }
+    }
+
+
+    @GetMapping("/kingdoms")
+    public ResponseEntity<?> getListOfKingdoms() {
+        ListOfKingdomsDTO listOfKingdomsDTO = kingdomService.makeListOfKingdomsDTO();
+        return ResponseEntity.status(200).body(listOfKingdomsDTO);
+
     }
 }
 

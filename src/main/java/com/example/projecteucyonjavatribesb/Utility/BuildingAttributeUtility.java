@@ -12,8 +12,8 @@ public class BuildingAttributeUtility {
 
     public BuildingAttributeUtility() {
         costs.put("farm",30);
-//        costs.put("Town Hall",90);
-        costs.put("Town Hall",20);
+        costs.put("Town Hall",90);
+//        costs.put("Town Hall",20);
         costs.put("mine",30);
         costs.put("academy",50);
         costs.put("barracks",60);
@@ -26,5 +26,8 @@ public class BuildingAttributeUtility {
         time.put("barracks",2700000L); // 45 min
         time.put("walls",1200000L); // 20 min
     }
+
+
+
 
 }
