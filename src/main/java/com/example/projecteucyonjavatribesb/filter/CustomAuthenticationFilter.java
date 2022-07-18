@@ -55,12 +55,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
             error.put("error", exception.getMessage());
             response.setContentType(APPLICATION_JSON_VALUE);
             new ObjectMapper().writeValue(response.getOutputStream(), error);
-
         }
-
-
-
-
         log.info("Username is: {}", username); log.info("Password is: {}", password);
 
         // authentication will be processed internally in the Spring Security and
