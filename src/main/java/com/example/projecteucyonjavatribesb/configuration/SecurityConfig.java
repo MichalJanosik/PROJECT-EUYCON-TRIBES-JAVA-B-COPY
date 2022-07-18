@@ -39,18 +39,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         customAuthenticationFilter.setFilterProcessesUrl("/api/login");
 
         http.csrf().disable();
-//        http.headers().frameOptions().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/api/registration").permitAll();
 //      for testing
         http.authorizeRequests().antMatchers("/api/locationRegister").permitAll();
         http.authorizeRequests().antMatchers("/api/login").permitAll();
-
-        // enable access to H2-console (development only!)
-//        http.authorizeRequests().antMatchers("/").permitAll()
-//                .and()
-//                .authorizeRequests().antMatchers("/h2-console/**").permitAll();
-
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new JwtRequestFilter(), UsernamePasswordAuthenticationFilter.class);
