@@ -1,7 +1,6 @@
 package com.example.projecteucyonjavatribesb.service;
 
 import com.example.projecteucyonjavatribesb.model.DTO.LeaderboardsDTO;
-import com.example.projecteucyonjavatribesb.model.Kingdom;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
