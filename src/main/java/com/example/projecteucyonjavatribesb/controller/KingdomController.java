@@ -1,10 +1,7 @@
 package com.example.projecteucyonjavatribesb.controller;
 
 import com.example.projecteucyonjavatribesb.filter.JwtRequestFilter;
-import com.example.projecteucyonjavatribesb.model.DTO.ErrorDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomBuildingsDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomDetailsDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomPreviewDTO;
+import com.example.projecteucyonjavatribesb.model.DTO.*;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 
 import com.example.projecteucyonjavatribesb.service.*;
@@ -13,9 +10,11 @@ import com.example.projecteucyonjavatribesb.service.KingdomService;
 import com.example.projecteucyonjavatribesb.service.PlayerAuthorizationService;
 import com.example.projecteucyonjavatribesb.service.ResourcesService;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
@@ -29,6 +28,30 @@ public class KingdomController {
     private final KingdomService kingdomService;
     private final BuildingsService buildingsService;
     private final ResourcesService resourcesService;
+    private final BuildingsServiceImpl buildingsServiceimp;
+
+    @PostMapping("/kingdoms/{id}/buildings")
+    public ResponseEntity<Object> addBuilding(@PathVariable("id") Long id,
+                                              @RequestBody BuildingRequestDTO type,
+                                              @RequestHeader(value = "Authorization") String token) throws HttpMessageNotReadableException {
+        try {
+            if(Objects.nonNull(type) && !type.getType().isBlank() && (type.getType().equals("farm") || type.getType().equals("mine")||
+                    type.getType().equals("walls")
+                    || type.getType().equals("barracks") || type.getType().equals("academy")) ){
+                if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id) || token.isEmpty()) {
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).
+                            body(new ErrorDTO("This kingdom does not belong to authenticated player"));
+                } else {
+                    return buildingsServiceimp.addBuildingMethod(id, type);
+                }
+            } else return ResponseEntity.status(HttpStatus.BAD_REQUEST).
+                    body(new ErrorDTO("Invalid string"));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).
+                    body(new ErrorDTO("Invalid string format"));
+        }
+
+    }
 
     @PostMapping("/auth")
     public ResponseEntity<?> getKingdomDetailsFromToken(@RequestHeader(value = "Authorization") String token) {

@@ -77,38 +77,39 @@ public class BuildingsServiceImpl implements BuildingsService {
             if (type.getType().equalsIgnoreCase("farm") && count < 5) {
                 if (resourcesService.canBeResourceUsed(resourcesService.getResourcesByKingdomId(id).get(0), buildingAttributeUtility1.getCosts().get(type.getType()))) {
                     resourcesService.useResource(resourcesService.getResourcesByKingdomId(id).get(0), buildingAttributeUtility1.costs.get(type.getType()));
+                    return ResponseEntity.ok().body(setBuilding(type.getType(), id));
                 } else {
                     return ResponseEntity.status(400).body(new ErrorDTO("You don't have enough gold to build that!"));
                 }
-                return ResponseEntity.ok().body(setBuilding(type.getType(), id));
             } else if (type.getType().equalsIgnoreCase("mine") && count < 3) {
                 if (resourcesService.canBeResourceUsed(resourcesService.getResourcesByKingdomId(id).get(0), buildingAttributeUtility1.getCosts().get(type.getType()))) {
                     resourcesService.useResource(resourcesService.getResourcesByKingdomId(id).get(0), buildingAttributeUtility1.getCosts().get(type.getType()));
+                    return ResponseEntity.ok().body(setBuilding(type.getType(), id));
+
                 } else {
                     return ResponseEntity.status(400).body(new ErrorDTO("You don't have enough gold to build that!"));
                 }
-                return ResponseEntity.ok().body(setBuilding(type.getType(), id));
             } else if (type.getType().equalsIgnoreCase("barracks") && count < 1) {
                 if (resourcesService.canBeResourceUsed(resourcesService.getResourcesByKingdomId(id).get(0), buildingAttributeUtility1.getCosts().get(type.getType()))) {
                     resourcesService.useResource(resourcesService.getResourcesByKingdomId(id).get(0), buildingAttributeUtility1.getCosts().get(type.getType()));
+                    return ResponseEntity.ok().body(setBuilding(type.getType(), id));
                 } else {
                     return ResponseEntity.status(400).body(new ErrorDTO("You don't have enough gold to build that!"));
                 }
-                return ResponseEntity.ok().body(setBuilding(type.getType(), id));
             } else if (type.getType().equalsIgnoreCase("walls") && count < 1) {
                 if (resourcesService.canBeResourceUsed(resourcesService.getResourcesByKingdomId(id).get(0), buildingAttributeUtility1.getCosts().get(type.getType()))) {
                     resourcesService.useResource(resourcesService.getResourcesByKingdomId(id).get(0), buildingAttributeUtility1.getCosts().get(type.getType()));
+                    return ResponseEntity.ok().body(setBuilding(type.getType(), id));
                 } else {
                     return ResponseEntity.status(400).body(new ErrorDTO("You don't have enough gold to build that!"));
                 }
-                return ResponseEntity.ok().body(setBuilding(type.getType(), id));
             } else if (type.getType().equalsIgnoreCase("academy") && count < 1) {
                 if (resourcesService.canBeResourceUsed(resourcesService.getResourcesByKingdomId(id).get(0), buildingAttributeUtility1.getCosts().get(type.getType()))) {
                     resourcesService.useResource(resourcesService.getResourcesByKingdomId(id).get(0), buildingAttributeUtility1.getCosts().get(type.getType()));
+                    return ResponseEntity.ok().body(setBuilding(type.getType(), id));
                 } else {
                     return ResponseEntity.status(400).body(new ErrorDTO("You don't have enough gold to build that!"));
                 }
-                return ResponseEntity.ok().body(setBuilding(type.getType(), id));
             } else return ResponseEntity.status(400).body(new ErrorDTO("error , too much buildings of this type"));
         } else return ResponseEntity.status(400).body(new ErrorDTO("There is no Townhall in kingdom"));
     }
