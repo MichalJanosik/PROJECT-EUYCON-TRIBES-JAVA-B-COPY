@@ -1,12 +1,11 @@
 package com.example.projecteucyonjavatribesb.service;
 
-import com.example.projecteucyonjavatribesb.model.Buildings;
-import com.example.projecteucyonjavatribesb.model.Kingdom;
-import com.example.projecteucyonjavatribesb.model.Player;
-import com.example.projecteucyonjavatribesb.model.Resources;
+import com.example.projecteucyonjavatribesb.model.*;
+import com.example.projecteucyonjavatribesb.model.Troops.Troops;
 import com.example.projecteucyonjavatribesb.repository.BuildingsRepository;
 import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
 import com.example.projecteucyonjavatribesb.repository.PlayerRepository;
+import com.example.projecteucyonjavatribesb.repository.TroopsRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -32,9 +31,11 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
 
     private final PlayerRepository playerRepository;
     private final KingdomRepository kingdomRepository;
+    private final TroopsRepository troopsRepository;
     private final BuildingsRepository buildingsRepository;
     private final PasswordEncoder passwordEncoder;
     private final ResourcesService resourcesService;
+    private final TroopsService troopsService;
 
 
     @Override
@@ -51,11 +52,18 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
         Kingdom kingdom = new Kingdom(player.getUsername());
         Buildings buildings = new Buildings("Town Hall", 1);
 
+
         //set the kingdom`s initial resources:
         List<Resources> initialResources = resourcesService.getInitialResources();
         kingdom.setResourcesList(initialResources);
         for (Resources resource : initialResources) {
             resource.setKingdom(kingdom);
+        }
+
+        List<Troops> initialTroops = troopsService.getInitialTroops();
+        kingdom.setTroopsList(initialTroops);
+        for (Troops troop : initialTroops) {
+            troop.setKingdom(kingdom);
         }
 
         Player player1;

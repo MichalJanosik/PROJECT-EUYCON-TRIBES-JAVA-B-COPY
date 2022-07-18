@@ -45,7 +45,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-//           when merge, delete this -> request.getRequestURI().equals("/api/locationRegister")
 
         if (request.getRequestURI().equals("/api/login")
                 || request.getRequestURI().equals("/api/registration")
@@ -77,6 +76,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                     error.put("error", exception.getMessage());
                     response.setContentType(APPLICATION_JSON_VALUE);
                     new ObjectMapper().writeValue(response.getOutputStream(), error);
+
                 }
             } else {
                 Exception exception = new Exception();
@@ -88,6 +88,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 new ObjectMapper().writeValue(response.getOutputStream(), error);
                 chain.doFilter(request, response);
             }
+
         }
     }
 }

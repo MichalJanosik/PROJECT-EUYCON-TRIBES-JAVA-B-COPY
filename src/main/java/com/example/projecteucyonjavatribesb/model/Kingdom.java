@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Entity
@@ -30,6 +29,9 @@ public class Kingdom {
     private List<Resources> resourcesList = new ArrayList<>();
     @OneToMany(mappedBy = "kingdom")
     private List<Buildings> buildingList = new ArrayList<>();
+    @OneToMany(mappedBy = "kingdom", cascade = CascadeType.ALL)
+    private List<Troops> troopsList = new ArrayList<>();
+
     public Kingdom(String ruler, Integer population, Location location){
         this.ruler = ruler;
         this.population = population;
@@ -41,6 +43,7 @@ public class Kingdom {
         this.population = population;
         this.location = location;
     }
+
     public Kingdom(String ruler) {
         this.ruler = ruler;
         this.population = 0;

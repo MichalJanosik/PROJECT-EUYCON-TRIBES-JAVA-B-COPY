@@ -1,11 +1,13 @@
 package com.example.projecteucyonjavatribesb.controller;
 
 import com.example.projecteucyonjavatribesb.filter.JwtRequestFilter;
-import com.example.projecteucyonjavatribesb.model.DTO.*;
+import com.example.projecteucyonjavatribesb.model.DTO.ErrorDTO;
+import com.example.projecteucyonjavatribesb.model.DTO.KingdomBuildingsDTO;
+import com.example.projecteucyonjavatribesb.model.DTO.KingdomDetailsDTO;
+import com.example.projecteucyonjavatribesb.model.DTO.KingdomPreviewDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
+
 import com.example.projecteucyonjavatribesb.service.*;
-
-
 import com.example.projecteucyonjavatribesb.service.BuildingsService;
 import com.example.projecteucyonjavatribesb.service.KingdomService;
 import com.example.projecteucyonjavatribesb.service.PlayerAuthorizationService;
@@ -28,19 +30,6 @@ public class KingdomController {
     private final BuildingsService buildingsService;
     private final ResourcesService resourcesService;
 
-    private final BuildingsServiceImpl buildingsServiceimp;
-    @PostMapping("/kingdoms/{id}/buildings")
-    public ResponseEntity<Object> addBuilding(@PathVariable("id") Long id,
-                                              @RequestBody BuildingRequestDTO type,
-                                              @RequestHeader(value = "Authorization") String token) {
-        if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id) || token.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).
-            body(new ErrorDTO("This kingdom does not belong to authenticated player"));
-        } else {
-            return buildingsServiceimp.addBuildingMethod(id, type);
-        }
-    }
-
     @PostMapping("/auth")
     public ResponseEntity<?> getKingdomDetailsFromToken(@RequestHeader(value = "Authorization") String token) {
         if (token.isEmpty()) {
@@ -53,7 +42,7 @@ public class KingdomController {
 
     @GetMapping("/kingdoms/{id}/resources")
     public ResponseEntity<?> getKingdomsResources(@PathVariable("id") Long kingdomId,
-                                                  @RequestHeader("Authorization") String token) {
+                                                  @RequestHeader("authorization") String token) {
 
         if (Objects.nonNull(kingdomId) && Objects.nonNull(token) && !token.isBlank()) {
             if (playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, kingdomId)) {
@@ -75,8 +64,10 @@ public class KingdomController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(new ErrorDTO("This kingdom does not belong to authenticated player!"));
         }
+
         KingdomBuildingsDTO kingdomBuildingsDTO = buildingsService.makeKingdomBuildingsDTO(id);
         return ResponseEntity.status(HttpStatus.OK).body(kingdomBuildingsDTO);
+
     }
 
     @GetMapping("/kingdoms/{id}")
