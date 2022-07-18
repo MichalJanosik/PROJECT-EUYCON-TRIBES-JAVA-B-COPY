@@ -48,6 +48,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         if (request.getRequestURI().equals("/api/login")
                 || request.getRequestURI().equals("/api/registration")
+
+                //enabling H2 console - development only!
+//                || request.getRequestURL().toString().equals("/h2-console")
+
                 || request.getRequestURI().equals("/api/locationRegister")){
             chain.doFilter(request, response);
         } else {
