@@ -61,7 +61,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                     username = decodedJWT.getSubject();
                     String[] kingdoms = decodedJWT.getClaim("kingdom").asArray(String.class);
                     Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-                    stream(kingdoms).forEach(kingdom -> {authorities.add(new SimpleGrantedAuthority(kingdom));
+                    stream(kingdoms).forEach(kingdom -> {
+                        authorities.add(new SimpleGrantedAuthority(kingdom));
                     });
                     UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                             username, null, authorities);

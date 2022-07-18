@@ -6,6 +6,6 @@ public interface PlayerService {
     boolean checkIfUsernameAlreadyExist(String username);
 
     void saveNewPlayer(Player player);
-
+    Player findByUsername(String username);
 
 }

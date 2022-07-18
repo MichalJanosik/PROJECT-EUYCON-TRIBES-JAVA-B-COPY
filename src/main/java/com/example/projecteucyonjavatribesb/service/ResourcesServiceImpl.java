@@ -23,7 +23,8 @@ public class ResourcesServiceImpl implements ResourcesService {
 
     private final ResourcesRepository resourcesRepository;
 
-    /** Here the waiting time after generating resources is set in milliseconds:
+    /**
+     * Here the waiting time after generating resources is set in milliseconds:
      */
     protected final Long timeToWaitForResourcesInMillis = 30 * 60 * 1000L;
 
@@ -41,7 +42,7 @@ public class ResourcesServiceImpl implements ResourcesService {
                         .kingdomName(kingdom.getPlayer().getKingdomName())
                         .ruler(kingdom.getRuler())
                         .population(kingdom.getPopulation())
-                        .location(new LocationDTO(kingdom.getLocation()))
+                        .location(new LocationDTO(kingdom.getLocation().getCoordinateX(), kingdom.getLocation().getCoordinateY()))
                         .build())
                 .resources(kingdom.getResourcesList().stream()
                         .map(this::convertToResourcesDTO)
@@ -103,8 +104,9 @@ public class ResourcesServiceImpl implements ResourcesService {
         resourcesRepository.saveAll(kingdomResources);
     }
 
-    /** This function will return the actual resource generation per minute depending on
-     *   mines/farms count and their levels.
+    /**
+     * This function will return the actual resource generation per minute depending on
+     * mines/farms count and their levels.
      */
     public Integer getResourceGenerationPerMinute(Resources resource) {
         Integer resourceGeneration = resource.getGeneration();
@@ -134,6 +136,7 @@ public class ResourcesServiceImpl implements ResourcesService {
 
         return resourceGeneration;
     }
+
 
     public boolean canGenerateResource(Resources resource) {
         //TODO:

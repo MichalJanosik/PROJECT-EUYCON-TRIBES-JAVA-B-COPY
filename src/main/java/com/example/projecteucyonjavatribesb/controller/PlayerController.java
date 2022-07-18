@@ -1,6 +1,5 @@
 package com.example.projecteucyonjavatribesb.controller;
 
-import com.example.projecteucyonjavatribesb.filter.JwtRequestFilter;
 import com.example.projecteucyonjavatribesb.model.DTO.RequestDTO;
 import com.example.projecteucyonjavatribesb.service.LocationServiceImpl;
 import com.example.projecteucyonjavatribesb.service.PlayerAuthorizationService;
@@ -11,10 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.projecteucyonjavatribesb.model.DTO.ErrorDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.PlayerDTO;
 import com.example.projecteucyonjavatribesb.model.Player;
-import com.example.projecteucyonjavatribesb.repository.PlayerRepository;
 import com.example.projecteucyonjavatribesb.service.PlayerServiceImpl;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,7 +51,8 @@ public class PlayerController {
         }
 
         playerService.saveNewPlayer(player);
-        return ResponseEntity.status(200).body(new PlayerDTO(player.getUsername(), playerRepository.findByUsername(player.getUsername()).getKingdom().getId()));
+        return ResponseEntity.status(200).body(new PlayerDTO(player.getUsername(),
+                playerService.findByUsername(player.getUsername()).getKingdom().getId()));
 
     }
 

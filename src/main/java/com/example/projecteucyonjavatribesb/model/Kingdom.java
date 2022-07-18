@@ -19,8 +19,7 @@ public class Kingdom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
-    @JsonManagedReference
+    @OneToOne(mappedBy = "kingdom", cascade = CascadeType.ALL)
     private Location location;
     private String ruler;
     private Integer population;
@@ -28,7 +27,7 @@ public class Kingdom {
     private Player player;
     @OneToMany(mappedBy = "kingdom", cascade = CascadeType.ALL)
     private List<Resources> resourcesList = new ArrayList<>();
-    @OneToMany(mappedBy = "kingdom")
+    @OneToMany(mappedBy = "kingdom", cascade = CascadeType.ALL)
     private List<Buildings> buildingList = new ArrayList<>();
     @OneToMany(mappedBy = "kingdom", cascade = CascadeType.ALL)
     private List<Troops> troopsList = new ArrayList<>();

@@ -1,4 +1,4 @@
-package com.example.projecteucyonjavatribesb.service;
+package com.example.projecteucyonjavatribesb.projecteucyonjavatribesb.service;
 
 import com.example.projecteucyonjavatribesb.model.Player;
 import com.example.projecteucyonjavatribesb.repository.PlayerRepository;

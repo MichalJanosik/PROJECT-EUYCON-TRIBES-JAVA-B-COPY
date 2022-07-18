@@ -1,4 +1,4 @@
-package com.example.projecteucyonjavatribesb;
+package com.example.projecteucyonjavatribesb.projecteucyonjavatribesb;
 
 import com.example.projecteucyonjavatribesb.filter.JwtRequestFilter;
 import org.junit.Before;
