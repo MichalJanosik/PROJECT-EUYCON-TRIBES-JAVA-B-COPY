@@ -12,14 +12,12 @@ import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.model.Resources;
 import com.example.projecteucyonjavatribesb.repository.BuildingsRepository;
 import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
-import com.example.projecteucyonjavatribesb.utility.BuildingAttributeUtility;
+import com.example.projecteucyonjavatribesb.Utility.BuildingAttributeUtility;
 import com.example.projecteucyonjavatribesb.repository.ResourcesRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
