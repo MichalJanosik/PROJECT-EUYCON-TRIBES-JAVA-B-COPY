@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@RestControllerAdvice
+@ControllerAdvice
 public class RestExceptionHandler {
 
     @ExceptionHandler(RuntimeException.class)
@@ -25,10 +25,4 @@ public class RestExceptionHandler {
             };
 
         }
-
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<?> handleJsonParseException(Exception httpMessageNotReadableException){
-        ErrorDTO errorDTO = ErrorDTO.builder().error(httpMessageNotReadableException.getMessage()).build();
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDTO);
-    }
 }

@@ -48,8 +48,6 @@ public class KingdomController {
             } else return ResponseEntity.status(HttpStatus.BAD_REQUEST).
                     body(new ErrorDTO("Invalid string"));
         }catch (Exception e){
-            System.out.println("///////////////////////");
-            System.out.println(type.getType());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).
                     body(new ErrorDTO("Invalid string format"));
         }
