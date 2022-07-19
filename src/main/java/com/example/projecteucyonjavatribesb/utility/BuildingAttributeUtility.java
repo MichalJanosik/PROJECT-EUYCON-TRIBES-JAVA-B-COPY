@@ -7,7 +7,6 @@ import java.util.HashMap;
 
 @Getter
 @Setter
-@Service
 public class BuildingAttributeUtility {
     public HashMap<String, Integer> costs = new HashMap<>();
     public HashMap<String, Long> time = new HashMap<>();
