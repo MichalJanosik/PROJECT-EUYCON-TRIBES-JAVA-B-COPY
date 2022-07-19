@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Project-EUCYON-Java-Tribes-B.iml" filepath="$PROJECT_DIR$/.idea/modules/Project-EUCYON-Java-Tribes-B.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Project-EUCYON-Java-Tribes-B.iml" filepath="$PROJECT_DIR$/.idea/Project-EUCYON-Java-Tribes-B.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Project-EUCYON-Java-Tribes-B.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Project-EUCYON-Java-Tribes-B.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Project-EUCYON-Java-Tribes-B.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Project-EUCYON-Java-Tribes-B.test.iml" />
     </modules>
