@@ -13,4 +13,5 @@ public interface ResourcesService {
     Integer getResourceGenerationPerMinute(Resources resource);
 
     boolean useResource(Resources resource, Integer amount);
+    boolean canBeResourceUsed(Resources resource, Integer amount);
 }

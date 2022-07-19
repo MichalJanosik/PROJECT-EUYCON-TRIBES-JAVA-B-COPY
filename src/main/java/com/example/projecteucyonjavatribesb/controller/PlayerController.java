@@ -1,6 +1,8 @@
 package com.example.projecteucyonjavatribesb.controller;
 
+import com.example.projecteucyonjavatribesb.filter.JwtRequestFilter;
 import com.example.projecteucyonjavatribesb.model.DTO.RequestDTO;
+import com.example.projecteucyonjavatribesb.repository.PlayerRepository;
 import com.example.projecteucyonjavatribesb.service.LocationServiceImpl;
 import com.example.projecteucyonjavatribesb.service.PlayerAuthorizationService;
 import lombok.AllArgsConstructor;

@@ -35,7 +35,8 @@ public class KingdomController {
                                               @RequestBody BuildingRequestDTO type,
                                               @RequestHeader(value = "Authorization") String token) throws HttpMessageNotReadableException {
         try {
-            if(Objects.nonNull(type) && !type.getType().isBlank() && (type.getType().equals("farm") || type.getType().equals("mine")||
+
+            if(Objects.nonNull(type) && type.getType()!=null && (type.getType().equals("farm") || type.getType().equals("mine")||
                     type.getType().equals("walls")
                     || type.getType().equals("barracks") || type.getType().equals("academy")) ){
                 if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id) || token.isEmpty()) {
@@ -47,6 +48,8 @@ public class KingdomController {
             } else return ResponseEntity.status(HttpStatus.BAD_REQUEST).
                     body(new ErrorDTO("Invalid string"));
         }catch (Exception e){
+            System.out.println("///////////////////////");
+            System.out.println(type.getType());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).
                     body(new ErrorDTO("Invalid string format"));
         }
