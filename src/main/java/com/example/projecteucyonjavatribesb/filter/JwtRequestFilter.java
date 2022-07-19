@@ -48,8 +48,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         if (request.getRequestURI().equals("/api/login")
                 || request.getServletPath().equals("/api/registration")
-                || request.getServletPath().equals("/api/locationRegister")
-                || request.getServletPath().equals("/api/kingdoms")){
+                || request.getServletPath().equals("/api/kingdoms")
+                || request.getRequestURI().equals("/api/locationRegister")){
             chain.doFilter(request, response);
         } else {
             final String authorizationHeader = request.getHeader("Authorization");

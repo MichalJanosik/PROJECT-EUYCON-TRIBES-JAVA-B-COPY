@@ -1,6 +1,7 @@
 package com.example.projecteucyonjavatribesb.service;
 
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomDTO;
+import com.example.projecteucyonjavatribesb.model.DTO.KingdomNameDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomDetailsDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.ListOfKingdomsDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
@@ -21,4 +22,6 @@ public interface KingdomService {
 
     ListOfKingdomsDTO makeListOfKingdomsDTO();
     int countPopulationInKingdom(Kingdom kingdom);
+    void renameKingdom(Long kingdomId, KingdomNameDTO kingdomNameDTO);
+    KingdomDTO getRenamedKingdomDTO(Long kingdomId);
 }
