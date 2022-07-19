@@ -12,12 +12,15 @@ public class BuildingAttributeUtility {
     public HashMap<String, Long> time = new HashMap<>();
 
 
-    public BuildingAttributeUtility(){
+    public BuildingAttributeUtility() {
         costs.put("farm",30);
+//        costs.put("Town Hall",90);
+        costs.put("Town Hall",20);
         costs.put("mine",30);
         costs.put("academy",50);
         costs.put("barracks",60);
         costs.put("walls",60);
+
         time.put("farm",1800000L); // 30 min
         time.put("Town Hall",3600000L); // 1 h
         time.put("mine",1800000L); // 30 min
