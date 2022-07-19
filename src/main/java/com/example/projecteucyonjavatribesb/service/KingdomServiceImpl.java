@@ -4,9 +4,11 @@ import com.example.projecteucyonjavatribesb.model.DTO.*;
 
 import com.example.projecteucyonjavatribesb.model.DTO.*;
 
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.LocationDTO;
+
 import com.example.projecteucyonjavatribesb.model.DTO.*;
+import com.example.projecteucyonjavatribesb.model.DTO.KingdomDTO;
+import com.example.projecteucyonjavatribesb.model.DTO.KingdomNameDTO;
+import com.example.projecteucyonjavatribesb.model.DTO.LocationDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.repository.BuildingsRepository;
 import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
@@ -67,7 +69,23 @@ public class KingdomServiceImpl implements KingdomService{
         return convertToKingdomDTO(kingdomRepository.findById(id).get());
     }
 
-    private static KingdomDTO convertToKingdomDTO(Kingdom kingdom) {
+    @Override
+    public void renameKingdom(Long kingdomId, KingdomNameDTO kingdomNameDTO) {
+        Kingdom kingdom = kingdomRepository.findById(kingdomId).get();
+        kingdom.getPlayer().setKingdomName(kingdomNameDTO.getKingdomName());
+        kingdomRepository.save(kingdom);
+    }
+
+    @Override
+    public KingdomDTO getRenamedKingdomDTO(Long kingdomId) {
+        Kingdom kingdom = kingdomRepository.findById(kingdomId).get();
+        return KingdomDTO.builder()
+                .kingdomId(kingdom.getId())
+                .kingdomName(kingdom.getPlayer().getKingdomName())
+                .build();
+    }
+
+    private KingdomDTO convertToKingdomDTO(Kingdom kingdom) {
         return new KingdomDTO(
                 kingdom.getId(),
                 kingdom.getPlayer().getKingdomName(),

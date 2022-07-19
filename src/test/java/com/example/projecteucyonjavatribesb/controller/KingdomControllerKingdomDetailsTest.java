@@ -7,6 +7,7 @@ import com.example.projecteucyonjavatribesb.service.BuildingsService;
 import com.example.projecteucyonjavatribesb.service.KingdomService;
 import com.example.projecteucyonjavatribesb.service.PlayerAuthorizationService;
 import com.example.projecteucyonjavatribesb.service.ResourcesService;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +19,18 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
 import static org.mockito.Mockito.*;
 
-@ContextConfiguration(classes = {KingdomController.class})
+@ContextConfiguration(classes = {KingdomControllerIntegrationTests.class})
+
+//@ContextConfiguration(classes = {KingdomController.class})
 @ExtendWith(SpringExtension.class)
 class KingdomControllerKingdomDetailsTest {
     @MockBean
     private BuildingsService buildingsService;
 
     @Autowired
-    private KingdomController kingdomController;
+    private KingdomControllerIntegrationTests kingdomController;
 
     @MockBean
     private KingdomService kingdomService;

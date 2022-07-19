@@ -20,7 +20,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@ContextConfiguration(classes = {KingdomController.class})
+@ContextConfiguration(classes = {KingdomControllerIntegrationTests.class})
 @ExtendWith(SpringExtension.class)
 public class KingdomControllerAuthTest {
 
@@ -28,7 +28,7 @@ public class KingdomControllerAuthTest {
     private BuildingsService buildingsService;
 
     @Autowired
-    private KingdomController kingdomController;
+    private KingdomControllerIntegrationTests kingdomController;
 
     @MockBean
     private KingdomService kingdomService;

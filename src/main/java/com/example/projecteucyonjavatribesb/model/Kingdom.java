@@ -3,6 +3,11 @@ package com.example.projecteucyonjavatribesb.model;
 import com.example.projecteucyonjavatribesb.model.Troops.Troops;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,6 +19,8 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class Kingdom {
     @Id
@@ -32,11 +39,6 @@ public class Kingdom {
     @OneToMany(mappedBy = "kingdom", cascade = CascadeType.ALL)
     private List<Troops> troopsList = new ArrayList<>();
 
-    public Kingdom(String ruler, Integer population, Location location){
-        this.ruler = ruler;
-        this.population = population;
-        this.location = location;
-    }
     public Kingdom(Long id, String ruler, Integer population, Location location) {
         this.id = id;
         this.ruler = ruler;

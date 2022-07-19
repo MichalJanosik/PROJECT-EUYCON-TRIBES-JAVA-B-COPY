@@ -1,6 +1,8 @@
 package com.example.projecteucyonjavatribesb;
 
 import com.example.projecteucyonjavatribesb.model.Buildings;
+import com.example.projecteucyonjavatribesb.model.Player;
+import com.example.projecteucyonjavatribesb.repository.PlayerRepository;
 import com.example.projecteucyonjavatribesb.Utility.BuildingAttributeUtility;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -36,5 +38,11 @@ public class ProjectEucyonJavaTribesBApplication implements CommandLineRunner {
 
         //developement purposes
 //        populateWithPlayers();
+    }
+
+    private void populateWithPlayers() {
+        String password = passwordEncoder().encode("password");
+        Player player = new Player(password, "MisoDaBadass", "Mordor");
+        playerRepository.save(player);
     }
 }

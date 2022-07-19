@@ -1,3 +1,4 @@
+
 package com.example.projecteucyonjavatribesb.service;
 
 import com.example.projecteucyonjavatribesb.model.*;
@@ -3936,4 +3937,3 @@ class ResourcesServiceImplTest {
         verify(resources).setUpdatedAt((Long) any());
     }
 }
-
