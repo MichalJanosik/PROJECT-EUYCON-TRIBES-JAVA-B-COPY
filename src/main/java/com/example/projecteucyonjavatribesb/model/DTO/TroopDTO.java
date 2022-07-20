@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class TroopDTO {
     private Long id;
-    private TroopType troopType;
+    private String troopType;
     private Integer level;
     private Integer hp;
     private Integer attack;

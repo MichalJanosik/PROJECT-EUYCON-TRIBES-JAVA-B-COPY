@@ -4,6 +4,7 @@ import com.example.projecteucyonjavatribesb.model.Troops.Troops;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import com.example.projecteucyonjavatribesb.model.Troops.Troops;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;

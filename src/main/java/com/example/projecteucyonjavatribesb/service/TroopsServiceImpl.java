@@ -25,8 +25,6 @@ public class TroopsServiceImpl implements TroopsService{
     private final KingdomRepository kingdomRepository;
     private final TroopsRepository troopsRepository;
 
-
-
     @Override
     public KingdomDetailsDTO getKingdomTroopsDetailsDTOById(Long id) {
         Kingdom kingdom = kingdomRepository.getKingdomById(id);
@@ -46,15 +44,8 @@ public class TroopsServiceImpl implements TroopsService{
     @Override
     public List<Troops> getInitialTroops() {
         return new ArrayList<>(List.of(
-                new Spearman(SPEARMAN), new Spearman(SPEARMAN)
+                new Spearman(), new Spearman()
         ));
-    }
-
-    @Override
-    public void upgradeTroops(BuildingRequestDTO troopsType, Long id) {
-        long count = kingdomRepository.findById(id).get().getTroopsList().stream()
-                .filter(c -> troopsType.getType().equalsIgnoreCase(c.getTroopType().getName()))
-                .count();
     }
 
 

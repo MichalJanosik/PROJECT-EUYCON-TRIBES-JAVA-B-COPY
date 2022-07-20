@@ -1,8 +1,6 @@
 package com.example.projecteucyonjavatribesb.model.Troops;
 
-import com.example.projecteucyonjavatribesb.model.Enums.TroopType;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,10 +18,7 @@ public class Troops {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private TroopType troopType;
+    private String troopType;
 
     private Integer level;
     private Integer hp;
@@ -36,13 +31,7 @@ public class Troops {
     @JoinColumn(name = "kingdom_id")
     private Kingdom kingdom;
 
-
-    public Troops(TroopType troopType) {
-        this.troopType = troopType;
-    }
-
-
-    public Troops(TroopType troopType, Integer level, Integer hp, Integer attack, Integer defense, Long startedAt, Long finishedAt) {
+    public Troops(String troopType, Integer level, Integer hp, Integer attack, Integer defense, Long startedAt, Long finishedAt) {
         this.troopType = troopType;
         this.level = level;
         this.hp = hp;

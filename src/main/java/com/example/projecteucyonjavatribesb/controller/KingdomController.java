@@ -3,6 +3,7 @@ package com.example.projecteucyonjavatribesb.controller;
 import com.example.projecteucyonjavatribesb.filter.JwtRequestFilter;
 import com.example.projecteucyonjavatribesb.model.DTO.*;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
+import com.example.projecteucyonjavatribesb.service.*;
 
 import com.example.projecteucyonjavatribesb.service.*;
 import com.example.projecteucyonjavatribesb.service.BuildingsService;
@@ -28,6 +29,7 @@ public class KingdomController {
     private final BuildingsService buildingsService;
     private final KingdomService kingdomService;
     private final ResourcesService resourcesService;
+    private final TroopsService troopsService;
     private final BuildingsServiceImpl buildingsServiceimp;
 
     @PostMapping("/kingdoms/{id}/buildings")
@@ -124,23 +126,6 @@ public class KingdomController {
                     .body(buildingDTO);
     }
 
-
-
-    //    @GetMapping("/kingdoms/{id}")
-//    public ResponseEntity<?> getKingdomOverview(@PathVariable(name = "id") Long id,
-//                                                @RequestHeader(value = "Authorization") String token) {
-//        if (kingdomService.findKingdomById(id) == null) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-//                    .body(new ErrorDTO("This kingdom does not exist."));
-//        } else if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id) || token.isEmpty()) {
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-//                    .body(new ErrorDTO("This kingdom does not belong to authenticated player!"));
-//        } else {
-//            KingdomOverviewDTO kingdomOverview = kingdomService.getKingdomOverviewDTOById(id);
-//            return ResponseEntity.status(HttpStatus.OK).body(kingdomOverview);
-//        }
-//    }
-
     @GetMapping("/kingdoms/{id}")
     public ResponseEntity<?> getKingdomDetails(@PathVariable(name = "id") Long id) {
         if (kingdomService.findKingdomById(id) == null) {
@@ -154,6 +139,24 @@ public class KingdomController {
             return ResponseEntity.status(HttpStatus.OK).body(kingdomDetails);
         }
     }
+
+    @GetMapping("/kingdoms/{id}/troops")
+    public ResponseEntity<?> getTroopList(@PathVariable(name = "id", required = false) Long id) {
+
+        if (id == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ErrorDTO("You have not provided an id, please do so! Example: /kingdoms/1/troops"));
+        } else if (kingdomService.findKingdomById(id) == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new ErrorDTO("This kingdom does not exist."));
+        } else if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, id)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(new ErrorDTO("This kingdom does not belong to authenticated player!"));
+        } else {
+            KingdomDetailsDTO troopsDetails = troopsService.getKingdomTroopsDetailsDTOById(id);
+            return ResponseEntity.status(HttpStatus.OK).body(troopsDetails);
+        }
+}
 
     @PutMapping("/kingdoms/{id}")
     public ResponseEntity<?> renameKingdom(@PathVariable("id") Long kingdomId,

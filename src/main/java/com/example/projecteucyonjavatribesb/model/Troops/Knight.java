@@ -7,10 +7,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 public class Knight extends Troops{
 
-    public Knight(TroopType troopType) {
-        super(troopType, 1, 8, 3, 3, System.currentTimeMillis(), System.currentTimeMillis());
+    public Knight() {
+        super(TroopType.KNIGHT.getName(), 1, 8, 4, 3, System.currentTimeMillis(), System.currentTimeMillis());
     }
 }

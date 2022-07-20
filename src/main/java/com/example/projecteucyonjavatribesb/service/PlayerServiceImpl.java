@@ -1,6 +1,9 @@
 package com.example.projecteucyonjavatribesb.service;
 
-import com.example.projecteucyonjavatribesb.model.*;
+import com.example.projecteucyonjavatribesb.model.Buildings;
+import com.example.projecteucyonjavatribesb.model.Kingdom;
+import com.example.projecteucyonjavatribesb.model.Player;
+import com.example.projecteucyonjavatribesb.model.Resources;
 import com.example.projecteucyonjavatribesb.model.Troops.Troops;
 import com.example.projecteucyonjavatribesb.repository.BuildingsRepository;
 import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
@@ -65,6 +68,7 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
         kingdom.setTroopsList(initialTroops);
         for (Troops troop : initialTroops) {
             troop.setKingdom(kingdom);
+            kingdom.setPopulation(kingdom.getPopulation() + 1);
         }
 
         Player player1;

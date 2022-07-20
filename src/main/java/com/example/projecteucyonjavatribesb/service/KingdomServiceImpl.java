@@ -15,6 +15,7 @@ import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
 import com.example.projecteucyonjavatribesb.repository.ResourcesRepository;
 import com.example.projecteucyonjavatribesb.repository.TroopsRepository;
 import lombok.AllArgsConstructor;
+import com.example.projecteucyonjavatribesb.repository.TroopsRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -59,8 +60,7 @@ public class KingdomServiceImpl implements KingdomService{
                         .stream().map(BuildingDTO::new)
                         .collect(Collectors.toList()))
                 .troops(troopsRepository.findAllByKingdom_Id(kingdom.getId())
-                        .stream()
-                        .map(TroopDTO::new)
+                        .stream().map(TroopDTO::new)
                         .collect(Collectors.toList()))
                 .build();
     }
@@ -91,7 +91,6 @@ public class KingdomServiceImpl implements KingdomService{
                 kingdom.getPlayer().getKingdomName(),
                 kingdom.getRuler(),
                 kingdom.getPopulation(),
-//                new LocationDTO(kingdom.getLocation().getCoordinateX(), kingdom.getLocation().getCoordinateY())
                 new LocationDTO(kingdom)
         );
     }

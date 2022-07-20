@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = "16"
+sourceCompatibility = '17'
 
 
 configurations {
@@ -37,6 +37,7 @@ dependencies {
     implementation 'com.auth0:java-jwt:3.19.2'
     implementation 'junit:junit:4.13.2'
     implementation 'org.projectlombok:lombok:1.18.24'
+    implementation 'org.projectlombok:lombok:1.18.20'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
@@ -57,4 +58,3 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
-targetCompatibility = JavaVersion.VERSION_16

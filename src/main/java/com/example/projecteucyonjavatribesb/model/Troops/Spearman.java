@@ -7,10 +7,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 public class Spearman extends Troops {
 
-    public Spearman(TroopType troopType) {
-        super(troopType, 1, 1, 1, 1, System.currentTimeMillis(), System.currentTimeMillis());
+    public Spearman() {
+        super(TroopType.SPEARMAN.getName(), 1, 2, 1, 3, System.currentTimeMillis(), System.currentTimeMillis());
     }
 }
