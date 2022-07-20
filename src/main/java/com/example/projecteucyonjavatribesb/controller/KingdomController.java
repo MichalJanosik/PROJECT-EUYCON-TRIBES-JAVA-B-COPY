@@ -128,9 +128,7 @@ public class KingdomController {
 
     @GetMapping("/kingdoms")
     public ResponseEntity<?> getListOfKingdoms() {
-        ListOfKingdomsDTO listOfKingdomsDTO = kingdomService.makeListOfKingdomsDTO();
-        return ResponseEntity.status(200).body(listOfKingdomsDTO);
-
+        return ResponseEntity.status(200).body(kingdomService.makeListOfKingdomsDTO());
     }
 
 

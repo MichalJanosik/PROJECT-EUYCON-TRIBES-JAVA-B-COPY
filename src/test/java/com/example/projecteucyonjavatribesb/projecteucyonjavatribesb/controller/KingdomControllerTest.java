@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -181,7 +182,17 @@ class KingdomControllerTest {
 
     }
 
+    //___________________________________________________________________________________________________________________
+    // listOfKingdoms ENDPOINT testing
 
+//    @Test
+//    void listOfKingdoms_successful() throws Exception {
+//        mockMvc.perform(get("/api/kingdoms")
+//                .header("Authorization", token))
+//                .andExpect(status().is(200))
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.kingdoms.kingdomName").value("Discovery Channels"));
+//
+//    }
 }
 
 
