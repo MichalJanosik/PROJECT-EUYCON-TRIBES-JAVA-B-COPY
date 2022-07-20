@@ -1,11 +1,15 @@
 package com.example.projecteucyonjavatribesb.service;
 
 import com.example.projecteucyonjavatribesb.model.DTO.LeaderboardsDTO;
+import com.example.projecteucyonjavatribesb.model.Kingdom;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.OrderBy;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +29,8 @@ public class LeaderboardsServiceImpl implements LeaderboardsService{
     }
 
     private List<LeaderboardsDTO> getLeaderboardByKingdoms() {
+        List<Kingdom> kingdoms = kingdomService.findAllKingdoms();
+
         return null;
     }
 
@@ -33,6 +39,11 @@ public class LeaderboardsServiceImpl implements LeaderboardsService{
     }
 
     private List<LeaderboardsDTO> getLeaderBoardByBuildings() {
-        return null;
+        List<Kingdom> kingdoms = kingdomService.findAllKingdoms();
+
+        return kingdoms.stream()
+                .map(x -> new LeaderboardsDTO(x))
+                .collect(Collectors.toList());
     }
+
 }
