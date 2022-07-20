@@ -13,5 +13,4 @@ public interface TroopsService {
     KingdomDetailsDTO getKingdomTroopsDetailsDTOById(Long id);
 
     List<Troops> getInitialTroops();
-    void upgradeTroops(BuildingRequestDTO buildingRequestDTO, Long id);
 }
