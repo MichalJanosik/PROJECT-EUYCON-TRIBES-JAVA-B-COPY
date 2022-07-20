@@ -3,16 +3,4 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$" />
   </component>
-<<<<<<< HEAD
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_18" default="true" project-jdk-name="18" project-jdk-type="JavaSDK" />
-=======
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="corretto-17" project-jdk-type="JavaSDK" />
-<<<<<<< HEAD
->>>>>>> f7f328198c46d7a4345f0f8b371f669ec25ba7fa
-=======
->>>>>>> master
->>>>>>> 2108cc578b40c189c042f47851d3e44d76849c10
-  <component name="ProjectType">
-    <option name="id" value="jpab" />
-  </component>
 </project>
