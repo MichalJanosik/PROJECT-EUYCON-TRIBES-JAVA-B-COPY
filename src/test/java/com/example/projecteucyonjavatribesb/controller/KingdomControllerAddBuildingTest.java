@@ -107,7 +107,6 @@ public void setup() {
         return "Bearer " + jsonParser.parseMap(resultString).get("token").toString();
     }
 
-    @WithMockUser(value = "test", password = "pass")
     @Test
     void testAddBuilding2() throws Exception {
 //        Ok test

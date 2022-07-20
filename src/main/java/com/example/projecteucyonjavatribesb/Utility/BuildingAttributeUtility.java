@@ -1,11 +1,14 @@
 package com.example.projecteucyonjavatribesb.Utility;
 
 import lombok.*;
+import org.springframework.stereotype.Service;
 
+import javax.websocket.server.ServerEndpoint;
 import java.util.HashMap;
 
 @Getter
 @Setter
+@Service
 public class BuildingAttributeUtility {
     public HashMap<String, Integer> costs = new HashMap<>();
     public HashMap<String, Long> time = new HashMap<>();

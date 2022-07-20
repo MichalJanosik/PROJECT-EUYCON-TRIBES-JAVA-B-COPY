@@ -1,5 +1,6 @@
 package com.example.projecteucyonjavatribesb.service;
 
+import com.example.projecteucyonjavatribesb.model.DTO.BuildingRequestDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomDetailsDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.TroopDTO;
@@ -24,6 +25,8 @@ public class TroopsServiceImpl implements TroopsService{
     private final KingdomRepository kingdomRepository;
     private final TroopsRepository troopsRepository;
 
+
+
     @Override
     public KingdomDetailsDTO getKingdomTroopsDetailsDTOById(Long id) {
         Kingdom kingdom = kingdomRepository.getKingdomById(id);
@@ -45,6 +48,13 @@ public class TroopsServiceImpl implements TroopsService{
         return new ArrayList<>(List.of(
                 new Spearman(SPEARMAN), new Spearman(SPEARMAN)
         ));
+    }
+
+    @Override
+    public void upgradeTroops(BuildingRequestDTO troopsType, Long id) {
+        long count = kingdomRepository.findById(id).get().getTroopsList().stream()
+                .filter(c -> troopsType.getType().equalsIgnoreCase(c.getTroopType().getName()))
+                .count();
     }
 
 

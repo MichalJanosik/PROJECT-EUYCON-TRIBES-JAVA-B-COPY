@@ -170,4 +170,10 @@ public class KingdomController {
             throw new RuntimeException("Field kingdomName was empty!");
         }
     }
+    @PutMapping("/kingdoms/{id}/troops")
+    public ResponseEntity<?> upgradeTroops(@PathVariable("id") Long id,
+                                           @RequestBody BuildingRequestDTO troopType,
+                                           @RequestHeader(value = "Authorization") String token){
+        return null;
+    }
 }
