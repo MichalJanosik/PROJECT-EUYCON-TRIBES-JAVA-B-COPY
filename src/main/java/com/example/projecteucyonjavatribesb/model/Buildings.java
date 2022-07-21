@@ -39,3 +39,4 @@ public class Buildings {
         this.finishedAt = finishedAt;
     }
 }
+

@@ -3,6 +3,7 @@ package com.example.projecteucyonjavatribesb;
 import com.example.projecteucyonjavatribesb.model.Buildings;
 import com.example.projecteucyonjavatribesb.model.Player;
 import com.example.projecteucyonjavatribesb.repository.PlayerRepository;
+import com.example.projecteucyonjavatribesb.Utility.BuildingAttributeUtility;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,9 +15,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootApplication
 @RequiredArgsConstructor
 public class ProjectEucyonJavaTribesBApplication implements CommandLineRunner {
+    private final BuildingAttributeUtility buildingAttributeUtility;
 
-
-    private final PlayerRepository playerRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(ProjectEucyonJavaTribesBApplication.class, args);
@@ -40,9 +40,9 @@ public class ProjectEucyonJavaTribesBApplication implements CommandLineRunner {
 //        populateWithPlayers();
     }
 
-    private void populateWithPlayers() {
-        String password = passwordEncoder().encode("password");
-        Player player = new Player(password, "MisoDaBadass", "Mordor");
-        playerRepository.save(player);
-    }
+//    private void populateWithPlayers() {
+//        String password = passwordEncoder().encode("password");
+//        Player player = new Player(password, "MisoDaBadass", "Mordor");
+//        playerRepository.save(player);
+//    }
 }

@@ -67,7 +67,12 @@ public class KingdomControllerIntegrationTests {
 
         ID = playerRepository.findByUsername(USERNAME).getId();
 
+        String resultString = result.andReturn().getResponse().getContentAsString();
+        JacksonJsonParser jsonParser = new JacksonJsonParser();
+        TOKEN =  "Bearer " + jsonParser.parseMap(resultString).get("token").toString();
+
         mockMvc.perform(put("/api/locationRegister")
+                        .header("Authorization", TOKEN)
                         .content("""
                                 {
                                     "coordinateX": "1",
@@ -77,9 +82,7 @@ public class KingdomControllerIntegrationTests {
                         .contentType("application/json"))
                 .andExpect(status().isOk());
 
-        String resultString = result.andReturn().getResponse().getContentAsString();
-        JacksonJsonParser jsonParser = new JacksonJsonParser();
-        return "Bearer " + jsonParser.parseMap(resultString).get("token").toString();
+        return TOKEN;
     }
 
     //>>>>>>>>>>>>GET /api/kingdoms/{id}/resources >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -118,7 +121,7 @@ public class KingdomControllerIntegrationTests {
                 .andExpect(jsonPath("$.error").value(expectError));
     }
 
-    //>>>>>>>>>>>>PUT /api/{id} >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    //>>>>>>>>>>>>PUT /api/kingdoms/{id} >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     @Test
     void testRenameKingdom_OK_200() throws Exception {

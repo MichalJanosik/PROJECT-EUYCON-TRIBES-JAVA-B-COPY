@@ -13,6 +13,7 @@ import java.util.Optional;
 @Repository
 public interface BuildingsRepository extends JpaRepository<Buildings, Long> {
     List<Buildings> findAllByKingdom(Kingdom kingdom);
+    Optional<Buildings> findByType(String type);
     Optional<Buildings> findById(Long id);
     Buildings findBuildingById(Long Id);
     Optional<Buildings> findBuildingsByIdAndKingdom(long id, Kingdom kingdom);
