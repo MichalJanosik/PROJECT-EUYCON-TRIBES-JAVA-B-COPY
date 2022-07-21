@@ -11,7 +11,9 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
-        <datasource-mapping />
+        <datasource-mapping>
+          <factory-entry name="com.example.Project-EUCYON-Java-Tribes-B.test" />
+        </datasource-mapping>
         <naming-strategy-map />
       </configuration>
     </facet>
@@ -131,4 +133,5 @@
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.sun.activation:jakarta.activation:1.2.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.junit.platform:junit-platform-engine:1.8.2" level="project" />
   </component>
+  <component name="TestModuleProperties" production-module="Project-EUCYON-Java-Tribes-B.main" />
 </module>

@@ -38,7 +38,7 @@ public class LeaderboardsServiceImpl implements LeaderboardsService {
                         .ruler(x.getRuler())
                         .kingdom(x.getPlayer().getKingdomName())
                         .buildings(x.getBuildingList().size())
-                        .troops(x.getBuildingList().size())
+//                        .troops(x.getTroopsList().size())
                         //TODO here just add + getTroopsPoints()
                         .points(getBuildingsPoints(x))
                         .build())
@@ -51,7 +51,6 @@ public class LeaderboardsServiceImpl implements LeaderboardsService {
 //        kingdoms.stream().map(x -> LeaderboardsDTO.builder()
 //                .ruler(x.getRuler())
 //                .kingdom(x.getPlayer().getKingdomName())
-//                .buildings(x.getBuildingList().size())
 //                .troops(x.getTroopsList().size())
 //                .points(getTroopsPoints(x))
 //                .build());
@@ -60,7 +59,7 @@ public class LeaderboardsServiceImpl implements LeaderboardsService {
 
 //    private Integer getTroopsPoints(Kingdom x) {
 //        x.getTroopsList().stream()
-//                .map(Troops::get)
+//                .map(Troops::getLevel)
 //                .reduce(Integer::sum)
 //                .get();
 //    }
@@ -73,7 +72,6 @@ public class LeaderboardsServiceImpl implements LeaderboardsService {
                         .ruler(x.getRuler())
                         .kingdom(x.getPlayer().getKingdomName())
                         .buildings(x.getBuildingList().size())
-                        .troops(x.getBuildingList().size())
                         .points(getBuildingsPoints(x))
                         .build())
                 .sorted(Comparator.comparing(LeaderboardsDTO::getPoints))
