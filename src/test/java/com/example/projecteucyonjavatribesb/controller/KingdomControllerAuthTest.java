@@ -2,7 +2,10 @@ package com.example.projecteucyonjavatribesb.controller;
 
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.model.Player;
-import com.example.projecteucyonjavatribesb.service.*;
+import com.example.projecteucyonjavatribesb.service.BuildingsService;
+import com.example.projecteucyonjavatribesb.service.KingdomService;
+import com.example.projecteucyonjavatribesb.service.PlayerAuthorizationService;
+import com.example.projecteucyonjavatribesb.service.ResourcesService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +65,5 @@ public class KingdomControllerAuthTest {
                 .andExpect(MockMvcResultMatchers.content().contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.content()
                         .string("{\"ruler\":\"Michael\",\"id\":1,\"kingdomName\":\"Moria\"}"));
-
     }
 }

@@ -1,11 +1,5 @@
 package com.example.projecteucyonjavatribesb.projecteucyonjavatribesb.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import com.example.projecteucyonjavatribesb.model.Buildings;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomBuildingsDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomDTO;
@@ -13,9 +7,6 @@ import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.model.Location;
 import com.example.projecteucyonjavatribesb.model.Player;
 import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
-
-import java.util.ArrayList;
-
 import com.example.projecteucyonjavatribesb.service.BuildingsServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,6 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.mockito.Mockito.*;
 
 @ContextConfiguration(classes = {BuildingsServiceImpl.class})
 @ExtendWith(SpringExtension.class)

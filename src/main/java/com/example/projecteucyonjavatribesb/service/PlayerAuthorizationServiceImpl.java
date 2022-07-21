@@ -11,15 +11,21 @@ public class PlayerAuthorizationServiceImpl implements PlayerAuthorizationServic
 
     private final KingdomRepository kingdomRepository;
 
-    @Override
-    public Boolean playerOwnsKingdom(String playerUsername, Long kingdomId) {
-        return kingdomRepository.findKingdomByRulerAndId(playerUsername, kingdomId).isPresent();
-    }
+//    @Override
+//    public Boolean playerOwnsKingdom(Long kingdomId, String playerUsername) {
+//        return kingdomRepository.findKingdomByRulerAndId(playerUsername, kingdomId).isPresent();
+//    }
+//
+//    @Override
+//    public String getUsernameFromToken(String token) {
+//        return jwtRequestFilter.getUsername(token);
+//    }
+        public Boolean playerOwnsKingdom (String playerUsername, Long kingdomId){
+            return kingdomRepository.findKingdomByRulerAndId(playerUsername, kingdomId).isPresent();
+        }
 
-    @Override
-    public Kingdom getKingdomPreviewFromUsername(String username) {
-        return kingdomRepository.findKingdomByRuler(username);
-    }
-
-
+        @Override
+        public Kingdom getKingdomPreviewFromUsername (String username){
+            return kingdomRepository.findKingdomByRuler(username);
+        }
 }
