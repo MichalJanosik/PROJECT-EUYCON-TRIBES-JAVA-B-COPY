@@ -1,8 +1,12 @@
 package com.example.projecteucyonjavatribesb.controller;
 
+import com.example.projecteucyonjavatribesb.filter.JwtRequestFilter;
 import com.example.projecteucyonjavatribesb.model.DTO.RequestDTO;
+import com.example.projecteucyonjavatribesb.repository.PlayerRepository;
 import com.example.projecteucyonjavatribesb.service.LocationServiceImpl;
+import com.example.projecteucyonjavatribesb.service.PlayerAuthorizationService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.projecteucyonjavatribesb.model.DTO.ErrorDTO;
@@ -20,11 +24,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class PlayerController {
     private final LocationServiceImpl locationServiceImpl;
     private final PlayerServiceImpl playerService;
+    private final PlayerRepository playerRepository;
+    private final PlayerAuthorizationService playerAuthorizationService;
+
 
     @PutMapping("/locationRegister")
-    public ResponseEntity<Object> setLocation(@RequestBody RequestDTO requestDTO){
-        return locationServiceImpl.createLocation(requestDTO);
+    public ResponseEntity<Object> setLocation(@RequestBody RequestDTO requestDTO,
+                                              @RequestHeader(value = "Authorization") String token){
+        if (!playerAuthorizationService.playerOwnsKingdom(JwtRequestFilter.username, requestDTO.getKingdomId()) || token.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).
+                    body(new ErrorDTO("This kingdom does not belong to authenticated player"));
+        } else {
+            return locationServiceImpl.createLocation(requestDTO);
+        }
     }
+
 
     @PostMapping("/registration")
     public ResponseEntity<Object> registration(@RequestBody Player player) {

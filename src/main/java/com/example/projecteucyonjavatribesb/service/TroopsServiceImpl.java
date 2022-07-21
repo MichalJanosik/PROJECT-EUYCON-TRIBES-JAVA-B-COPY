@@ -1,5 +1,6 @@
 package com.example.projecteucyonjavatribesb.service;
 
+import com.example.projecteucyonjavatribesb.model.DTO.BuildingRequestDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.KingdomDetailsDTO;
 import com.example.projecteucyonjavatribesb.model.DTO.TroopDTO;

@@ -8,6 +8,7 @@ import com.example.projecteucyonjavatribesb.model.Troops.Troops;
 import com.example.projecteucyonjavatribesb.repository.BuildingsRepository;
 import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
 import com.example.projecteucyonjavatribesb.repository.PlayerRepository;
+import com.example.projecteucyonjavatribesb.repository.TroopsRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -33,6 +34,7 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
 
     private final PlayerRepository playerRepository;
     private final KingdomRepository kingdomRepository;
+    private final TroopsRepository troopsRepository;
     private final BuildingsRepository buildingsRepository;
     private final PasswordEncoder passwordEncoder;
     private final ResourcesService resourcesService;
@@ -53,6 +55,7 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
         buildings.setStartedAt(System.currentTimeMillis());
         buildings.setFinishedAt(System.currentTimeMillis());
         buildingsRepository.save(buildings);
+
 
         //set the kingdom`s initial resources:
         List<Resources> initialResources = resourcesService.getInitialResources();
