@@ -48,7 +48,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         if (request.getRequestURI().equals("/api/login")
                 || request.getRequestURI().equals("/api/registration")
-                || request.getRequestURI().equals("/api/locationRegister")
+//                || request.getRequestURI().equals("/api/locationRegister")
                 || request.getRequestURI().equals("/api/leaderboards/buildings")
                 || request.getRequestURI().equals("/api/leaderboards/troops")
                 || request.getRequestURI().equals("/api/leaderboards/kingdoms")
