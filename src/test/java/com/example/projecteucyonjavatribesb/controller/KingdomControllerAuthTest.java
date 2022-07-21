@@ -36,25 +36,25 @@ public class KingdomControllerAuthTest {
 
         player.setId(1L);
         player.setKingdom(kingdom);
-        player.setKingdomName("Moria");
+        player.setKingdomName("Prague");
         player.setPassword("password");
-        player.setUsername("Michael");
+        player.setUsername("Michaels");
 
 
         kingdom.setId(1L);
         kingdom.setPlayer(player);
-        kingdom.setRuler("Michael");
+        kingdom.setRuler("Michaels");
 
         when(playerAuthorizationService.getKingdomPreviewFromUsername((String) any())).thenReturn(kingdom);
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/auth")
-                .header("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNaWNoYWVsIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2FwaS9sb2dpbiIsImtpbmdkb20iOlsiTW9yaWEiXX0.RpYSLXLhzmLuzynJ5rZ1gaok1KchjX424kU0deujD14");
+                .header("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNaWNoYWVscyIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJraW5nZG9tIjpbIlByYWd1ZSJdfQ.ZdwrNqs8IUk6M9rCsmhd_VXo8yVl9Wz9AW_V_5ROH08");
         MockMvcBuilders.standaloneSetup(kingdomController)
                 .build()
                 .perform(requestBuilder)
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.content()
-                        .string("{\"ruler\":\"Michael\",\"id\":1,\"kingdomName\":\"Moria\"}"));
+                        .string("{\"ruler\":\"Michaels\",\"id\":1,\"kingdomName\":\"Prague\"}"));
 
     }
 }
