@@ -29,17 +29,11 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 @ContextConfiguration(classes = {KingdomController.class})
 @ExtendWith(SpringExtension.class)
 class KingdomControllerTest {
-    @MockBean
-    private BuildingsRepository buildingsRepository;
 
-    @MockBean
-    private BuildingsService buildingsService;
 
     @Autowired
     private KingdomController kingdomController;
 
-    @MockBean
-    private KingdomRepository kingdomRepository;
 
     @MockBean
     private KingdomService kingdomService;
@@ -47,12 +41,8 @@ class KingdomControllerTest {
     @MockBean
     private PlayerAuthorizationService playerAuthorizationService;
 
-    @MockBean
-    private ResourcesService resourcesService;
 
-    /**
-     * Method under test: {@link KingdomController#renameKingdom(Long, KingdomNameDTO)}
-     */
+
     @Test
     void testRenameKingdom() throws Exception {
         when(playerAuthorizationService.playerOwnsKingdom((String) any(), (Long) any())).thenReturn(true);

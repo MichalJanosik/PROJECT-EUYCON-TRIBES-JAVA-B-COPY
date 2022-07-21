@@ -21,20 +21,13 @@ import static org.mockito.Mockito.when;
 @ExtendWith(SpringExtension.class)
 public class KingdomControllerAuthTest {
 
-    @MockBean
-    private BuildingsService buildingsService;
 
     @Autowired
     private KingdomControllerIntegrationTests kingdomController;
 
-    @MockBean
-    private KingdomService kingdomService;
 
     @MockBean
     private PlayerAuthorizationService playerAuthorizationService;
-
-    @MockBean
-    private ResourcesService resourcesService;
 
     @Test
     void successfulAuthorization() throws Exception {
