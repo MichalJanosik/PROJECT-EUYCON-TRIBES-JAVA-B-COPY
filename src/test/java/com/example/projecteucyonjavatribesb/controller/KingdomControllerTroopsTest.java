@@ -93,7 +93,7 @@ class KingdomControllerTroopsTest {
     }
     @Test
     void getKingdomTroopsSuccessful() throws Exception {
-        mockMvc.perform(get("/api/kingdoms/1/troops")
+        mockMvc.perform(get(String.format("/api/kingdoms/%d/troops", ID))
                         .header("Authorization", TOKEN))
                 .andExpect(status().is(200))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.kingdom.ruler").value("MichaelAgain"))
