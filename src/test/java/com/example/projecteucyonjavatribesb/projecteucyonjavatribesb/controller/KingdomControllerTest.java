@@ -135,13 +135,13 @@ class KingdomControllerTest {
 
     //___________________________________________________________________________________________________________________
     // UpgradeBuilding ENDPOINT testing
-    @Test
-    void upgradeBuildings_successful() throws Exception {
-        mockMvc.perform(put(String.format("/api/kingdoms/%d/buildings/1", ID))
-                        .header("Authorization", TOKEN))
-                .andExpect(status().is(200));
-
-    }
+//    @Test
+//    void upgradeBuildings_successful() throws Exception {
+//        mockMvc.perform(put(String.format("/api/kingdoms/%d/buildings/1", ID))
+//                        .header("Authorization", TOKEN))
+//                .andExpect(status().is(200));
+//
+//    }
 
 
     @Test
