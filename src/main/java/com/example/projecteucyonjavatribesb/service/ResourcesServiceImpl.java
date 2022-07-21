@@ -162,7 +162,7 @@ public class ResourcesServiceImpl implements ResourcesService {
     // Method to be used for all cases decreasing amount of resource returns boolean whether the resource
     // was updated or not.
     public boolean useResource(Resources resource, Integer amount) {
-        if (canResourceBeUsed(resource, amount)) {
+        if (canBeResourceUsed(resource, amount)) {
             resource.setAmount(resource.getAmount() - amount);
             resourcesRepository.save(resource);
             return true;
@@ -170,7 +170,8 @@ public class ResourcesServiceImpl implements ResourcesService {
         return false;
     }
 
-    public boolean canResourceBeUsed(Resources resource, Integer amount) {
+    public boolean canBeResourceUsed(Resources resource, Integer amount) {
+
         return resource.getAmount() >= amount;
     }
 
