@@ -51,7 +51,7 @@ public class LoginIntegrationTests {
                         .content("""
                                 {
                                 "username": "MisoDaBadass",
-                                "password": "password123"
+                                "password": "password"
                                 }"""))
                 .andExpect(status().isOk());
 
