@@ -35,7 +35,6 @@ public class KingdomControllerIntegrationTests {
     static String TOKEN;
     static String INCORRECT_TOKEN;
     static Long ID;
-    static Long kingdomID;
     static String USERNAME;
     static String PASSWORD;
     static String KINGDOM_NAME;
@@ -59,7 +58,6 @@ public class KingdomControllerIntegrationTests {
                 .andExpect(status().is(200));
 
         ID = playerRepository.findByUsername(USERNAME).getId();
-        kingdomID = playerRepository.findByUsername(USERNAME).getKingdom().getId();
 
         mockMvc.perform(put("/api/locationRegister")
                         .header("Authorization", TOKEN)
@@ -68,7 +66,7 @@ public class KingdomControllerIntegrationTests {
                                     "coordinateX": "12",
                                     "coordinateY": "12",
                                     "kingdomId": "%s"
-                                }""".formatted(kingdomID))
+                                }""".formatted(ID))
                         .contentType("application/json"))
                 .andExpect(status().isOk());
     }

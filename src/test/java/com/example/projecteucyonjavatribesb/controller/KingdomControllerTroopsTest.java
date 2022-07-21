@@ -66,21 +66,10 @@ class KingdomControllerTroopsTest {
         mockMvc.perform(post("/api/auth")
                         .header("Authorization", TOKEN))
                 .andExpect(status().is(200));
-    }
-    private String extractToken() throws Exception {
-        ResultActions result = mockMvc.perform(post("/api/login")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("""
-                        {
-                        "username": "MichaelAgain",
-                        "password": "password"
-                        }
-                        """)
-        ).andExpect(status().isOk());
+
         ID = playerRepository.findByUsername(USERNAME).getId();
         kingdomID = playerRepository.findByUsername(USERNAME).getKingdom().getId();
         ID2 = playerRepository.findByUsername("user5").getId();
-
 
         mockMvc.perform(put("/api/locationRegister")
                         .header("Authorization", TOKEN)
@@ -92,6 +81,17 @@ class KingdomControllerTroopsTest {
                                 }""".formatted(kingdomID))
                         .contentType("application/json"))
                 .andExpect(status().isOk());
+    }
+    private String extractToken() throws Exception {
+        ResultActions result = mockMvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                        {
+                        "username": "MichaelAgain",
+                        "password": "password"
+                        }
+                        """)
+        ).andExpect(status().isOk());
 
         String resultString = result.andReturn().getResponse().getContentAsString();
         JacksonJsonParser jsonParser = new JacksonJsonParser();
@@ -104,7 +104,7 @@ class KingdomControllerTroopsTest {
                 .andExpect(status().is(200))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.kingdom.ruler").value("MichaelAgain"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.kingdom.kingdomName").value("AvengersAcademy"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.kingdom.population").value(2))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.kingdom.population").value(1))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.troops.size()").value(2));
 
     }
