@@ -35,6 +35,7 @@ public class KingdomControllerIntegrationTests {
     static String TOKEN;
     static String INCORRECT_TOKEN;
     static Long ID;
+    static Long ID2;
     static String USERNAME;
     static String PASSWORD;
     static String KINGDOM_NAME;
@@ -42,10 +43,11 @@ public class KingdomControllerIntegrationTests {
     @BeforeAll
     void initialSetup() throws Exception {
         USERNAME = "MichalJedi";
-        PASSWORD = "password123";
+        PASSWORD = "password";
         KINGDOM_NAME = "Galaxy";
 
         playerService.saveNewPlayer(new Player(PASSWORD, USERNAME, KINGDOM_NAME));
+        playerService.saveNewPlayer(new Player(PASSWORD, "user7", "hateIt"));
 
         TOKEN = extractToken();
         INCORRECT_TOKEN =
@@ -58,13 +60,14 @@ public class KingdomControllerIntegrationTests {
                 .andExpect(status().is(200));
 
         ID = playerRepository.findByUsername(USERNAME).getId();
+        ID2 = playerRepository.findByUsername("user7").getId();
 
         mockMvc.perform(put("/api/locationRegister")
                         .header("Authorization", TOKEN)
                         .content("""
                                 {
-                                    "coordinateX": "12",
-                                    "coordinateY": "12",
+                                    "coordinateX": "92",
+                                    "coordinateY": "29",
                                     "kingdomId": "%s"
                                 }""".formatted(ID))
                         .contentType("application/json"))
@@ -77,10 +80,10 @@ public class KingdomControllerIntegrationTests {
                 .content("""
                         {
                         "username": "MichalJedi",
-                        "password": "password123"
+                        "password": "password"
                         }
-                        """))
-                .andExpect(status().isOk());
+                        """)
+        ).andExpect(status().isOk());
 
 
 
@@ -119,7 +122,7 @@ public class KingdomControllerIntegrationTests {
         String expectError = "This kingdom does not belong to authenticated player!";
 
         mockMvc
-                .perform(get(String.format("/api/kingdoms/%d/resources", ++ID))
+                .perform(get(String.format("/api/kingdoms/%d/resources", ID2))
                         .header("Authorization", INCORRECT_TOKEN))
                 .andExpect(status().isUnauthorized())
                 .andExpect(jsonPath("$.error").value(expectError));
@@ -170,7 +173,7 @@ public class KingdomControllerIntegrationTests {
         ID = playerRepository.findByUsername(USERNAME).getId();
 
         mockMvc
-                .perform(put(String.format("/api/kingdoms/%d", ++ID))
+                .perform(put(String.format("/api/kingdoms/%d", ID2))
                         .header("Authorization", TOKEN)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
