@@ -1,6 +1,12 @@
 package com.example.projecteucyonjavatribesb.model.DTO;
 
+
+import com.example.projecteucyonjavatribesb.model.Location;
+import com.example.projecteucyonjavatribesb.model.Resources;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import com.example.projecteucyonjavatribesb.model.Kingdom;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,6 +17,7 @@ import lombok.Builder;
 @Getter
 @Setter
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class KingdomDTO {
 
     private Long kingdomId;

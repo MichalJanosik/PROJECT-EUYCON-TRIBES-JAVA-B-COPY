@@ -4,6 +4,7 @@ import com.example.projecteucyonjavatribesb.model.Buildings;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.model.Player;
 import com.example.projecteucyonjavatribesb.model.Resources;
+import com.example.projecteucyonjavatribesb.model.Troops.Troops;
 import com.example.projecteucyonjavatribesb.repository.BuildingsRepository;
 import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
 import com.example.projecteucyonjavatribesb.repository.PlayerRepository;
@@ -35,6 +36,7 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
     private final BuildingsRepository buildingsRepository;
     private final PasswordEncoder passwordEncoder;
     private final ResourcesService resourcesService;
+    private final TroopsService troopsService;
 
 
     @Override
@@ -57,6 +59,13 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
         kingdom.setResourcesList(initialResources);
         for (Resources resource : initialResources) {
             resource.setKingdom(kingdom);
+        }
+
+        List<Troops> initialTroops = troopsService.getInitialTroops();
+        kingdom.setTroopsList(initialTroops);
+        for (Troops troop : initialTroops) {
+            troop.setKingdom(kingdom);
+            kingdom.setPopulation(kingdom.getPopulation() + 1);
         }
 
         Player player1;

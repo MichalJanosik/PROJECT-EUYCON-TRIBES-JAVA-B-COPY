@@ -39,7 +39,7 @@
     <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.13.3" level="project" />
     <orderEntry type="library" name="Gradle: com.auth0:java-jwt:3.19.2" level="project" />
     <orderEntry type="library" name="Gradle: junit:junit:4.13.2" level="project" />
-    <orderEntry type="library" name="Gradle: org.projectlombok:lombok:1.18.24" level="project" />
+    <orderEntry type="library" name="Gradle: org.projectlombok:lombok:1.18.20" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-test:5.7.1" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter:2.7.0" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-config:5.7.1" level="project" />
@@ -132,4 +132,5 @@
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.sun.activation:jakarta.activation:1.2.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.junit.platform:junit-platform-engine:1.8.2" level="project" />
   </component>
+  <component name="TestModuleProperties" production-module="Project-EUCYON-Java-Tribes-B.main" />
 </module>
