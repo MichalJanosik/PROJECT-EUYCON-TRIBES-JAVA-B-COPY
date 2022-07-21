@@ -10,7 +10,7 @@ jobs:
             DB_DRIVER: org.h2.Driver
             DB_PASS: password
             TZ: Europe/Prague
-            
+
 #          DB_ROOT_USER: user
 #          DB_URL: jdbc:mysql://localhost/tribes?serverTimezone=UTC
 #          DB_DRIVER: com.mysql.cj.jdbc.Driver
