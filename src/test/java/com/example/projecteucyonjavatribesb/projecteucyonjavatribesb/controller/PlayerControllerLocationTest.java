@@ -49,6 +49,7 @@ class PlayerControllerLocationTest {
     static String TOKEN;
     static String INCORRECT_TOKEN;
     static Long ID;
+    static Long kingdomID;
     static String USERNAME;
     static String PASSWORD;
     static String KINGDOM_NAME;
@@ -87,7 +88,7 @@ class PlayerControllerLocationTest {
 
     @Test
     void itShouldCreateLocation() throws Exception {
-        ID = playerRepository.findByUsername(USERNAME).getId();
+        kingdomID = playerRepository.findByUsername(USERNAME).getKingdom().getId();
         // this test should be with status OK
         mockMvc.perform(put("/api/locationRegister")
                         .header("Authorization", TOKEN)
@@ -96,14 +97,14 @@ class PlayerControllerLocationTest {
                                     "coordinateX": "79",
                                     "coordinateY": "79",
                                     "kingdomId": "%s"
-                                }""".formatted(ID))
+                                }""".formatted(kingdomID))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
     @Test
     void itShouldSayOutOfRange() throws Exception {
-        ID = playerRepository.findByUsername(USERNAME).getId();
+        kingdomID = playerRepository.findByUsername(USERNAME).getKingdom().getId();
         // this test is for coordinate out of range 0-99
         mockMvc.perform(put("/api/locationRegister")
                         .header("Authorization", TOKEN)
@@ -112,7 +113,7 @@ class PlayerControllerLocationTest {
                                     "coordinateX": "11111",
                                     "coordinateY": "11111",
                                     "kingdomId": "%s"
-                                }""".formatted(ID))
+                                }""".formatted(kingdomID))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(400));
     }

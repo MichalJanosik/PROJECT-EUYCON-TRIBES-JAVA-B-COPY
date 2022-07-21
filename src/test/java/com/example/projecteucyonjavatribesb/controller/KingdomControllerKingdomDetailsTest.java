@@ -41,6 +41,7 @@ class KingdomControllerKingdomDetailsTest {
     static String INCORRECT_TOKEN;
     static String SHORT_TOKEN;
     static Long ID;
+    static Long kingdomID;
     static Long ID2;
     static String USERNAME;
     static String PASSWORD;
@@ -76,6 +77,7 @@ class KingdomControllerKingdomDetailsTest {
                         """)
         ).andExpect(status().isOk());
         ID = playerRepository.findByUsername(USERNAME).getId();
+        kingdomID = playerRepository.findByUsername(USERNAME).getKingdom().getId();
         ID2 = playerRepository.findByUsername("user3").getId();
 
 
@@ -86,7 +88,7 @@ class KingdomControllerKingdomDetailsTest {
                                     "coordinateX": "45",
                                     "coordinateY": "45",
                                     "kingdomId": "%s"
-                                }""".formatted(ID))
+                                }""".formatted(kingdomID))
                         .contentType("application/json"))
                 .andExpect(status().isOk());
 
