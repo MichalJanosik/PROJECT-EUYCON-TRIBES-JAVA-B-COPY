@@ -3,11 +3,17 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:17.0.1
+      - image: cimg/openjdk:17.0.1
         environment:
-          DB_ROOT_USER: user
-          DB_URL: jdbc:mysql://localhost/tribes?serverTimezone=UTC
-          DB_DRIVER: com.mysql.cj.jdbc.Driver
+            DB_ROOT_USER: sa
+            DB_URL: jdbc:h2:file:~/data/tribes
+            DB_DRIVER: org.h2.Driver
+            DB_PASS: password
+            TZ: Europe/Prague
+
+#          DB_ROOT_USER: user
+#          DB_URL: jdbc:mysql://localhost/tribes?serverTimezone=UTC
+#          DB_DRIVER: com.mysql.cj.jdbc.Driver
 
     steps:
       - checkout
@@ -17,8 +23,10 @@ jobs:
             - v1-dependencies-{{ checksum "build.gradle" }}
 
       - run:
-           name: Gradlew build
-
+          name: Gradlew build
+          command: |
+            sudo chmod +x gradlew
+            ./gradlew build
 
       - save_cache:
           paths:
@@ -27,5 +35,7 @@ jobs:
 
       # run tests!
       - run: gradle test
+      - store_artifacts:
+               path: build/reports/jacoco/test
 
 
