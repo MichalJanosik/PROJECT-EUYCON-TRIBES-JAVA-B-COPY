@@ -38,6 +38,7 @@ class KingdomControllerKingdomDetailsTest {
     static String INCORRECT_TOKEN;
     static String SHORT_TOKEN;
     static Long ID;
+    static Long ID2;
     static String USERNAME;
     static String PASSWORD;
     static String KINGDOM_NAME;
@@ -72,6 +73,7 @@ class KingdomControllerKingdomDetailsTest {
                         """)
         ).andExpect(status().isOk());
         ID = playerRepository.findByUsername(USERNAME).getId();
+        ID2 = playerRepository.findByUsername("user3").getId();
 
 
         mockMvc.perform(put("/api/locationRegister")
@@ -121,7 +123,7 @@ class KingdomControllerKingdomDetailsTest {
 
     @Test
     void getKingdomDetailsUnauthorizedAccess() throws Exception {
-        mockMvc.perform(get("/api/kingdoms/2/")
+        mockMvc.perform(get(String.format("/api/kingdoms/%d", ID2))
                         .header("Authorization", TOKEN))
                 .andExpect(status().is(401))
                 .andExpect(MockMvcResultMatchers.content()
