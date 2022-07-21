@@ -20,7 +20,6 @@
 //import static org.mockito.ArgumentMatchers.any;
 //import static org.mockito.Mockito.when;
 //
-//@ContextConfiguration(classes = {KingdomControllerIntegrationTests.class})
 //@ExtendWith(SpringExtension.class)
 //public class KingdomControllerAuthTest {
 //
@@ -67,4 +66,3 @@
 //                        .string("{\"ruler\":\"Michael\",\"id\":1,\"kingdomName\":\"Moria\"}"));
 //    }
 //}
-//>>>>>>> fae67c08c196c76ee29939a6d2ea312089a87402

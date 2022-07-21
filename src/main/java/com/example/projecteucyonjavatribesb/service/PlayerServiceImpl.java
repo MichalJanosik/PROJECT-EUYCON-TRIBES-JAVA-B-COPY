@@ -68,7 +68,7 @@ public class PlayerServiceImpl implements PlayerService, UserDetailsService {
         kingdom.setTroopsList(initialTroops);
         for (Troops troop : initialTroops) {
             troop.setKingdom(kingdom);
-            kingdom.setPopulation(kingdom.getPopulation() + 1);
+//            kingdom.setPopulation(kingdom.getPopulation() + 1);
         }
 
         Player player1;

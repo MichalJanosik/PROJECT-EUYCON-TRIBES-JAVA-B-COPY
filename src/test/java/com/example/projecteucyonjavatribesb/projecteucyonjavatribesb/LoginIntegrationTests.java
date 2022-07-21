@@ -1,5 +1,8 @@
 package com.example.projecteucyonjavatribesb.projecteucyonjavatribesb;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+//import org.junit.Test;
 import com.example.projecteucyonjavatribesb.model.Player;
 import com.example.projecteucyonjavatribesb.repository.PlayerRepository;
 import com.example.projecteucyonjavatribesb.service.PlayerService;
@@ -49,12 +52,9 @@ public class LoginIntegrationTests {
                                 {
                                 "username": "MisoDaBadass",
                                 "password": "password"
-                                }
-                                """)
-                )
-                .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers
-                        .jsonPath("$.status").value("ok"));
+                                }"""))
+                .andExpect(status().isOk());
+
     }
 
     @Test
