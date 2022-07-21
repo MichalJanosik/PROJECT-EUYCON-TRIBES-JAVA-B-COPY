@@ -4,23 +4,17 @@
     <facet type="web" name="Web">
       <configuration>
         <webroots />
-<<<<<<< HEAD
         <sourceRoots />
-=======
->>>>>>> circleCI
       </configuration>
     </facet>
     <facet type="jpa" name="JPA">
       <configuration>
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
-<<<<<<< HEAD
         <datasource-mapping>
           <factory-entry name="Project-EUCYON-Java-Tribes-B.main" />
         </datasource-mapping>
-=======
         <datasource-mapping />
->>>>>>> circleCI
         <naming-strategy-map />
       </configuration>
     </facet>

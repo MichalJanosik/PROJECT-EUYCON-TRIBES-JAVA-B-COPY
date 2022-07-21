@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Project-EUCYON-Java-Tribes-B.iml" filepath="$PROJECT_DIR$/.idea/modules/Project-EUCYON-Java-Tribes-B.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Project-EUCYON-Java-Tribes-B.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Project-EUCYON-Java-Tribes-B.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Project-EUCYON-Java-Tribes-B.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Project-EUCYON-Java-Tribes-B.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.example.Project-EUCYON-Java-Tribes-B.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.example.Project-EUCYON-Java-Tribes-B.main.iml" />
     </modules>
   </component>
 </project>
