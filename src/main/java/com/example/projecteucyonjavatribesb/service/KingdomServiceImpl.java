@@ -1,26 +1,16 @@
 package com.example.projecteucyonjavatribesb.service;
 
 import com.example.projecteucyonjavatribesb.model.DTO.*;
-
-import com.example.projecteucyonjavatribesb.model.DTO.*;
-
-
-import com.example.projecteucyonjavatribesb.model.DTO.*;
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomNameDTO;
-import com.example.projecteucyonjavatribesb.model.DTO.LocationDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import com.example.projecteucyonjavatribesb.repository.BuildingsRepository;
 import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
 import com.example.projecteucyonjavatribesb.repository.ResourcesRepository;
 import com.example.projecteucyonjavatribesb.repository.TroopsRepository;
-import lombok.AllArgsConstructor;
-import com.example.projecteucyonjavatribesb.repository.TroopsRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
