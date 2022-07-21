@@ -116,7 +116,7 @@ class KingdomControllerTest {
 
     @Test
     void getKingdomBuildings_unsuccessful_unauthorized() throws Exception {
-        mockMvc.perform(get("/api/kingdoms/2/buildings")
+        mockMvc.perform(get(String.format("/api/kingdoms/%d/buildings", ID2))
                         .header("Authorization", TOKEN))
                 .andExpect(status().is(401))
                 .andExpect(MockMvcResultMatchers.content()
