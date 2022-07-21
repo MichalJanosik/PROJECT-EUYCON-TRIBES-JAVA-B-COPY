@@ -134,14 +134,7 @@ class KingdomControllerTest {
     //___________________________________________________________________________________________________________________
     // UpgradeBuilding ENDPOINT testing
     @Test
-    void upgradeBuildings_successfulAndUnsuccessful() throws Exception {
-        mockMvc.perform(put(String.format("/api/kingdoms/%d/buildings/1", ID))
-                        .header("Authorization", TOKEN))
-                .andExpect(status().is(400))
-                .andExpect(MockMvcResultMatchers.content()
-                        .string("{\"error\":\"Building is not ready for reconstruction!\"}"));
-
-
+    void upgradeBuildings_successful() throws Exception {
         mockMvc.perform(put(String.format("/api/kingdoms/%d/buildings/1", ID))
                         .header("Authorization", TOKEN))
                 .andExpect(status().is(200))
