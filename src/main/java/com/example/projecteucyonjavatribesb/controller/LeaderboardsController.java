@@ -1,13 +1,16 @@
 package com.example.projecteucyonjavatribesb.controller;
 
+import com.example.projecteucyonjavatribesb.model.DTO.LeaderboardsDTO;
 import com.example.projecteucyonjavatribesb.service.LeaderboardType;
 import com.example.projecteucyonjavatribesb.service.LeaderboardsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api")
@@ -17,7 +20,18 @@ public class LeaderboardsController {
     private final LeaderboardsService leaderboardsService;
 
     @GetMapping("/leaderboards/{type}")
-    public ResponseEntity<?> getLeaderboardByType(@RequestParam("type")LeaderboardType type) {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<?> getLeaderboardByType(@PathVariable("type") String type) {
+        if (Objects.nonNull(type)) {
+            if (ObjectUtils.containsConstant(LeaderboardType.values(), type, false)) {
+                List<LeaderboardsDTO> leaderboard = leaderboardsService.getLeaderboard(
+                        LeaderboardType.valueOf(type.toUpperCase())
+                );
+                return ResponseEntity.ok().body(leaderboard);
+            } else {
+                throw new RuntimeException("Leaderboard type must be defined");
+            }
+        } else {
+            throw new RuntimeException("Leaderboard type must be defined");
+        }
     }
 }

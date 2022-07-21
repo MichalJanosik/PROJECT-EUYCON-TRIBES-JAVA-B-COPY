@@ -6,6 +6,7 @@ import com.example.projecteucyonjavatribesb.model.DTO.KingdomDetailsDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -21,4 +22,5 @@ public interface KingdomService {
 
     void renameKingdom(Long kingdomId, KingdomNameDTO kingdomNameDTO);
     KingdomDTO getRenamedKingdomDTO(Long kingdomId);
+    List<Kingdom> findAllKingdoms();
 }
