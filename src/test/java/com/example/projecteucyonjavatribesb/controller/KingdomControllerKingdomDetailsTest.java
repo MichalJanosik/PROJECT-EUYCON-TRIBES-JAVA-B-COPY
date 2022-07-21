@@ -65,6 +65,25 @@ class KingdomControllerKingdomDetailsTest {
                 "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9" +
                         ".V5AXsxmXSvigzHTbM4X2gxNnJSr3pnjugh0rMLR7TIw";
 
+        mockMvc.perform(post("/api/auth")
+                        .header("Authorization", TOKEN))
+                .andExpect(status().is(200));
+
+        ID = playerRepository.findByUsername(USERNAME).getId();
+        ID = playerRepository.findByUsername("user3").getId();
+        kingdomID = playerRepository.findByUsername(USERNAME).getKingdom().getId();
+
+        mockMvc.perform(put("/api/locationRegister")
+                        .header("Authorization", TOKEN)
+                        .content("""
+                                {
+                                    "coordinateX": "12",
+                                    "coordinateY": "12",
+                                    "kingdomId": "%s"
+                                }""".formatted(kingdomID))
+                        .contentType("application/json"))
+                .andExpect(status().isOk());
+
     }
     private String extractToken() throws Exception {
         ResultActions result = mockMvc.perform(post("/api/login")
@@ -77,19 +96,7 @@ class KingdomControllerKingdomDetailsTest {
                         """)
         ).andExpect(status().isOk());
 
-        ID = playerRepository.findByUsername(USERNAME).getId();
-        ID2 = playerRepository.findByUsername("user3").getId();
-        mockMvc.perform(put("/api/locationRegister")
-                        .header("Authorization", TOKEN)
-                        .content("""
-                                {
-                                    "coordinateX": "45",
-                                    "coordinateY": "45",
-                                    "kingdomId": "%s"
-                                }""".formatted(ID))
-                        .contentType("application/json"))
-                .andExpect(status().isOk());
-        
+
 
         String resultString = result.andReturn().getResponse().getContentAsString();
         JacksonJsonParser jsonParser = new JacksonJsonParser();

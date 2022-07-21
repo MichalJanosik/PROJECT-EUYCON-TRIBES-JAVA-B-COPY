@@ -67,6 +67,9 @@ class PlayerControllerLocationTest {
                         ".eyJzdWIiOiJqYW5rb0hyYXNrbzIiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXBpL2xvZ2luIiwia2luZ2RvbSI6WyJqYW5rb0hyYXNrbzIncyBraW5nZG9tIl19" +
                         ".V5AXsxmXSvigzHTbM4X2gxNnJSr3pnjugh0rMLR7TIw";
 
+        mockMvc.perform(post("/api/auth")
+                        .header("Authorization", TOKEN))
+                .andExpect(status().is(200));
     }
 
     private String extractToken() throws Exception {
@@ -79,6 +82,7 @@ class PlayerControllerLocationTest {
                         }
                         """)
         ).andExpect(status().isOk());
+
 
         String resultString = result.andReturn().getResponse().getContentAsString();
         JacksonJsonParser jsonParser = new JacksonJsonParser();

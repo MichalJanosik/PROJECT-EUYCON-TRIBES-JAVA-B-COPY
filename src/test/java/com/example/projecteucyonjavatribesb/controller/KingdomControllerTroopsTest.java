@@ -63,6 +63,9 @@ class KingdomControllerTroopsTest {
                 "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9" +
                         ".V5AXsxmXSvigzHTbM4X2gxNnJSr3pnjugh0rMLR7TIw";
 
+        mockMvc.perform(post("/api/auth")
+                        .header("Authorization", TOKEN))
+                .andExpect(status().is(200));
     }
     private String extractToken() throws Exception {
         ResultActions result = mockMvc.perform(post("/api/login")

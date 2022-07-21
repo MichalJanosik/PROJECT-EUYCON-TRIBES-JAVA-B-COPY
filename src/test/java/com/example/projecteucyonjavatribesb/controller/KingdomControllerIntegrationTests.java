@@ -53,18 +53,10 @@ public class KingdomControllerIntegrationTests {
                 "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9" +
                         ".eyJzdWIiOiJqYW5rb0hyYXNrbzIiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXBpL2xvZ2luIiwia2luZ2RvbSI6WyJqYW5rb0hyYXNrbzIncyBraW5nZG9tIl19" +
                         ".V5AXsxmXSvigzHTbM4X2gxNnJSr3pnjugh0rMLR7TIw";
-    }
 
-    private String extractToken() throws Exception {
-        ResultActions result = mockMvc.perform(post("/api/login")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("""
-                        {
-                        "username": "MisoDaJedi",
-                        "password": "password123"
-                        }
-                        """))
-                .andExpect(status().isOk());
+        mockMvc.perform(post("/api/auth")
+                        .header("Authorization", TOKEN))
+                .andExpect(status().is(200));
 
         ID = playerRepository.findByUsername(USERNAME).getId();
         kingdomID = playerRepository.findByUsername(USERNAME).getKingdom().getId();
@@ -79,6 +71,20 @@ public class KingdomControllerIntegrationTests {
                                 }""".formatted(kingdomID))
                         .contentType("application/json"))
                 .andExpect(status().isOk());
+    }
+
+    private String extractToken() throws Exception {
+        ResultActions result = mockMvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                        {
+                        "username": "MisoDaJedi",
+                        "password": "password123"
+                        }
+                        """))
+                .andExpect(status().isOk());
+
+
 
         String resultString = result.andReturn().getResponse().getContentAsString();
         JacksonJsonParser jsonParser = new JacksonJsonParser();
