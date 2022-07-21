@@ -38,5 +38,10 @@ jobs:
       - store_artifacts:
                path: build/reports/jacoco/test
 
+        - store_artifacts:
+          path: build/reports/checkstyle
+          destination: checkstyle
+
+
 
 
