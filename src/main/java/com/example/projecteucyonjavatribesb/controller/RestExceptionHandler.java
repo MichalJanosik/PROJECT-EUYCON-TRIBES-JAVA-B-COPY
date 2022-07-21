@@ -17,7 +17,9 @@ public class RestExceptionHandler {
         return switch (exception.getMessage()) {
             case "This kingdom does not belong to authenticated player!" ->
                     ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorDTO);
-            case "Field kingdomName was empty!", "No id was entered!" ->
+            case "Field kingdomName was empty!"
+                    , "No id was entered!"
+                    , "Leaderboard type must be defined defined" ->
                     ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDTO);
             default -> ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(ErrorDTO.builder().error("Something went wrong!").build());
