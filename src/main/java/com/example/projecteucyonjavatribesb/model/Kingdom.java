@@ -1,23 +1,8 @@
 package com.example.projecteucyonjavatribesb.model;
 
 import com.example.projecteucyonjavatribesb.model.Troops.Troops;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-<<<<<<< HEAD
 import lombok.*;
 
-=======
-import com.example.projecteucyonjavatribesb.model.Troops.Troops;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.*;
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
->>>>>>> fae67c08c196c76ee29939a6d2ea312089a87402
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;

@@ -3,6 +3,7 @@ package com.example.projecteucyonjavatribesb.service;
 import com.example.projecteucyonjavatribesb.model.Buildings;
 import com.example.projecteucyonjavatribesb.model.DTO.LeaderboardsDTO;
 import com.example.projecteucyonjavatribesb.model.Kingdom;
+import com.example.projecteucyonjavatribesb.model.Troops.Troops;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class LeaderboardsServiceImpl implements LeaderboardsService {
         List<LeaderboardsDTO> leaderboard = new ArrayList<>();
         switch (type) {
             case BUILDINGS -> leaderboard = getLeaderBoardByBuildings();
-//            case TROOPS -> leaderboard = getLeaderboardByTroops();
+            case TROOPS -> leaderboard = getLeaderboardByTroops();
             case KINGDOMS -> leaderboard = getLeaderboardByKingdoms();
         }
 
@@ -38,27 +39,29 @@ public class LeaderboardsServiceImpl implements LeaderboardsService {
                         .ruler(x.getRuler())
                         .kingdom(x.getPlayer().getKingdomName())
                         .buildings(x.getBuildingList().size())
-//                        .troops(x.getTroopsList().size())
-                        //TODO here just add + getTroopsPoints()
-                        .points(getBuildingsPoints(x))
+                        .troops(x.getTroopsList().size())
+                        .points(getBuildingsPoints(x) + getTroopsPoints(x))
                         .build())
-                .sorted(Comparator.comparing(LeaderboardsDTO::getPoints))
+                .sorted(sortByPoints())
                 .collect(Collectors.toList());
     }
 
     private List<LeaderboardsDTO> getLeaderboardByTroops() {
         List<Kingdom> kingdoms = kingdomService.findAllKingdoms();
-        kingdoms.stream().map(x -> LeaderboardsDTO.builder()
-                .ruler(x.getRuler())
-                .kingdom(x.getPlayer().getKingdomName())
-                .troops(x.size())
-                .points(getTroopsPoints(x))
-                .build());
-        return null;
+
+        return kingdoms.stream()
+                .map(x -> LeaderboardsDTO.builder()
+                        .ruler(x.getRuler())
+                        .kingdom(x.getPlayer().getKingdomName())
+                        .troops(x.getTroopsList().size())
+                        .points(getTroopsPoints(x))
+                        .build())
+                .sorted(sortByPoints())
+                .collect(Collectors.toList());
     }
 
     private Integer getTroopsPoints(Kingdom x) {
-        x.getTroopsList().stream()
+        return x.getTroopsList().stream()
                 .map(Troops::getLevel)
                 .reduce(Integer::sum)
                 .get();
@@ -74,7 +77,7 @@ public class LeaderboardsServiceImpl implements LeaderboardsService {
                         .buildings(x.getBuildingList().size())
                         .points(getBuildingsPoints(x))
                         .build())
-                .sorted(Comparator.comparing(LeaderboardsDTO::getPoints))
+                .sorted(sortByPoints())
                 .collect(Collectors.toList());
     }
 
@@ -83,5 +86,9 @@ public class LeaderboardsServiceImpl implements LeaderboardsService {
                 .map(Buildings::getLevel)
                 .reduce(Integer::sum)
                 .get();
+    }
+
+    private Comparator<LeaderboardsDTO> sortByPoints() {
+        return Comparator.comparing(LeaderboardsDTO::getPoints).reversed();
     }
 }
