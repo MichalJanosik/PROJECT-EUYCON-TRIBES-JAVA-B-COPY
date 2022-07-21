@@ -138,14 +138,16 @@ class KingdomControllerTest {
         mockMvc.perform(put(String.format("/api/kingdoms/%d/buildings/1", ID))
                         .header("Authorization", TOKEN))
                 .andExpect(status().is(400))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.type").value("Town Hall"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.level").value(2));
+                .andExpect(MockMvcResultMatchers.content()
+                        .string("{\"error\":\"Building is not ready for reconstruction!\"}"));
+
 
         mockMvc.perform(put(String.format("/api/kingdoms/%d/buildings/1", ID))
                         .header("Authorization", TOKEN))
                 .andExpect(status().is(200))
-                .andExpect(MockMvcResultMatchers.content()
-                        .string("{\"error\":\"Building is not ready for reconstruction!\"}"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.type").value("Town Hall"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.level").value(2));
+
     }
 
 
