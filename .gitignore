@@ -197,3 +197,11 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,macos,windows
+/.idea/jarRepositories.xml
+/.idea/modules.xml
+/.idea/modules/Project-EUCYON-Java-Tribes-B.iml
+/.idea/modules/Project-EUCYON-Java-Tribes-B.test.iml
+/.idea/modules/Project-EUCYON-Java-Tribes-B.main.iml
+/.idea/compiler.xml
+/.idea/misc.xml
+/.idea/vcs.xml

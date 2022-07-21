@@ -46,23 +46,23 @@ public class LeaderboardsServiceImpl implements LeaderboardsService {
                 .collect(Collectors.toList());
     }
 
-//    private List<LeaderboardsDTO> getLeaderboardByTroops() {
-//        List<Kingdom> kingdoms = kingdomService.findAllKingdoms();
-//        kingdoms.stream().map(x -> LeaderboardsDTO.builder()
-//                .ruler(x.getRuler())
-//                .kingdom(x.getPlayer().getKingdomName())
-//                .troops(x.getTroopsList().size())
-//                .points(getTroopsPoints(x))
-//                .build());
-//        return null;
-//    }
+    private List<LeaderboardsDTO> getLeaderboardByTroops() {
+        List<Kingdom> kingdoms = kingdomService.findAllKingdoms();
+        kingdoms.stream().map(x -> LeaderboardsDTO.builder()
+                .ruler(x.getRuler())
+                .kingdom(x.getPlayer().getKingdomName())
+                .troops(x.size())
+                .points(getTroopsPoints(x))
+                .build());
+        return null;
+    }
 
-//    private Integer getTroopsPoints(Kingdom x) {
-//        x.getTroopsList().stream()
-//                .map(Troops::getLevel)
-//                .reduce(Integer::sum)
-//                .get();
-//    }
+    private Integer getTroopsPoints(Kingdom x) {
+        x.getTroopsList().stream()
+                .map(Troops::getLevel)
+                .reduce(Integer::sum)
+                .get();
+    }
 
     private List<LeaderboardsDTO> getLeaderBoardByBuildings() {
         List<Kingdom> kingdoms = kingdomService.findAllKingdoms();

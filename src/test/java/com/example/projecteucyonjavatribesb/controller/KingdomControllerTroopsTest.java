@@ -1,25 +1,11 @@
 package com.example.projecteucyonjavatribesb.controller;
 
-import com.example.projecteucyonjavatribesb.model.DTO.KingdomDetailsDTO;
-import com.example.projecteucyonjavatribesb.model.Kingdom;
-import com.example.projecteucyonjavatribesb.model.Location;
-import com.example.projecteucyonjavatribesb.model.Player;
-import com.example.projecteucyonjavatribesb.service.BuildingsService;
-import com.example.projecteucyonjavatribesb.service.KingdomService;
-import com.example.projecteucyonjavatribesb.service.PlayerAuthorizationService;
-import com.example.projecteucyonjavatribesb.service.ResourcesService;
-
-<<<<<<< HEAD
-import java.util.ArrayList;
-
-=======
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.BeforeAll;
->>>>>>> fae67c08c196c76ee29939a6d2ea312089a87402
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,28 +13,14 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import static org.mockito.Mockito.*;
 
-<<<<<<< HEAD
-@ContextConfiguration(classes = {KingdomController.class})
-=======
-@ContextConfiguration(classes = {KingdomControllerIntegrationTests.class})
-
-//@ContextConfiguration(classes = {KingdomController.class})
->>>>>>> fae67c08c196c76ee29939a6d2ea312089a87402
-@ExtendWith(SpringExtension.class)
 @AutoConfigureMockMvc
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class KingdomControllerKingdomDetailsTest {
+class KingdomControllerTroopsTest {
 
     @Autowired
-<<<<<<< HEAD
-    private KingdomController kingdomController;
-=======
     MockMvc mockMvc;
->>>>>>> fae67c08c196c76ee29939a6d2ea312089a87402
 
     @BeforeAll
     void setUp() throws Exception {
@@ -95,21 +67,20 @@ class KingdomControllerKingdomDetailsTest {
     String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNaWNoYWVsIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2FwaS9sb2dpbiIsImtpbmdkb20iOlsiTW9yaWEiXX0.RpYSLXLhzmLuzynJ5rZ1gaok1KchjX424kU0deujD14";
 
     @Test
-    void getKingdomDetailsSuccessful() throws Exception {
-        mockMvc.perform(get("/api/kingdoms/1/")
+    void getKingdomTroopsSuccessful() throws Exception {
+        mockMvc.perform(get("/api/kingdoms/1/troops")
                         .header("Authorization", token))
                 .andExpect(status().is(200))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.kingdom.ruler").value("Michael"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.kingdom.kingdomName").value("Moria"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.buildings.size()").value(1))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.resources.size()").value(1))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.kingdom.population").value(2))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.troops.size()").value(2));
 
     }
 
     @Test
-    void getKingdomDetailsWithEmptyToken() throws Exception {
-        mockMvc.perform(get("/api/kingdoms/1/")
+    void getKingdomTroopsWithEmptyToken() throws Exception {
+        mockMvc.perform(get("/api/kingdoms/1/troops")
                         .header("Authorization", " "))
                 .andExpect(status().is(403))
                 .andExpect(MockMvcResultMatchers.content()
@@ -117,17 +88,17 @@ class KingdomControllerKingdomDetailsTest {
     }
 
     @Test
-    void getKingdomDetailsWithWrongId() throws Exception {
-        mockMvc.perform(get("/api/kingdoms/42/")
+    void getKingdomTroopsWithWrongId() throws Exception {
+        mockMvc.perform(get("/api/kingdoms/42/troops")
                         .header("Authorization", token))
-                .andExpect(status().is(400))
+                .andExpect(status().is(404))
                 .andExpect(MockMvcResultMatchers.content()
                         .string("{\"error\":\"This kingdom does not exist.\"}"));
     }
 
     @Test
-    void getKingdomDetailsUnauthorizedAccess() throws Exception {
-        mockMvc.perform(get("/api/kingdoms/2/")
+    void getKingdomTroopsUnauthorizedAccess() throws Exception {
+        mockMvc.perform(get("/api/kingdoms/2/troops")
                         .header("Authorization", token))
                 .andExpect(status().is(401))
                 .andExpect(MockMvcResultMatchers.content()
