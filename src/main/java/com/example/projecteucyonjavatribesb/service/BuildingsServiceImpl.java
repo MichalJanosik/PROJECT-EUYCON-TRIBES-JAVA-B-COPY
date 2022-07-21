@@ -122,10 +122,17 @@ public class BuildingsServiceImpl implements BuildingsService {
     public KingdomBuildingsDTO makeKingdomBuildingsDTO(Long id) {
         Kingdom kingdom = kingdomRepository.getKingdomById(id);
         List<BuildingDTO> listOfBuildings = new ArrayList<>();
+
+        Integer population = 0;
+
+        for (int i = 0; i < kingdom.getBuildingList().size(); i++) {
+            population = population + kingdom.getBuildingList().get(i).getLevel();
+        }
+
         KingdomDTO kingdomDTO = new KingdomDTO(id,
                 kingdom.getPlayer().getKingdomName(),
                 kingdom.getRuler(),
-                kingdom.getPopulation(),
+                population,
                 new LocationDTO(kingdom.getLocation().getCoordinateX(), kingdom.getLocation().getCoordinateY()));
 
         for (int i = 0; i < kingdom.getBuildingList().size(); i++) {

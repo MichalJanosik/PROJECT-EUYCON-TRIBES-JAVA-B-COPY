@@ -63,8 +63,8 @@ public class KingdomControllerIntegrationTests {
                         "username": "MisoDaJedi",
                         "password": "password123"
                         }
-                        """)
-        ).andExpect(status().isOk());
+                        """))
+                .andExpect(status().isOk());
 
         ID = playerRepository.findByUsername(USERNAME).getId();
         kingdomID = playerRepository.findByUsername(USERNAME).getKingdom().getId();

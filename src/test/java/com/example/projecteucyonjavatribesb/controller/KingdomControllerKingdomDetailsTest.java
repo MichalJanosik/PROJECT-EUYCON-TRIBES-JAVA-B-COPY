@@ -76,11 +76,9 @@ class KingdomControllerKingdomDetailsTest {
                         }
                         """)
         ).andExpect(status().isOk());
+
         ID = playerRepository.findByUsername(USERNAME).getId();
-        kingdomID = playerRepository.findByUsername(USERNAME).getKingdom().getId();
         ID2 = playerRepository.findByUsername("user3").getId();
-
-
         mockMvc.perform(put("/api/locationRegister")
                         .header("Authorization", TOKEN)
                         .content("""
@@ -88,9 +86,10 @@ class KingdomControllerKingdomDetailsTest {
                                     "coordinateX": "45",
                                     "coordinateY": "45",
                                     "kingdomId": "%s"
-                                }""".formatted(kingdomID))
+                                }""".formatted(ID))
                         .contentType("application/json"))
                 .andExpect(status().isOk());
+        
 
         String resultString = result.andReturn().getResponse().getContentAsString();
         JacksonJsonParser jsonParser = new JacksonJsonParser();

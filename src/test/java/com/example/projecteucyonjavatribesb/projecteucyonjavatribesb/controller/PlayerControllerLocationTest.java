@@ -56,9 +56,9 @@ class PlayerControllerLocationTest {
 
     @BeforeAll
     void setup() throws Exception {
-        USERNAME = "Adam007";
-        PASSWORD = "password";
-        KINGDOM_NAME = "Moria";
+        USERNAME = "adam1";
+        PASSWORD = "password123";
+        KINGDOM_NAME = "Moriarty";
 
         playerService.saveNewPlayer(new Player(PASSWORD, USERNAME, KINGDOM_NAME));
         TOKEN = extractToken();
@@ -74,8 +74,8 @@ class PlayerControllerLocationTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
-                        "username": "Adam007",
-                        "password": "password"
+                        "username": "adam1",
+                        "password": "password123"
                         }
                         """)
         ).andExpect(status().isOk());
@@ -92,14 +92,14 @@ class PlayerControllerLocationTest {
         // this test should be with status OK
         mockMvc.perform(put("/api/locationRegister")
                         .header("Authorization", TOKEN)
+                        .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                 {
                                     "coordinateX": "79",
                                     "coordinateY": "79",
                                     "kingdomId": "%s"
-                                }""".formatted(kingdomID))
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                                }""".formatted(kingdomID)))
+                .andExpect(status().is(200));
     }
 
     @Test
