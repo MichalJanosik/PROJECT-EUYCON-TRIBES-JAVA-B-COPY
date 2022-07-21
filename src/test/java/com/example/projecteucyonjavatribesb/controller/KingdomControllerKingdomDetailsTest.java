@@ -70,7 +70,7 @@ class KingdomControllerKingdomDetailsTest {
                 .andExpect(status().is(200));
 
         ID = playerRepository.findByUsername(USERNAME).getId();
-        ID = playerRepository.findByUsername("user3").getId();
+        ID2 = playerRepository.findByUsername("user3").getId();
         kingdomID = playerRepository.findByUsername(USERNAME).getKingdom().getId();
 
         mockMvc.perform(put("/api/locationRegister")
