@@ -35,23 +35,43 @@ public class KingdomControllerIntegrationTests {
     static String TOKEN;
     static String INCORRECT_TOKEN;
     static Long ID;
+    static Long ID2;
     static String USERNAME;
     static String PASSWORD;
     static String KINGDOM_NAME;
 
     @BeforeAll
     void initialSetup() throws Exception {
-        USERNAME = "MisoDaJedi";
+        USERNAME = "MichalJedi";
         PASSWORD = "password";
-        KINGDOM_NAME = "Galaxy far far away";
+        KINGDOM_NAME = "DarkStar";
 
         playerService.saveNewPlayer(new Player(PASSWORD, USERNAME, KINGDOM_NAME));
+        playerService.saveNewPlayer(new Player(PASSWORD, "user7", "hateIt"));
 
         TOKEN = extractToken();
         INCORRECT_TOKEN =
                 "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9" +
                         ".eyJzdWIiOiJqYW5rb0hyYXNrbzIiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXBpL2xvZ2luIiwia2luZ2RvbSI6WyJqYW5rb0hyYXNrbzIncyBraW5nZG9tIl19" +
                         ".V5AXsxmXSvigzHTbM4X2gxNnJSr3pnjugh0rMLR7TIw";
+
+        mockMvc.perform(post("/api/auth")
+                        .header("Authorization", TOKEN))
+                .andExpect(status().is(200));
+
+        ID = playerRepository.findByUsername(USERNAME).getId();
+        ID2 = playerRepository.findByUsername("user7").getId();
+
+        mockMvc.perform(put("/api/locationRegister")
+                        .header("Authorization", TOKEN)
+                        .content("""
+                                {
+                                    "coordinateX": "92",
+                                    "coordinateY": "29",
+                                    "kingdomId": "%s"
+                                }""".formatted(ID))
+                        .contentType("application/json"))
+                .andExpect(status().isOk());
     }
 
     private String extractToken() throws Exception {
@@ -59,23 +79,13 @@ public class KingdomControllerIntegrationTests {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
-                        "username": "MisoDaJedi",
+                        "username": "MichalJedi",
                         "password": "password"
                         }
                         """)
         ).andExpect(status().isOk());
 
-        ID = playerRepository.findByUsername(USERNAME).getId();
 
-        mockMvc.perform(put("/api/locationRegister")
-                        .content("""
-                                {
-                                    "coordinateX": "1",
-                                    "coordinateY": "1",
-                                    "kingdomId": "%s"
-                                }""".formatted(ID))
-                        .contentType("application/json"))
-                .andExpect(status().isOk());
 
         String resultString = result.andReturn().getResponse().getContentAsString();
         JacksonJsonParser jsonParser = new JacksonJsonParser();
@@ -112,7 +122,7 @@ public class KingdomControllerIntegrationTests {
         String expectError = "This kingdom does not belong to authenticated player!";
 
         mockMvc
-                .perform(get(String.format("/api/kingdoms/%d/resources", ++ID))
+                .perform(get(String.format("/api/kingdoms/%d/resources", ID2))
                         .header("Authorization", INCORRECT_TOKEN))
                 .andExpect(status().isUnauthorized())
                 .andExpect(jsonPath("$.error").value(expectError));
@@ -163,7 +173,7 @@ public class KingdomControllerIntegrationTests {
         ID = playerRepository.findByUsername(USERNAME).getId();
 
         mockMvc
-                .perform(put(String.format("/api/kingdoms/%d", ++ID))
+                .perform(put(String.format("/api/kingdoms/%d", ID2))
                         .header("Authorization", TOKEN)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
