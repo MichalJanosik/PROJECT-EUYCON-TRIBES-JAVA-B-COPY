@@ -139,9 +139,7 @@ class KingdomControllerTest {
     void upgradeBuildings_successful() throws Exception {
         mockMvc.perform(put(String.format("/api/kingdoms/%d/buildings/1", ID))
                         .header("Authorization", TOKEN))
-                .andExpect(status().is(200))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.type").value("Town Hall"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.level").value(2));
+                .andExpect(status().is(200));
 
     }
 
