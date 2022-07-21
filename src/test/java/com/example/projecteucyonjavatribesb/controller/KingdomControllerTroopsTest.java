@@ -78,6 +78,7 @@ class KingdomControllerTroopsTest {
 
 
         mockMvc.perform(put("/api/locationRegister")
+                        .header("Authorization", TOKEN)
                         .content("""
                                 {
                                     "coordinateX": "64",

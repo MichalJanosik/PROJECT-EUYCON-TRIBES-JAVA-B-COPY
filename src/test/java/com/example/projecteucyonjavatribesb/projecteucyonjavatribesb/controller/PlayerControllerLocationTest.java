@@ -93,8 +93,8 @@ class PlayerControllerLocationTest {
                         .header("Authorization", TOKEN)
                         .content("""
                                 {
-                                    "coordinateX": "19",
-                                    "coordinateY": "19",
+                                    "coordinateX": "79",
+                                    "coordinateY": "79",
                                     "kingdomId": "%s"
                                 }""".formatted(ID))
                         .contentType(MediaType.APPLICATION_JSON))

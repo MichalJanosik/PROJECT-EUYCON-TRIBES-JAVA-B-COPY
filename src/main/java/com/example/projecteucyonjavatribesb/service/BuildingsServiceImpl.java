@@ -49,7 +49,6 @@ public class BuildingsServiceImpl implements BuildingsService {
         buildings.setStartedAt(System.currentTimeMillis());
         buildings.setFinishedAt(System.currentTimeMillis() + (buildingAttributeUtility1.getTime().get(buildings.getType())));
         kingdom.getBuildingList().add(buildings);
-        kingdomRepository.save(kingdom);
         buildings.setKingdom(kingdom);
         buildingsRepository.save(buildings);
         BuildingDTO buildingDTO = new BuildingDTO(buildings);
