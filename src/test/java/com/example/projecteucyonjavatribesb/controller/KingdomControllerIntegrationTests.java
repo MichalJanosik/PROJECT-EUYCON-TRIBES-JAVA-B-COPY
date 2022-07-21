@@ -44,7 +44,7 @@ public class KingdomControllerIntegrationTests {
     void initialSetup() throws Exception {
         USERNAME = "MichalJedi";
         PASSWORD = "password";
-        KINGDOM_NAME = "Galaxy";
+        KINGDOM_NAME = "DarkStar";
 
         playerService.saveNewPlayer(new Player(PASSWORD, USERNAME, KINGDOM_NAME));
         playerService.saveNewPlayer(new Player(PASSWORD, "user7", "hateIt"));
