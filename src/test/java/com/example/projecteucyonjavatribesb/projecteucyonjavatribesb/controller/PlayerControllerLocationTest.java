@@ -40,7 +40,7 @@ class PlayerControllerLocationTest {
         mockMvc.perform(post("/api/registration")
                         .content("""
                                 {
-                                    "username": "adam002",
+                                    "username": "adam001",
                                     "password": "password123",
                                     "kingdomName": "Discovery Channels"
                                 }""")
