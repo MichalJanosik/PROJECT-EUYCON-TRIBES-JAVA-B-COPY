@@ -41,9 +41,9 @@ public class KingdomControllerIntegrationTests {
 
     @BeforeAll
     void initialSetup() throws Exception {
-        USERNAME = "MisoDaJedi";
+        USERNAME = "MichalJedi";
         PASSWORD = "password123";
-        KINGDOM_NAME = "Galaxy far far away";
+        KINGDOM_NAME = "Galaxy";
 
         playerService.saveNewPlayer(new Player(PASSWORD, USERNAME, KINGDOM_NAME));
 
@@ -76,7 +76,7 @@ public class KingdomControllerIntegrationTests {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
-                        "username": "MisoDaJedi",
+                        "username": "MichalJedi",
                         "password": "password123"
                         }
                         """))
