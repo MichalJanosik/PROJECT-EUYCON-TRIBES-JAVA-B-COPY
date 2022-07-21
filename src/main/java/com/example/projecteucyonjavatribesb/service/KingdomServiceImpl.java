@@ -19,7 +19,10 @@ import com.example.projecteucyonjavatribesb.repository.TroopsRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -27,7 +30,7 @@ import java.util.stream.Collectors;
 @Transactional
 @Slf4j
 @Service
-public class KingdomServiceImpl implements KingdomService{
+public class KingdomServiceImpl implements KingdomService {
 
     private final KingdomRepository kingdomRepository;
     private final BuildingsRepository buildingsRepository;
@@ -44,6 +47,39 @@ public class KingdomServiceImpl implements KingdomService{
     public Optional<Kingdom> findById(Long id) {
         return kingdomRepository.findById(id);
     }
+
+    @Override
+    public ListOfKingdomsDTO makeListOfKingdomsDTO() {
+        List<KingdomDTO> listOfKingdomsDTO = new ArrayList<>();
+        List<Kingdom> listOfKingdoms = kingdomRepository.findAll();
+        for (Kingdom listOfKingdom : listOfKingdoms) {
+            // method for sum levels of all buildings in kingdom, it should be size of kingdom so ... its population?
+            int population = countPopulationInKingdom(listOfKingdom);
+
+            listOfKingdomsDTO.add(new KingdomDTO(
+                    listOfKingdom.getId(),
+                    listOfKingdom.getPlayer().getKingdomName(),
+                    listOfKingdom.getRuler(),
+                    population,
+                    new LocationDTO(
+                            listOfKingdom.getLocation().getCoordinateX(),
+                            listOfKingdom.getLocation().getCoordinateY()
+                    )));
+        }
+        return new ListOfKingdomsDTO(listOfKingdomsDTO);
+
+    }
+
+    @Override
+    public int countPopulationInKingdom(Kingdom kingdom) {
+        Kingdom checkedKingdom = kingdomRepository.findKingdomById(kingdom.getId());
+        int population = 0;
+        for (int i = 0; i < checkedKingdom.getBuildingList().size(); i++) {
+            population += checkedKingdom.getBuildingList().get(i).getLevel();
+        }
+        return population;
+    }
+
     public Kingdom findKingdomById(Long id) {
         return kingdomRepository.getKingdomById(id);
     }
