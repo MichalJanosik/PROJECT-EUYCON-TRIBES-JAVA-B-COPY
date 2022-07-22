@@ -1,17 +1,7 @@
 package com.example.projecteucyonjavatribesb.model;
 
 import com.example.projecteucyonjavatribesb.model.Troops.Troops;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import com.example.projecteucyonjavatribesb.model.Troops.Troops;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -49,6 +39,6 @@ public class Kingdom {
 
     public Kingdom(String ruler) {
         this.ruler = ruler;
-        this.population = 0;
+        this.population = 1;
     }
 }

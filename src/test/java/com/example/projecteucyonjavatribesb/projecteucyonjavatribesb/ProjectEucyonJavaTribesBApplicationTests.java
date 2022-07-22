@@ -7,10 +7,5 @@ import org.springframework.boot.test.context.SpringBootTest;
 class ProjectEucyonJavaTribesBApplicationTests {
 
 
-    @Test
-    void contextLoads() {
-    }
-
-
 }
 
