@@ -15,15 +15,7 @@ configurations {
         extendsFrom annotationProcessor
     }
 }
-checkstyle {
-    configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
-}
-checkstyleMain {
-    source ='src/main/java'
-}
-checkstyleTest {
-    source ='src/test/java'
-}
+
 
 repositories {
     mavenCentral()
@@ -64,6 +56,17 @@ dependencies {
     testImplementation group: 'org.springframework', name: 'spring-test', version: '5.3.21'
 }
 
+checkstyle {
+    toolVersion '8.40'
+    ignoreFailures true
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.required = true
+        html.required = true
+    }
+}
 tasks.named('test') {
     useJUnitPlatform()
 }
