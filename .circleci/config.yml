@@ -64,7 +64,7 @@ jobs:
 
 
 workflows:
-  example-workflow:
+  heroku-workflow:
     jobs:
       - heroku/deploy-via-git:
           branch: $master
