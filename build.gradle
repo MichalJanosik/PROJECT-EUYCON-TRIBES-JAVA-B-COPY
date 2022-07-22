@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.7.0'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'pmd'
     id 'jacoco'
     id 'checkstyle'
 }
@@ -79,6 +80,12 @@ jacocoTestCoverageVerification {
     }
 }
 
+pmd {
+    consoleOutput = true
+    toolVersion = "6.21.0"
+    rulesMinimumPriority = 5
+}
+
 checkstyle {
     toolVersion '8.40'
     ignoreFailures true
@@ -89,7 +96,4 @@ tasks.withType(Checkstyle) {
         xml.required = true
         html.required = true
     }
-}
-tasks.named('test') {
-    useJUnitPlatform()
 }

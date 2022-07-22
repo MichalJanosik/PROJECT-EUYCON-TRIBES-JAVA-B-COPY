@@ -47,6 +47,10 @@ jobs:
           path: build/reports/checkstyle
           destination: checkstyle
 
+      - store_artifacts:
+          path: build/reports/pmd
+          destination: pmd
+
       - save_cache:
           paths:
             - ~/.gradle
