@@ -20,10 +20,6 @@ jobs:
     steps:             #the repository is checked out from GitHub.
       - checkout
 
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-
       - run:          # this command will download the required dependencies
           name: Gradlew build
           command: |
@@ -33,7 +29,9 @@ jobs:
         - store_test_results:   # required to view test result in CircleCI
             path: build/test-results
 
-
+        - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle" }}
           # After that, reports (test execution, Jacoco, CheckStyle) are saved to the Artifacts section.
           # Jacoco = Test coverage is checked with Jacoco.
           # Checkstyle = Code style checks
