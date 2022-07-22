@@ -53,6 +53,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 || request.getRequestURI().equals("/api/leaderboards/troops")
                 || request.getRequestURI().equals("/api/leaderboards/kingdoms")
                 || request.getRequestURI().equals("/api/kingdoms")
+                || request.getRequestURI().equals("/")
         ){
             chain.doFilter(request, response);
         } else {
