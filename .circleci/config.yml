@@ -2,7 +2,15 @@ version: 2 #Version of configuration
 # build job is configured
 orbs:
   heroku: circleci/heroku@1.2.6
-
+workflows:
+  heroku-workflow:
+    jobs:
+      - heroku/deploy-via-git:
+          branch: $master
+          force: false
+          maintenance-mode: false
+          api-key: e76f6b59-2ec7-45a7-88c1-0fe4992040b8
+          app-name: tribes-b
 jobs:
   build:
     docker:
@@ -50,10 +58,6 @@ jobs:
           path: build/reports/checkstyle
           destination: checkstyle
 
-      - store_artifacts:
-          path: build/reports/pmd
-          destination: pmd
-
       - save_cache:
           paths:
             - ~/.gradle
@@ -63,16 +67,11 @@ jobs:
 
       # run tests!
       - run: gradle test
+      - store_artifacts:
+          path: build/reports/jacoco/test
 
-workflows:
-  heroku-workflow:
-    jobs:
-      - heroku/deploy-via-git:
-          branch: $master
-          force: false
-          maintenance-mode: false
-          api-key: e76f6b59-2ec7-45a7-88c1-0fe4992040b8
-          app-name: tribes-b
+
+
 
 
 
