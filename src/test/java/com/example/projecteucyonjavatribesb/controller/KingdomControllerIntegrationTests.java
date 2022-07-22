@@ -37,17 +37,21 @@ public class KingdomControllerIntegrationTests {
     static Long ID;
     static Long ID2;
     static String USERNAME;
+    static String USENAME2;
     static String PASSWORD;
     static String KINGDOM_NAME;
+    static String KINGDOM_NAME2;
 
     @BeforeAll
     void initialSetup() throws Exception {
-        USERNAME = "MichalJedi";
+        USERNAME = "MichalDaJedi";
+        USENAME2 = "MichalDaSith";
         PASSWORD = "password";
-        KINGDOM_NAME = "DarkStar";
+        KINGDOM_NAME = "Galaxy far far away";
+        KINGDOM_NAME2 = "DarkStar";
 
         playerService.saveNewPlayer(new Player(PASSWORD, USERNAME, KINGDOM_NAME));
-        playerService.saveNewPlayer(new Player(PASSWORD, "user7", "hateIt"));
+        playerService.saveNewPlayer(new Player(PASSWORD, USENAME2, KINGDOM_NAME2));
 
         TOKEN = extractToken();
         INCORRECT_TOKEN =
@@ -60,17 +64,18 @@ public class KingdomControllerIntegrationTests {
                 .andExpect(status().is(200));
 
         ID = playerRepository.findByUsername(USERNAME).getId();
-        ID2 = playerRepository.findByUsername("user7").getId();
+        ID2 = playerRepository.findByUsername(USENAME2).getId();
 
         mockMvc.perform(put("/api/locationRegister")
                         .header("Authorization", TOKEN)
+                        .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                 {
                                     "coordinateX": "92",
                                     "coordinateY": "29",
                                     "kingdomId": "%s"
-                                }""".formatted(ID))
-                        .contentType("application/json"))
+                                }
+                                """.formatted(ID)))
                 .andExpect(status().isOk());
     }
 
@@ -79,11 +84,11 @@ public class KingdomControllerIntegrationTests {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
-                        "username": "MichalJedi",
-                        "password": "password"
+                        "username": "%s",
+                        "password": "%s"
                         }
-                        """)
-        ).andExpect(status().isOk());
+                        """.formatted(USERNAME, PASSWORD)))
+                .andExpect(status().isOk());
 
 
 
@@ -142,7 +147,8 @@ public class KingdomControllerIntegrationTests {
                         .content("""
                                 {
                                     "kingdomName": "%s"
-                                }""".formatted(expectKingdomName)))
+                                }
+                                """.formatted(expectKingdomName)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.kingdomName").value(expectKingdomName))
                 .andExpect(jsonPath("$.kingdomId").value(ID));
@@ -179,7 +185,8 @@ public class KingdomControllerIntegrationTests {
                         .content("""
                                 {
                                     "kingdomName": "%s"
-                                }""".formatted(expectKingdomName)))
+                                }
+                                """.formatted(expectKingdomName)))
                 .andExpect(status().isUnauthorized())
                 .andExpect(jsonPath("$.error").value(expectError));
     }
@@ -196,7 +203,8 @@ public class KingdomControllerIntegrationTests {
                         .content("""
                                 {
                                     "kingdomName": ""
-                                }"""))
+                                }
+                                """))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.error").value(expectError));
     }
