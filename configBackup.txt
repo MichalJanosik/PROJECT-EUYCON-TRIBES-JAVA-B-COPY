@@ -66,9 +66,8 @@ jobs:
       - run: gradle test
 
 workflows:
-  build_test_deploy:
+  heroku-workflow:
     jobs:
-      - build
       - heroku/deploy-via-git:
           force: false
           maintenance-mode: false
