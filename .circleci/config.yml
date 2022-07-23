@@ -2,15 +2,7 @@ version: 2.1 #Version of configuration
 # build job is configured
 orbs:
   heroku: circleci/heroku@1.2.6
-workflows:
-  heroku-workflow:
-    jobs:
-      - heroku/deploy-via-git:
-          force: false
-          maintenance-mode: false
-          api-key: HEROKU_API_KEY # environment variables, i set it in circleCI -> project settings
-          app-name: tribes-b
-          branch: master
+
 jobs:
   build:
     docker:
@@ -73,6 +65,15 @@ jobs:
 
       - run: gradle test
 
+workflows:
+  heroku-workflow:
+    jobs:
+      - heroku/deploy-via-git:
+          force: false
+          maintenance-mode: false
+          api-key: HEROKU_API_KEY # environment variables, i set it in circleCI -> project settings
+          app-name: tribes-b
+          branch: master
 
 
 
