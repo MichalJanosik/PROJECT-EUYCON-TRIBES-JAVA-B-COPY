@@ -5,7 +5,10 @@ orbs:
 workflows:
   heroku-workflow:
     jobs:
+      - build
       - heroku/deploy-via-git:
+          requires:
+            - build
           branch: $master
           force: false
           maintenance-mode: false
