@@ -1,19 +1,6 @@
 version: 2 #Version of configuration
 # build job is configured
-orbs:
-  heroku: circleci/heroku@1.2.6
-workflows:
-  heroku-workflow:
-    jobs:
-      - build
-      - heroku/deploy-via-git:
-          requires:
-            - build
-          branch: $master
-          force: false
-          maintenance-mode: false
-          api-key: e76f6b59-2ec7-45a7-88c1-0fe4992040b8
-          app-name: tribes-b
+
 jobs:
   build:
     docker:
