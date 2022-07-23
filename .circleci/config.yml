@@ -1,10 +1,14 @@
-version: 2 #Version of configuration
+version: 2.1 #Version of configuration
 # build job is configured
 orbs:
   heroku: circleci/heroku@1.2.6
+workflows:
+  heroku_deploy:
+    jobs:
+      - heroku/deploy-via-git:
 
 jobs:
-  build:
+  build-deploy:
     docker:
       - image: cimg/openjdk:17.0.1  #docker image jdk17 because we use java 17 sdk?
         environment:
@@ -15,6 +19,10 @@ jobs:
           DB_PASS: password
           TZ: Europe/Prague
 
+   - heroku/deploy-via-git:
+          api-key: e76f6b59-2ec7-45a7-88c1-0fe4992040b8
+          app-name: $tribes-b
+          branch: $master
           #MySQL
     #          DB_ROOT_USER: user
     #          DB_URL: jdbc:mysql://localhost/tribes?serverTimezone=UTC
@@ -65,17 +73,6 @@ jobs:
 
       - run: gradle test
 
-workflows:
-  version: 2
-  build-deploy:
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build # only run deploy-via-git job if the build job has completed
-          filters:
-            branches:
-              only: main # only run deploy-via-git job on main branch
 
 
 
