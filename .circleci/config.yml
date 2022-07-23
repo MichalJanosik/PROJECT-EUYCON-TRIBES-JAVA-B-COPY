@@ -22,10 +22,6 @@ jobs:
 
     steps:             #the repository is checked out from GitHub.
       - checkout
-      - run:
-          name: Deploy Main to Heroku
-          command: |
-            git push https://heroku:$e76f6b59-2ec7-45a7-88c1-0fe4992040b8@git.heroku.com/$tribes-b.git master
 
       - restore_cache:
           keys:
