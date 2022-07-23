@@ -8,7 +8,7 @@ workflows:
       - heroku/deploy-via-git:
           force: false
           maintenance-mode: false
-          api-key: e76f6b59-2ec7-45a7-88c1-0fe4992040b8
+          api-key: $e76f6b59-2ec7-45a7-88c1-0fe4992040b8
           app-name: $tribes-b
           branch: $master
 jobs:
