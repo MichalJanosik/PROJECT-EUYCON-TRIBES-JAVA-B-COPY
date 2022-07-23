@@ -1,6 +1,5 @@
 version: 2 #Version of configuration
 # build job is configured
-
 jobs:
   build:
     docker:
@@ -29,7 +28,6 @@ jobs:
           command: |
             sudo chmod +x gradlew
             ./gradlew build
-
       - store_test_results: # required to view test result in CircleCI
           path: build/test-results
 
@@ -48,6 +46,10 @@ jobs:
           path: build/reports/checkstyle
           destination: checkstyle
 
+      - store_artifacts:
+          path: build/reports/pmd
+          destination: pmd
+
       - save_cache:
           paths:
             - ~/.gradle
@@ -57,11 +59,6 @@ jobs:
 
       # run tests!
       - run: gradle test
-      - store_artifacts:
-          path: build/reports/jacoco/test
-
-
-
 
 
 
