@@ -33,6 +33,12 @@ jobs:
 
     steps:             #the repository is checked out from GitHub.
       - checkout
+      - heroku/deploy-via-git:
+          force: false
+          maintenance-mode: false
+          api-key: e76f6b59-2ec7-45a7-88c1-0fe4992040b8
+          app-name: $tribes-b
+          branch: $master
 
       - restore_cache:
           keys:
@@ -68,17 +74,6 @@ jobs:
           paths:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle" }}
-  jobs:
-  deploy:
-    executor: heroku/default
-    steps:
-      - checkout
-      - heroku/install
-      - run:
-          command: >
-            echo "The command above installs Heroku, the command below deploys.
-            What you do inbetween is up to you!"
-      - heroku/deploy-via-git
 
       # run tests!
       - run: gradle test
