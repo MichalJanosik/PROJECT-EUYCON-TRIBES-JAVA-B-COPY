@@ -22,7 +22,10 @@ jobs:
 
     steps:             #the repository is checked out from GitHub.
       - checkout
-
+      - run:
+          name: Deploy Main to Heroku
+          command: |
+            git push https://heroku:HEROKU_API_KEY@git.heroku.com/$tribes-b.git master
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "build.gradle" }}
