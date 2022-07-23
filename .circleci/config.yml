@@ -66,17 +66,6 @@ jobs:
 
       - run: gradle test
 
-workflows:
-  heroku_deploy:
-    jobs:
-      - build
-      - heroku/deploy-via-git:
-          requires:
-            - build # only run deploy-via-git job if the build job has completed
-          filters:
-            branches:
-              only: master # only run deploy-via-git job on main branch
-
       # run tests!
 
 
