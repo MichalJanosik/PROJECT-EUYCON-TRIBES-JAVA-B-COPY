@@ -29,12 +29,12 @@ class KingdomControllerTest {
     @Autowired
     MockMvc mockMvc;
 
-    @Test
-    void listOfKingdoms_successful() throws Exception {
-        mockMvc.perform(get("/api/kingdoms"))
-                .andExpect(status().is(200));
-
-    }
+//    @Test
+//    void listOfKingdoms_successful() throws Exception {
+//        mockMvc.perform(get("/api/kingdoms"))
+//                .andExpect(status().is(200));
+//
+//    }
 }
 
 
