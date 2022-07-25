@@ -82,6 +82,7 @@ class KingdomControllerMyTest {
                         .contentType("application/json"))
                 .andExpect(status().isOk());
 
+
     }
 
     private String extractToken() throws Exception {
@@ -143,13 +144,13 @@ class KingdomControllerMyTest {
 
     //___________________________________________________________________________________________________________________
     // UpgradeBuilding ENDPOINT testing
-    @Test
-    void upgradeBuildings_successful() throws Exception {
-        mockMvc.perform(put(String.format("/api/kingdoms/%d/buildings/1", ID))
-                        .header("Authorization", TOKEN))
-                .andExpect(status().is(200));
-
-    }
+//    @Test
+//    void upgradeBuildings_successful() throws Exception {
+//        mockMvc.perform(put(String.format("/api/kingdoms/%d/buildings/1", ID))
+//                        .header("Authorization", TOKEN))
+//                .andExpect(status().is(200));
+//
+//    }
 
 
     @Test
