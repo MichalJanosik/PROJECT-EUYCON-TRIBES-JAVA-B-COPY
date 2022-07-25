@@ -54,6 +54,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 || request.getRequestURI().equals("/api/leaderboards/kingdoms")
                 || request.getRequestURI().equals("/api/kingdoms")
                 || request.getRequestURI().equals("/")
+                || request.getRequestURI().equals("/favicon.ico")
         ){
             chain.doFilter(request, response);
         } else {
