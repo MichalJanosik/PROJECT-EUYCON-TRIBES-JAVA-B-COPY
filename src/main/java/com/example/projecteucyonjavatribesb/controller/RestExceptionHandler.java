@@ -26,7 +26,7 @@ public class RestExceptionHandler {
                     , "Leaderboard type must be defined defined" ->
                     ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDTO);
             default -> ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(ErrorDTO.builder().error("Something went wrong!").build());
+                    .body(ErrorDTO.builder().error("Something went wrong!!").build());
         };
     }
 }
