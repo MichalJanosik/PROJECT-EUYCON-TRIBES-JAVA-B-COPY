@@ -101,7 +101,6 @@ public class KingdomServiceImpl implements KingdomService {
         kingdom.getPlayer().setKingdomName(kingdomNameDTO.getKingdomName());
         kingdomRepository.save(kingdom);
     }
-
     @Override
     public KingdomDTO getRenamedKingdomDTO(Long kingdomId) {
         Kingdom kingdom = kingdomRepository.findById(kingdomId).get();
