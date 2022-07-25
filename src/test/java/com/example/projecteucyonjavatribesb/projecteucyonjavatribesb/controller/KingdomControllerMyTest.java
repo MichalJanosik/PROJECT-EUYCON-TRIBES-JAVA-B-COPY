@@ -1,16 +1,17 @@
 package com.example.projecteucyonjavatribesb.projecteucyonjavatribesb.controller;
 
-import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.TestInstance;
-import com.example.projecteucyonjavatribesb.model.Buildings;
-import com.example.projecteucyonjavatribesb.model.Kingdom;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import com.example.projecteucyonjavatribesb.model.Player;
-import com.example.projecteucyonjavatribesb.repository.BuildingsRepository;
-import com.example.projecteucyonjavatribesb.repository.KingdomRepository;
 import com.example.projecteucyonjavatribesb.repository.PlayerRepository;
 import com.example.projecteucyonjavatribesb.service.PlayerService;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -20,14 +21,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 @AutoConfigureMockMvc
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class KingdomControllerTest {
+class KingdomControllerMyTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -43,13 +40,14 @@ class KingdomControllerTest {
     static String SHORT_TOKEN;
     static Long ID;
     static Long ID2;
+    static Long kingdomID;
     static String USERNAME;
     static String PASSWORD;
     static String KINGDOM_NAME;
 
     @BeforeAll
     void setUp() throws Exception {
-        USERNAME = "Tom";
+        USERNAME = "Tomass";
         PASSWORD = "password";
         KINGDOM_NAME = "Mordor";
 
@@ -65,30 +63,38 @@ class KingdomControllerTest {
                 "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9" +
                         ".V5AXsxmXSvigzHTbM4X2gxNnJSr3pnjugh0rMLR7TIw";
 
+        mockMvc.perform(post("/api/auth")
+                        .header("Authorization", TOKEN))
+                .andExpect(status().is(200));
+
+        ID = playerRepository.findByUsername(USERNAME).getId();
+        ID2 = playerRepository.findByUsername("user2").getId();
+        kingdomID = playerRepository.findByUsername(USERNAME).getKingdom().getId();
+
+        mockMvc.perform(put("/api/locationRegister")
+                        .header("Authorization", TOKEN)
+                        .content("""
+                                {
+                                    "coordinateX": "19",
+                                    "coordinateY": "19",
+                                    "kingdomId": "%s"
+                                }""".formatted(kingdomID))
+                        .contentType("application/json"))
+                .andExpect(status().isOk());
+
     }
-     public String extractToken() throws Exception {
+
+    private String extractToken() throws Exception {
         ResultActions result = mockMvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
-                        "username": "Tom",
+                        "username": "Tomass",
                         "password": "password"
                         }
                         """)
         ).andExpect(status().isOk());
-        ID = playerRepository.findByUsername(USERNAME).getId();
-        ID2 = playerRepository.findByUsername("user2").getId();
 
-
-        mockMvc.perform(put("/api/locationRegister")
-                        .content("""
-                                {
-                                    "coordinateX": "31",
-                                    "coordinateY": "31",
-                                    "kingdomId": "%s"
-                                }""".formatted(ID))
-                        .contentType("application/json"))
-                .andExpect(status().isOk());
 
         String resultString = result.andReturn().getResponse().getContentAsString();
         JacksonJsonParser jsonParser = new JacksonJsonParser();
@@ -101,7 +107,7 @@ class KingdomControllerTest {
         mockMvc.perform(get(String.format("/api/kingdoms/%d/buildings", ID))
                         .header("Authorization", TOKEN))
                 .andExpect(status().is(200))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.kingdom.ruler").value("Tom"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.kingdom.ruler").value("Tomass"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.kingdom.kingdomName").value("Mordor"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.buildings.size()").value(1));
 
@@ -137,13 +143,13 @@ class KingdomControllerTest {
 
     //___________________________________________________________________________________________________________________
     // UpgradeBuilding ENDPOINT testing
-//    @Test
-//    void upgradeBuildings_successful() throws Exception {
-//        mockMvc.perform(put(String.format("/api/kingdoms/%d/buildings/1", ID))
-//                        .header("Authorization", TOKEN))
-//                .andExpect(status().is(200));
-//
-//    }
+    @Test
+    void upgradeBuildings_successful() throws Exception {
+        mockMvc.perform(put(String.format("/api/kingdoms/%d/buildings/1", ID))
+                        .header("Authorization", TOKEN))
+                .andExpect(status().is(200));
+
+    }
 
 
     @Test
@@ -193,17 +199,6 @@ class KingdomControllerTest {
 
     }
 
-    //___________________________________________________________________________________________________________________
-    // listOfKingdoms ENDPOINT testing
-
-//    @Test
-//    void listOfKingdoms_successful() throws Exception {
-//        mockMvc.perform(get("/api/kingdoms")
-//                .header("Authorization", token))
-//                .andExpect(status().is(200))
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.kingdoms.kingdomName").value("Discovery Channels"));
-//
-//    }
 }
 
 

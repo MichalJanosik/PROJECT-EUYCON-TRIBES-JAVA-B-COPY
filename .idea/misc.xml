@@ -19,6 +19,11 @@
     <option name="pathToUserRulesConfiguration" value="" />
     <option name="pathToJarWithRules" value="" />
   </component>
+  <component name="EntryPointsManager">
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="org.junit.Test" />
+    </list>
+  </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$" />
   </component>
