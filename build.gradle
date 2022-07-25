@@ -2,6 +2,8 @@ plugins {
     id 'org.springframework.boot' version '2.7.0'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'pmd'
+    id 'jacoco'
     id 'checkstyle'
 }
 
@@ -15,15 +17,7 @@ configurations {
         extendsFrom annotationProcessor
     }
 }
-checkstyle {
-    configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
-}
-checkstyleMain {
-    source ='src/main/java'
-}
-checkstyleTest {
-    source ='src/test/java'
-}
+
 
 repositories {
     mavenCentral()
@@ -64,17 +58,55 @@ dependencies {
     testImplementation group: 'org.springframework', name: 'spring-test', version: '5.3.21'
 }
 
-jar {
-    enabled = false
-    manifest {
-        attributes "Main-Class": "com/example/projecteucyonjavatribesb/ProjectEucyonJavaTribesBApplication.java"
+test {
+    jar {
+        enabled = false
+        manifest {
+            attributes "Main-Class": "com/example/projecteucyonjavatribesb/ProjectEucyonJavaTribesBApplication.java"
+        }
+
+        from {
+            configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+        }
     }
 
-    from {
-        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    tasks.named('test') {
+        useJUnitPlatform()
+        finalizedBy jacocoTestReport
     }
-}
 
-tasks.named('test') {
-    useJUnitPlatform()
+    jacocoTestReport {
+        dependsOn test
+        reports {
+            html.required = true
+        }
+    }
+
+    jacocoTestCoverageVerification {
+        violationRules {
+            rule {
+                limit {
+                    minimum = 0.8
+                }
+            }
+        }
+    }
+
+    pmd {
+        consoleOutput = true
+        toolVersion = "6.21.0"
+        rulesMinimumPriority = 5
+    }
+
+    checkstyle {
+        toolVersion '8.40'
+        ignoreFailures true
+    }
+
+    tasks.withType(Checkstyle) {
+        reports {
+            xml.required = true
+            html.required = true
+        }
+    }
 }
