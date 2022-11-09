@@ -28,4 +28,4 @@ Final project on GFA junior software developer course. The game was created duri
 - Jira
 - CircleCI
 - Heroku
-
+- JUnit
